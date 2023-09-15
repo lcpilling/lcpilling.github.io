@@ -46,7 +46,13 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="gwasrtools-012">gwasRtools 0.1.2<a class="anchor" aria-label="anchor" href="#gwasrtools-012"></a></h2>
-<ul><li>Fixes for <code><a href="../reference/get_loci.html">get_loci()</a></code> niche cases</li>
+<ul><li>Added <code>gwas_example</code> data for running examples</li>
+<li>
+<code>get_loc()</code> Genetic loci are now defined around variants with p-value &lt; 5 × 10−8. The locus borders were set 500kb (<code>n_bases</code>) to each side of the highest genome-wide significant variant in each region.</li>
+<li>
+<code><a href="../reference/get_loci.html">get_loci()</a></code> “lead” column is the best lead SNP from distance (i.e., all input SNPs) or from LD clumping (subset in reference dataset panel)</li>
+<li>Fixes for <code><a href="../reference/get_loci.html">get_loci()</a></code> niche cases</li>
+<li>Fixes for <code><a href="../reference/get_nearest_gene.html">get_nearest_gene()</a></code> niche cases</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="gwasrtools-011">gwasRtools 0.1.1<a class="anchor" aria-label="anchor" href="#gwasrtools-011"></a></h2>

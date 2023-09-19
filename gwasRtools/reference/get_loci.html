@@ -161,8 +161,46 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_loci</span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.data.frame(gwas):</span> object 'gwas' not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu">get_loci</span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Locus size (bases) = 5e+05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-value threshold = 5e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N variants = 319732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N variants p&lt;threshold = 4132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N loci = 15</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_loci</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               SNP CHR        BP   A1 A2   MAF       BETA         SE        P</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57882  rs12046439   1 107536799    T  C 0.248 0.00997159 0.00170546 5.01e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57900 rs143849791   1 107537916 CATG  C 0.325 0.01283200 0.00164361 5.85e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57922 rs113329442   1 107539252    A  G 0.330 0.01109240 0.00149706 1.27e-13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57987   rs3861909   1 107544176    G  A 0.327 0.01187220 0.00150837 3.52e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58025  rs17496332   1 107546375    A  G 0.331 0.01110260 0.00148844 8.70e-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58091   rs2878349   1 107549245    G  A 0.327 0.01182020 0.00149200 2.33e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       locus  lead</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57882     1 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57900     1 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57922     1 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57987     1 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58025     1 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58091     1 FALSE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_loci</span><span class="op">[</span> <span class="va">gwas_loci</span><span class="op">$</span><span class="va">lead</span><span class="op">==</span><span class="cn">TRUE</span> , <span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                SNP CHR        BP A1 A2     MAF        BETA         SE         P</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58431  rs111232683   1 107566149  G  C 0.34300  0.01352040 0.00161401  5.43e-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75873  rs114254196   1 108635400  C  T 0.00848 -0.04481140 0.00818473  4.38e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83709  rs115292790   1 109310728  G  A 0.01360 -0.05639270 0.00608890  2.01e-20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91666   rs12740374   1 109817590  G  T 0.21900 -0.14822800 0.00166391 4.73e-305</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98740  rs140266316   1 110326545  G  A 0.01630 -0.05770880 0.00597770  4.73e-22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120461    rs657801   1 111736389  T  C 0.31500  0.00905412 0.00150713  1.88e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        locus lead</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58431      1 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75873      2 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83709      3 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91666      4 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98740      5 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120461     6 TRUE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

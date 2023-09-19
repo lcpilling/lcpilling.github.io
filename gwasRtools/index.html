@@ -149,8 +149,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_loci.html">get_loci</a></span><span class="op">(</span><span class="va">gwas_example</span>, get_ld_indep<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ** Performing LD clumping. Can take a few minutes</span></span>
-<span><span class="co">#&gt; ** Local Plink installation will be called </span></span>
-<span><span class="co">#&gt; ** Plink output would appear here on your screen. Excluded here for the README</span></span>
+<span><span class="co">#&gt; ** Local Plink installation will be called -- output appears in your R terminal</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Locus size (bases) = 5e+05</span></span>
 <span><span class="co">#&gt; P-value threshold = 5e-08</span></span>
@@ -161,22 +160,22 @@
 <span><span class="co">#&gt; N independent variants (LD R2 threshold 0.01) = 153</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_loci</span><span class="op">)</span></span>
-<span><span class="co">#&gt;               SNP CHR        BP   A1 A2   MAF       BETA         SE        P locus  lead lead_dist lead_ld</span></span>
-<span><span class="co">#&gt; 57882  rs12046439   1 107536799    T  C 0.248 0.00997159 0.00170546 5.01e-09     1 FALSE     FALSE   FALSE</span></span>
-<span><span class="co">#&gt; 57900 rs143849791   1 107537916 CATG  C 0.325 0.01283200 0.00164361 5.85e-15     1 FALSE     FALSE   FALSE</span></span>
-<span><span class="co">#&gt; 57922 rs113329442   1 107539252    A  G 0.330 0.01109240 0.00149706 1.27e-13     1 FALSE     FALSE   FALSE</span></span>
-<span><span class="co">#&gt; 57987   rs3861909   1 107544176    G  A 0.327 0.01187220 0.00150837 3.52e-15     1 FALSE     FALSE   FALSE</span></span>
-<span><span class="co">#&gt; 58025  rs17496332   1 107546375    A  G 0.331 0.01110260 0.00148844 8.70e-14     1 FALSE     FALSE   FALSE</span></span>
-<span><span class="co">#&gt; 58091   rs2878349   1 107549245    G  A 0.327 0.01182020 0.00149200 2.33e-15     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt;               SNP CHR        BP   A1 A2   MAF    BETA      SE        P locus  lead lead_dist lead_ld</span></span>
+<span><span class="co">#&gt; 57882  rs12046439   1 107536799    T  C 0.248 0.00997 0.00170 5.01e-09     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt; 57900 rs143849791   1 107537916 CATG  C 0.325 0.01283 0.00164 5.85e-15     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt; 57922 rs113329442   1 107539252    A  G 0.330 0.01109 0.00149 1.27e-13     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt; 57987   rs3861909   1 107544176    G  A 0.327 0.01187 0.00150 3.52e-15     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt; 58025  rs17496332   1 107546375    A  G 0.331 0.01110 0.00148 8.70e-14     1 FALSE     FALSE   FALSE</span></span>
+<span><span class="co">#&gt; 58091   rs2878349   1 107549245    G  A 0.327 0.01182 0.00149 2.33e-15     1 FALSE     FALSE   FALSE</span></span>
 <span></span>
 <span><span class="va">gwas_loci</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lead</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           SNP CHR        BP A1 A2     MAF       BETA         SE        P locus lead lead_dist lead_ld</span></span>
-<span><span class="co">#&gt; 1 rs111232683   1 107566149  G  C 0.34300  0.0135204 0.00161401 5.43e-17     1 TRUE      TRUE    TRUE</span></span>
-<span><span class="co">#&gt; 2 rs114254196   1 108635400  C  T 0.00848 -0.0448114 0.00818473 4.38e-08     2 TRUE      TRUE    TRUE</span></span>
-<span><span class="co">#&gt; 3 rs140300970   1 109020060  A  T 0.02240 -0.0278210 0.00496721 2.13e-08     3 TRUE     FALSE    TRUE</span></span>
-<span><span class="co">#&gt; 4 rs148503795   1 109166178  C  G 0.01050 -0.0423267 0.00709770 2.47e-09     3 TRUE     FALSE    TRUE</span></span>
-<span><span class="co">#&gt; 5  rs74896173   1 109167705  T  C 0.00914 -0.0429793 0.00766819 2.08e-08     3 TRUE     FALSE    TRUE</span></span>
-<span><span class="co">#&gt; 6 rs111751551   1 109242056  G  A 0.01010 -0.0505560 0.00697787 4.32e-13     3 TRUE     FALSE    TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt;           SNP CHR        BP A1 A2   MAF     BETA      SE        P locus lead lead_dist lead_ld</span></span>
+<span><span class="co">#&gt; 1 rs111232683   1 107566149  G  C 0.343  0.01352 0.00161 5.43e-17     1 TRUE      TRUE    TRUE</span></span>
+<span><span class="co">#&gt; 2 rs114254196   1 108635400  C  T 0.008 -0.04481 0.00818 4.38e-08     2 TRUE      TRUE    TRUE</span></span>
+<span><span class="co">#&gt; 3 rs140300970   1 109020060  A  T 0.022 -0.02782 0.00496 2.13e-08     3 TRUE     FALSE    TRUE</span></span>
+<span><span class="co">#&gt; 4 rs148503795   1 109166178  C  G 0.010 -0.04232 0.00709 2.47e-09     3 TRUE     FALSE    TRUE</span></span>
+<span><span class="co">#&gt; 5  rs74896173   1 109167705  T  C 0.009 -0.04297 0.00766 2.08e-08     3 TRUE     FALSE    TRUE</span></span>
+<span><span class="co">#&gt; 6 rs111751551   1 109242056  G  A 0.010 -0.05055 0.00697 4.32e-13     3 TRUE     FALSE    TRUE</span></span></code></pre></div>
 <p>Where before, locus 3 would only have had one lead SNP (based on distance/lowest p-value) <code>ld_clump()</code> has identified multiple independent variants in the region.</p>
 <p>Note that there are now three <code>lead</code> columns: - <code>lead_dist</code> is the original <code>lead</code> column, simply based on distance and p-values - <code>lead_ld</code> is the direct results from <code>ld_clump()</code> - The <code>lead</code> column combines the two (some SNPs are missing from LD panel so it does not always choose the lowest p-value if only 1 variant identified at a locus).</p>
 <p>** Note that <code>ld_clump()</code> only considers R^2 when defining independent variants, not D’ – you should perform additional checking/conditional analysis where relevant for <code>lead</code> variants in close proximity.</p>
@@ -193,22 +192,22 @@
 <span><span class="co">#&gt; (Removed 1 duplicated or missing variant IDs/positions)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_loci</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           SNP CHR        BP   A1 A2   MAF       BETA         SE        P locus  lead lead_dist lead_ld  gene  dist</span></span>
-<span><span class="co">#&gt; 1  rs12046439   1 107536799    T  C 0.248 0.00997159 0.00170546 5.01e-09     1 FALSE     FALSE   FALSE PRMT6 62468</span></span>
-<span><span class="co">#&gt; 2 rs143849791   1 107537916 CATG  C 0.325 0.01283200 0.00164361 5.85e-15     1 FALSE     FALSE   FALSE PRMT6 61351</span></span>
-<span><span class="co">#&gt; 3 rs113329442   1 107539252    A  G 0.330 0.01109240 0.00149706 1.27e-13     1 FALSE     FALSE   FALSE PRMT6 60015</span></span>
-<span><span class="co">#&gt; 4   rs3861909   1 107544176    G  A 0.327 0.01187220 0.00150837 3.52e-15     1 FALSE     FALSE   FALSE PRMT6 55091</span></span>
-<span><span class="co">#&gt; 5  rs17496332   1 107546375    A  G 0.331 0.01110260 0.00148844 8.70e-14     1 FALSE     FALSE   FALSE PRMT6 52892</span></span>
-<span><span class="co">#&gt; 6   rs2878349   1 107549245    G  A 0.327 0.01182020 0.00149200 2.33e-15     1 FALSE     FALSE   FALSE PRMT6 50022</span></span>
+<span><span class="co">#&gt;           SNP CHR        BP   A1 A2   MAF    BETA      SE        P locus  lead lead_dist lead_ld  gene  dist</span></span>
+<span><span class="co">#&gt; 1  rs12046439   1 107536799    T  C 0.248 0.00997 0.00170 5.01e-09     1 FALSE     FALSE   FALSE PRMT6 62468</span></span>
+<span><span class="co">#&gt; 2 rs143849791   1 107537916 CATG  C 0.325 0.01283 0.00164 5.85e-15     1 FALSE     FALSE   FALSE PRMT6 61351</span></span>
+<span><span class="co">#&gt; 3 rs113329442   1 107539252    A  G 0.330 0.01109 0.00149 1.27e-13     1 FALSE     FALSE   FALSE PRMT6 60015</span></span>
+<span><span class="co">#&gt; 4   rs3861909   1 107544176    G  A 0.327 0.01187 0.00150 3.52e-15     1 FALSE     FALSE   FALSE PRMT6 55091</span></span>
+<span><span class="co">#&gt; 5  rs17496332   1 107546375    A  G 0.331 0.01110 0.00148 8.70e-14     1 FALSE     FALSE   FALSE PRMT6 52892</span></span>
+<span><span class="co">#&gt; 6   rs2878349   1 107549245    G  A 0.327 0.01182 0.00149 2.33e-15     1 FALSE     FALSE   FALSE PRMT6 50022</span></span>
 <span></span>
 <span><span class="va">gwas_loci</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lead</span><span class="op">==</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           SNP CHR        BP A1 A2     MAF       BETA         SE        P locus lead lead_dist lead_ld     gene   dist</span></span>
-<span><span class="co">#&gt; 1 rs111232683   1 107566149  G  C 0.34300  0.0135204 0.00161401 5.43e-17     1 TRUE      TRUE    TRUE    PRMT6  33118</span></span>
-<span><span class="co">#&gt; 2 rs114254196   1 108635400  C  T 0.00848 -0.0448114 0.00818473 4.38e-08     2 TRUE      TRUE    TRUE SLC25A24  41258</span></span>
-<span><span class="co">#&gt; 3 rs140300970   1 109020060  A  T 0.02240 -0.0278210 0.00496721 2.13e-08     3 TRUE     FALSE    TRUE    NBPF6   6436</span></span>
-<span><span class="co">#&gt; 4 rs148503795   1 109166178  C  G 0.01050 -0.0423267 0.00709770 2.47e-09     3 TRUE     FALSE    TRUE  FAM102B -63467</span></span>
-<span><span class="co">#&gt; 5  rs74896173   1 109167705  T  C 0.00914 -0.0429793 0.00766819 2.08e-08     3 TRUE     FALSE    TRUE  FAM102B -64994</span></span>
-<span><span class="co">#&gt; 6 rs111751551   1 109242056  G  A 0.01010 -0.0505560 0.00697787 4.32e-13     3 TRUE     FALSE    TRUE  PRPF38B  -7111</span></span></code></pre></div>
+<span><span class="co">#&gt;           SNP CHR        BP A1 A2   MAF     BETA      SE        P locus lead lead_dist lead_ld     gene   dist</span></span>
+<span><span class="co">#&gt; 1 rs111232683   1 107566149  G  C 0.343  0.01352 0.00161 5.43e-17     1 TRUE      TRUE    TRUE    PRMT6  33118</span></span>
+<span><span class="co">#&gt; 2 rs114254196   1 108635400  C  T 0.008 -0.04481 0.00818 4.38e-08     2 TRUE      TRUE    TRUE SLC25A24  41258</span></span>
+<span><span class="co">#&gt; 3 rs140300970   1 109020060  A  T 0.022 -0.02782 0.00496 2.13e-08     3 TRUE     FALSE    TRUE    NBPF6   6436</span></span>
+<span><span class="co">#&gt; 4 rs148503795   1 109166178  C  G 0.010 -0.04232 0.00709 2.47e-09     3 TRUE     FALSE    TRUE  FAM102B -63467</span></span>
+<span><span class="co">#&gt; 5  rs74896173   1 109167705  T  C 0.009 -0.04297 0.00766 2.08e-08     3 TRUE     FALSE    TRUE  FAM102B -64994</span></span>
+<span><span class="co">#&gt; 6 rs111751551   1 109242056  G  A 0.010 -0.05055 0.00697 4.32e-13     3 TRUE     FALSE    TRUE  PRPF38B  -7111</span></span></code></pre></div>
 <ul>
 <li>If <code>dist</code> is positive, the variant is intergenic, and this is the distance to the closest gene.</li>
 <li>If <code>dist</code> is negative, the variant is within a gene, and this is the distance to the start of the gene.</li>

@@ -1,7 +1,7 @@
 library(ThemePark)
 library(tidyverse)
 
-d = read_csv("https://raw.githubusercontent.com/lukepilling/lukepilling.github.io/files/jane_twitter.csv")
+d = read_csv("https://raw.githubusercontent.com/lukepilling/lukepilling.github.io/main/files/jane_twitter.csv")
 
 cor(d$x, d$y)^2
 

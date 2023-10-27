@@ -60,13 +60,13 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><img align="right" src="https://github.com/lukepilling/twistR/raw/main/images/twistR_hex_v1.png" width="160"></p>
+  <main id="main" class="col-md-9"><p><img align="right" src="https://github.com/lukepilling/twistR/raw/main/images/twistR_hex_v1.png" width="200"></p>
 <div class="section level1">
 <div class="page-header"><h1 id="twistr">twistR<a class="anchor" aria-label="anchor" href="#twistr"></a>
 </h1></div>
 <p>TWIST (Triangulation WIthin A STudy) analysis in R.</p>
-<p><a href="https://github.com/lukepilling/twistR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.4-informational.svg"></a> <a href="https://zenodo.org/badge/latestdoi/402818137" class="external-link"><img src="https://zenodo.org/badge/402818137.svg" alt="DOI"></a></p>
-<p><a href="https://github.com/lukepilling/twistR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/twistR.svg"></a> <a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></p>
+<!-- badges: start -->
+
 <p>The TWIST framework estimates the ‘genetically moderated treatment effect’ (GMTE). This is akin to the population attributable fraction (PAF) in pharmaco-epidemiology: the excess disease or outcomes in individuals prescribed a specific medication that are attributed to genetic variant(s). TWIST extends the PAF by incorporating information on both treated and untreated individuals. With this larger set of information we show that four analysis approaches for estimating the GMTE are possible. Each one relies on a different set of assumptions to work correctly and provides estimates that are largely uncorrelated with one another. A decision framework is used to decide when a particular estimation strategy is most appropriate and how specific estimators can be combined to further improve efficiency. Triangulation of evidence from different data sources, each with their inherent biases and limitations, is becoming a well established principle for strengthening causal analysis. Hence we called our framework ‘Triangulation WIthin a STudy’ (TWIST) in order to emphasise that an analysis in this spirit is also possible within a single data set, using causal estimates that are approximately uncorrelated, but reliant on different sets of assumptions.</p>
 <p>TWIST therefore robustly estimates how many events (outcome can be mortality, disease, symptoms, etc) in the genotype group could be avoided if this group could experience the same treatment effect as non-carriers.</p>
 <p>Please see our published paper in PLoS Genetics for further information <a href="https://doi.org/10.1371/journal.pgen.1009783" class="external-link uri">https://doi.org/10.1371/journal.pgen.1009783</a></p>
@@ -104,9 +104,16 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To install <code>twistR</code> from GitHub use the <code>remotes</code> package:</p>
-<p><code>remotes::install_github("lukepilling/twistR")</code></p>
-<p>To update the package just run the above command again.</p>
+<p>To install the development version from GitHub use the <code>remotes</code> package:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/twistR"</span><span class="op">)</span></span></code></pre></div>
+<p>I periodically “release” a version number once it works as expected. The development version may contain things that do not yet “work.”</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># To install the latest release, use:</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/twistR@*release"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># To install a specific version (see tags), use:</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/twistR@v0.1.4"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="model-types-performed">Model types performed<a class="anchor" aria-label="anchor" href="#model-types-performed"></a>
@@ -260,7 +267,7 @@
 <div class="section level4">
 <h4 id="example-using-binary-outcome">Example using binary outcome<a class="anchor" aria-label="anchor" href="#example-using-binary-outcome"></a>
 </h4>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example using: </span></span>
 <span><span class="co">#   - a binary outcome (high LDL) - in data.frame D</span></span>
 <span><span class="co">#   - a binary treatment variable (on statins) - in data.frame D</span></span>
@@ -406,7 +413,7 @@
 <h4 id="example-using-aalen-additive-hazards">Example using Aalen additive hazards<a class="anchor" aria-label="anchor" href="#example-using-aalen-additive-hazards"></a>
 </h4>
 <p>In our paper we include results from our analysis of the anti-platelet drug clopidogrel, where genetic variants in gene <em>CYP2C19</em> impair drug metabolism and reduce function, thereby increasing risk of thrombosis. We used the Aalen additive hazards models to estimate the increased risk of ischemic stroke in UK Biobank participants prescribed clopidogrel, who carried <em>CYP2C19</em> Loss of Function (LoF) variants (<em>2-</em>8).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example using: </span></span>
 <span><span class="co">#   - a time-to-event model (time to ischemic stroke) - time to stroke/censoring is in "years" so output should be interpreted this way</span></span>
 <span><span class="co">#   - a binary treatment variable (on clopidogrel)</span></span>
@@ -570,7 +577,7 @@
 <h3 id="remove-cat-estimates-for-cleaner-plot">Remove CAT estimates for “cleaner” plot<a class="anchor" aria-label="anchor" href="#remove-cat-estimates-for-cleaner-plot"></a>
 </h3>
 <p>As previously mentioned, the validity of the CAT method rests strongly on being able to identify all confounders of the treatment and the outcome. In this analysis it was only possible to adjust for age, sex and genetic principal components. Therefore the CAT estimate is disproportionately larger and consequently, the Q[CAT,GMTE(1)] statistic detects large heterogeneity, suggesting that the CAT and GMTE(1) estimates should not be combined.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gmte_plot.html">gmte_plot</a></span><span class="op">(</span><span class="va">results</span>, plot_title <span class="op">=</span> <span class="st">"SLCO1B1*5 effect on LDL during statin treatment"</span>, plot_cat<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="https://github.com/lukepilling/twistR/raw/main/images/gmte_plot.2.png" width="650"></p>
 </div>
@@ -602,12 +609,21 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Luke Pilling <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3332-8454" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3332-8454" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Jack Bowden <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2628-3304" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/lukepilling/twistR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.4-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/twistR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/twistR.svg"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/402818137" class="external-link"><img src="https://zenodo.org/badge/402818137.svg" alt="DOI"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
@@ -615,7 +631,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Luke Pilling, Jack Bowden.</p>
+<p>Developed by <a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a>, Jack Bowden.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -28,7 +28,7 @@ Not tested for models other than `glm()` and `survival::coxph()` where it seems 
     
     <a class="navbar-brand me-2" href="../index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -164,21 +164,21 @@ and if p=0 returns the extreme p as a string. Other optional outputs include -lo
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fit_linear</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">smoking_status</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in is.data.frame(data):</span> object 'd' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(mf, parent.frame()):</span> object 'd' not found</span>
 <span class="r-in"><span><span class="fu">tidy_ci</span><span class="op">(</span><span class="va">fit_linear</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in broom::tidy(x, conf.int = conf.int, exponentiate = FALSE, ...):</span> object 'fit_linear' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'fit_linear' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">fit_logistic</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">current_smoker_vs_never</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">bmi</span>, data <span class="op">=</span> <span class="va">d</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link<span class="op">=</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in is.data.frame(data):</span> object 'd' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(mf, parent.frame()):</span> object 'd' not found</span>
 <span class="r-in"><span><span class="fu">tidy_ci</span><span class="op">(</span><span class="va">fit_logistic</span><span class="op">)</span>   <span class="co"># detect model and exponentiate automatically</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in broom::tidy(x, conf.int = conf.int, exponentiate = FALSE, ...):</span> object 'fit_logistic' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'fit_logistic' not found</span>
 <span class="r-in"><span><span class="fu">tidy_ci</span><span class="op">(</span><span class="va">fit_logistic</span>, check_model<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># override auto checking to get untransformed estimates</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in broom::tidy(x, conf.int = conf.int, exponentiate = FALSE, ...):</span> object 'fit_logistic' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'fit_logistic' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">fit_coxph</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">coxph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">smoking_status</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in coxph(Surv(time, status) ~ age + sex + as.factor(smoking_status),     data = d):</span> could not find function "coxph"</span>
 <span class="r-in"><span><span class="fu">tidy_ci</span><span class="op">(</span><span class="va">fit_coxph</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in broom::tidy(x, conf.int = conf.int, exponentiate = FALSE, ...):</span> object 'fit_coxph' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'fit_coxph' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -187,7 +187,7 @@ and if p=0 returns the extreme p as a string. Other optional outputs include -lo
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Luke Pilling.</p>
+  <p></p><p>Developed by <a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

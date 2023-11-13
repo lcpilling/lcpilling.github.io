@@ -14,7 +14,7 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
     
     <a class="navbar-brand me-2" href="../index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,6 +73,8 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <span>  inv_norm_y <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  subset_d <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  beep <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  beep_sound <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -152,6 +154,16 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <code>default=TRUE</code></p></dd>
 
 
+<dt>beep</dt>
+<dd><p>Logical. Beep when done,
+<code>default=FALSE</code></p></dd>
+
+
+<dt>beep_sound</dt>
+<dd><p>Numeric. Which sound to use? See `beepr` docs,
+<code>default=3</code></p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical. Be verbose,
 <code>default=FALSE</code></p></dd>
@@ -174,23 +186,55 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># for one outcome, equivalent to `tidy_ci(glm(weight ~ height +age+sex, d=ukb))` - with added `n`</span></span></span>
-<span class="r-in"><span><span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="st">"height"</span>, y<span class="op">=</span><span class="st">"weight"</span>, z<span class="op">=</span><span class="st">"+age+sex"</span>, d<span class="op">=</span><span class="va">ukb</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'ukb' not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># for one outcome, equivalent to `tidy_ci(glm(sbp ~ bmi +age+sex, d=example_data))` - with added `n`</span></span></span>
+<span class="r-in"><span><span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="st">"bmi"</span>, y<span class="op">=</span><span class="st">"sbp"</span>, z<span class="op">=</span><span class="st">"+age+sex"</span>, d<span class="op">=</span><span class="va">example_data</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   outcome exposure estimate std.error statistic  p.value conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> sbp     bmi          1.49    0.073<span style="text-decoration: underline;">0</span>      20.4 5.42<span style="color: #949494;">e</span><span style="color: #BB0000;">-89</span>     1.35      1.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: n &lt;int&gt;, model &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># categorical exposure, binary outcome, and stratified analysis (with note)</span></span></span>
 <span class="r-in"><span><span class="co">#  - note that data can be passed using the pipe if desired</span></span></span>
-<span class="r-in"><span><span class="va">d</span><span class="op">=</span><span class="va">ukb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="st">"smoking_status"</span>, y<span class="op">=</span><span class="st">"chd"</span>, z<span class="op">=</span><span class="st">"+age"</span>, model<span class="op">=</span><span class="st">"logistic"</span>, af<span class="op">=</span><span class="cn">TRUE</span>, note<span class="op">=</span><span class="st">"Males only"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'ukb' not found</span>
+<span class="r-in"><span><span class="va">example_data</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="st">"bmi_cat"</span>, y<span class="op">=</span><span class="st">"event"</span>, z<span class="op">=</span><span class="st">"+age"</span>, model<span class="op">=</span><span class="st">"logistic"</span>, af<span class="op">=</span><span class="cn">TRUE</span>, note<span class="op">=</span><span class="st">"Males only"</span><span class="op">)</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   outcome exposure  estimate std.error statistic    p.value conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> event   bmi_cat-0    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> event   bmi_cat-1     1.50    0.098<span style="text-decoration: underline;">6</span>      4.09  0.000<span style="text-decoration: underline;">042</span>6     1.23      1.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> event   bmi_cat-2     1.93    0.154       4.27  0.000<span style="text-decoration: underline;">019</span>4     1.43      2.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n n_cases model    note      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   803     268 logistic Males only</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>018     443 logistic Males only</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>   226     111 logistic Males only</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># multiple exposures and/or outcomes - get pseudo R^2</span></span></span>
-<span class="r-in"><span><span class="va">x_vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bmi"</span>,<span class="st">"ldl"</span>,<span class="st">"sbp_0_avg"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">y_vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chd"</span>,<span class="st">"t2d"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">=</span> <span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_vars</span>, y<span class="op">=</span><span class="va">y_vars</span>, z<span class="op">=</span><span class="st">"+age+sex"</span>, d<span class="op">=</span><span class="va">ukb</span>, model<span class="op">=</span><span class="st">"logistic"</span>, get_fit<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'ukb' not found</span>
-<span class="r-in"><span><span class="va">res</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'res' not found</span>
+<span class="r-in"><span><span class="va">x_vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bmi"</span>,<span class="st">"sbp"</span>,<span class="st">"dbp"</span>,<span class="st">"scl"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y_vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"event"</span>,<span class="st">"sex"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_vars</span>, y<span class="op">=</span><span class="va">y_vars</span>, z<span class="op">=</span><span class="st">"+age"</span>, d<span class="op">=</span><span class="va">example_data</span>, model<span class="op">=</span><span class="st">"logistic"</span>, get_fit<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   outcome exposure estimate std.error statistic  p.value conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> event   bmi         1.07   0.007<span style="text-decoration: underline;">91</span>       9.07 1.19<span style="color: #949494;">e</span><span style="color: #BB0000;">-19</span>    1.06       1.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> sex     bmi         1.04   0.007<span style="text-decoration: underline;">36</span>       5.09 3.54<span style="color: #949494;">e</span><span style="color: #BB0000;">- 7</span>    1.02       1.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> event   sbp         1.01   0.001<span style="text-decoration: underline;">49</span>       8.86 7.80<span style="color: #949494;">e</span><span style="color: #BB0000;">-19</span>    1.01       1.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> sex     sbp         0.998  0.001<span style="text-decoration: underline;">41</span>      -<span style="color: #BB0000;">1.12</span> 2.61<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.996      1.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> event   dbp         1.03   0.002<span style="text-decoration: underline;">59</span>       9.73 2.33<span style="color: #949494;">e</span><span style="color: #BB0000;">-22</span>    1.02       1.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> sex     dbp         1.01   0.002<span style="text-decoration: underline;">40</span>       4.98 6.35<span style="color: #949494;">e</span><span style="color: #BB0000;">- 7</span>    1.01       1.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> event   scl         1.01   0.000<span style="text-decoration: underline;">749</span>      9.47 2.69<span style="color: #949494;">e</span><span style="color: #BB0000;">-21</span>    1.01       1.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> sex     scl         0.999  0.000<span style="text-decoration: underline;">692</span>     -<span style="color: #BB0000;">1.08</span> 2.82<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.998      1.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n n_cases fit_stat model   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">4</span>690    <span style="text-decoration: underline;">1</span>472 0.031<span style="text-decoration: underline;">7</span>   logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">4</span>690    <span style="text-decoration: underline;">2</span>047 0.004<span style="text-decoration: underline;">54</span>  logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">1</span>473 0.031<span style="text-decoration: underline;">0</span>   logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">2</span>049 0.000<span style="text-decoration: underline;">666</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">1</span>473 0.033<span style="text-decoration: underline;">8</span>   logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">2</span>049 0.004<span style="text-decoration: underline;">35</span>  logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">4</span>666    <span style="text-decoration: underline;">1</span>466 0.033<span style="text-decoration: underline;">1</span>   logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">4</span>666    <span style="text-decoration: underline;">2</span>042 0.000<span style="text-decoration: underline;">649</span> logistic</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

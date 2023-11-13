@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +127,7 @@
 <div class="section level3">
 <h3 id="tidy_ci">tidy_ci()<a class="anchor" aria-label="anchor" href="#tidy_ci"></a>
 </h3>
-<p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> (“tidy with CIs”) runs <a href="https://broom.tidymodels.org/" class="external-link"><code>broom::tidy()</code></a> and returns the tidy estimates with CIs calculated as EST +/- 1.96*SE</p>
+<p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> (“tidy with CIs”) runs <a href="https://broom.tidymodels.org/" class="external-link"><code>broom::tidy()</code></a> and returns the tidy estimates with CIs calculated as EST +/- 1.96*SE (i.e., the Wald method)</p>
 <p>Motivation: by default the <a href="https://broom.tidymodels.org/" class="external-link">{broom}</a> package uses <code><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint()</a></code> to estimate CIs. For GLMs this calculates CIs via the profile likelihood method. When using large datasets this takes a long time and does not meaningfully alter the CIs compared to calculating using 1.96*SE</p>
 <p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> does a few other nice things: hides the intercept by default, automatically detects logistic/CoxPH/CRR models and exponentiates the estimates, and if p==0 returns the ‘extreme p’ as a string. Other options include -log10 p-values. See the <a href="https://github.com/lukepilling/lukesRlib/wiki/tidy_ci()" class="external-link"><code>tidy_ci()</code> Wiki</a> page for more details</p>
 <div class="section level4">
@@ -403,7 +403,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/lukesRlib" class="external-link"><img src="https://img.shields.io/badge/version-0.2.5.9000-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/lukesRlib" class="external-link"><img src="https://img.shields.io/badge/version-0.2.6-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/lukesRlib/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/lukesRlib.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/590063045" class="external-link"><img src="https://zenodo.org/badge/590063045.svg" alt="DOI"></a></li>

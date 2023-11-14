@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,66 +60,80 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="ukbrapr">ukbrapR<a class="anchor" aria-label="anchor" href="#ukbrapr"></a>
 </h1></div>
-<p>R functions to use in the UK Biobank Research Analysis Platform (RAP).</p>
+<p>{ukbrapR} (phonetically: ‘U-K-B-rapper’) is a small package of R functions to use in the UK Biobank Research Analysis Platform (RAP).</p>
 <!-- badges: start -->
 
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>This will only work on DNAnexus (<a href="https://ukbiobank.dnanexus.com" class="external-link uri">https://ukbiobank.dnanexus.com</a>) in an approved UK Biobank project.</p>
+<p><strong>Only works on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
 <p>In tools, create a JupyterLab environment on a Spark Cluster. Start an R session and install this package. This will install the necessary dependencies for interacting with the Python environment, Apache Spark, and the Arrow C++ library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR"</span><span class="op">)</span></span>
-<span>  <span class="co"># this takes a few minutes to build the dependencies</span></span></code></pre></div>
+<span>  <span class="co"># Takes a few minutes to build the dependencies. Suggest saving as a snapshot.</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="get-phenotypes-on-the-rap">Get phenotypes on the RAP<a class="anchor" aria-label="anchor" href="#get-phenotypes-on-the-rap"></a>
+<h2 id="get-phenotype-data">Get phenotype data<a class="anchor" aria-label="anchor" href="#get-phenotype-data"></a>
 </h2>
-<p>My main motivation was to create a wrapper function in R to extract phenotype variables from the Spark distributed database functions (like SQL). The primary function is <code><a href="reference/get_rap_phenos.html">get_rap_phenos()</a></code> which mostly contains code from the UK Biobank DNAnexus team <a href="https://github.com/UK-Biobank/UKB-RAP-Notebooks/blob/main/NBs_Prelim/105_export_participant_data_to_r.ipynb" class="external-link uri">https://github.com/UK-Biobank/UKB-RAP-Notebooks/blob/main/NBs_Prelim/105_export_participant_data_to_r.ipynb</a>.</p>
+<p>Extracts phenotype variables from the Spark database to an R data frame. Recommend launching a Spark cluster with at least <code>mem1_hdd1_v2_x16</code> and <strong>2 nodes</strong> otherwise this can fail with error “…ensure that workers…have sufficient resources”</p>
+<p>The underlying code is mostly from the <a href="https://github.com/UK-Biobank/UKB-RAP-Notebooks/blob/main/NBs_Prelim/105_export_participant_data_to_r.ipynb" class="external-link">UK Biobank GitHub</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lukepilling.github.io/ukbrapR" class="external-link">ukbrapR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># get phenotype data (participant ID, sex, and baseline age)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_rap_phenos.html">get_rap_phenos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eid"</span>, <span class="st">"p31"</span>, <span class="st">"p21003_i0"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 48.02 sec elapsed</span></span>
 <span></span>
-<span><span class="co"># get phenotype data (participant ID, sex, and baseline age)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_rap_phenos.html">get_rap_phenos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eid"</span>,<span class="st">"p31"</span>,<span class="st">"p21003_i0"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="co"># takes a few minutes to complete interactions with Apache Spark etc.</span></span>
-<span></span>
-<span><span class="co"># overview of data</span></span>
-<span><span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html" class="external-link">skim</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ── Data Summary ────────────────────────</span></span>
-<span><span class="co">#&gt;                            Values</span></span>
-<span><span class="co">#&gt; Name                       df    </span></span>
-<span><span class="co">#&gt; Number of rows             502364</span></span>
-<span><span class="co">#&gt; Number of columns          3     </span></span>
-<span><span class="co">#&gt; _______________________          </span></span>
-<span><span class="co">#&gt; Column type frequency:           </span></span>
-<span><span class="co">#&gt;   character                2     </span></span>
-<span><span class="co">#&gt;   numeric                  1     </span></span>
-<span><span class="co">#&gt; ________________________         </span></span>
-<span><span class="co">#&gt; Group variables            None  </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Variable type: character ────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt;   skim_variable n_missing complete_rate min max empty n_unique whitespace</span></span>
-<span><span class="co">#&gt; 1 eid                   0             1   7   7     0   502364          0</span></span>
-<span><span class="co">#&gt; 2 p31                   0             1   4   6     0        2          0</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Variable type: numeric ──────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt;   skim_variable n_missing complete_rate mean   sd p0 p25 p50 p75 p100 hist </span></span>
-<span><span class="co">#&gt; 1 p21003_i0             0             1 56.5 8.09 37  50  58  63   73 ▂▅▆▇▃</span></span>
+<span><span class="co"># summary of data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">p31</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Female   Male </span></span>
+<span><span class="co">#&gt; 273297 229067</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">p21003_i0</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;  37.00   50.00   58.00   56.53   63.00   73.00 </span></span>
 <span></span>
 <span><span class="co"># save to file on the RAP worker node</span></span>
-<span><span class="fu">write_tsv</span><span class="op">(</span><span class="va">df</span>, <span class="st">"ukb14631.data_output.20231026.txt.gz"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="upload-back-to-the-rap">Upload back to the RAP<a class="anchor" aria-label="anchor" href="#upload-back-to-the-rap"></a>
+<h2 id="get-medical-records-diagnoses">Get medical records diagnoses<a class="anchor" aria-label="anchor" href="#get-medical-records-diagnoses"></a>
+</h2>
+<p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>death_cause</code>, <code>hesin_diag</code> and <code>gp_clinical</code> with matched codes.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project</span></span>
+<span><span class="va">codes_df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_tsv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/GEMINI-multimorbidity/diagnostic_codes/main/codelists/CKD.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
+<span><span class="va">diagnoses_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr_diagnoses.html">get_emr_diagnoses</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 7 ICD10 codes, 40 Read2 codes, 37 CTV3 codes </span></span>
+<span><span class="co">#&gt; 298.18 sec elapsed</span></span>
+<span></span>
+<span><span class="co"># save to files on the RAP worker node</span></span>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">diagnoses_list</span><span class="op">$</span><span class="va">death_cause</span>, <span class="st">"ukbrap.CKD.death_cause.20231114.txt.gz"</span><span class="op">)</span></span>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">diagnoses_list</span><span class="op">$</span><span class="va">hesin_diag</span>,  <span class="st">"ukbrap.CKD.hesin_diag.20231114.txt.gz"</span><span class="op">)</span></span>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">diagnoses_list</span><span class="op">$</span><span class="va">gp_clinical</span>, <span class="st">"ukbrap.CKD.gp_clinical.20231114.txt.gz"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-date-first-diagnosis">Get date first diagnosis<a class="anchor" aria-label="anchor" href="#get-date-first-diagnosis"></a>
+</h2>
+<p>Identify the date first diagnosed for each participant from any of the “long” datasets ascertained from <code><a href="reference/get_emr_diagnoses.html">get_emr_diagnoses()</a></code> (cause of death, HES, and GP).</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
+<span><span class="va">diagnosis_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_emr_df.html">get_emr_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 0.98 sec elapsed</span></span>
+<span></span>
+<span><span class="co"># save to files on the RAP worker node</span></span>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">diagnosis_df</span>, <span class="st">"ukbrap.CKD.date_first.20231114.txt.gz"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="upload-file-to-the-rap">Upload file to the RAP<a class="anchor" aria-label="anchor" href="#upload-file-to-the-rap"></a>
 </h2>
 <p>A wrapper to quickly upload a file from the worker node to the RAP space.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># uploads to current working directory</span></span>
-<span><span class="fu"><a href="reference/upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span><span class="st">"ukb14631.data_output.20231026.txt.gz"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span><span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># uploads to directory "extracts"</span></span>
-<span><span class="fu"><a href="reference/upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span><span class="st">"ukb14631.data_output.20231026.txt.gz"</span>, dir<span class="op">=</span><span class="st">"extracts/"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span><span class="st">"ukbrap.*.20231114.txt.gz"</span>, dir<span class="op">=</span><span class="st">"extracts/"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -156,7 +170,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.0.1-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.0.2-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

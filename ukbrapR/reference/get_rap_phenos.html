@@ -21,6 +21,9 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -81,10 +84,10 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># get phenotype data</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">get_rap_phenos</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eid"</span>,<span class="st">"p31"</span>,<span class="st">"p21003_i0"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ukb</span> <span class="op">&lt;-</span> <span class="fu">get_rap_phenos</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eid"</span>,<span class="st">"p31"</span>,<span class="st">"p21003_i0"</span>,<span class="st">"p53_i0"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># save to file on the RAP worker node</span></span>
-<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span>
+<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">ukb</span>, <span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># upload data to RAP storage</span></span>
 <span><span class="fu"><a href="upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span>file<span class="op">=</span><span class="st">"ukbrap.phenos.20231114.txt.gz"</span>, dir<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>

@@ -1,0 +1,90 @@
+
+```{r knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.width=7, fig.height=6, warning=FALSE, message=FALSE)
+```
+
+# Include a spline term in time to event analysis and plot result
+
+Example time to event analysis with a continuous exposure, using `pspline()` to model any non-linear effects.
+
+Required packages:
+
+```{r}
+library(tidyverse)
+library(survival)
+library(pspline)
+```
+
+Load UK Biobank data on Snow:
+```{r}
+# load and format baseline data
+source("H:/Projects/BioBank/Luke/_scripts/_load.ukb_0_sub.20230731.win.R")
+ukb = drop_extra_ukb_cols(ukb_0_sub)
+
+# load most recent Death data
+ukb_t = read_tsv("H:/Projects/BioBank/14631_ageing-well/Death data/ukb14631_death_20230412_formatted.txt")
+ukb = left_join(ukb, ukb_t, by="n_eid_14631")
+```
+
+Create variable for time to death:
+```{r}
+ukb = ukb |> mutate(time_to_death = as.numeric(date_of_death - assessment_date_0)/365.25)
+```
+
+Fit survival model, include `pspline()` function around continuous phenotype
+```{r}
+fit_coxph_spline = coxph(Surv(time_to_death, dead) ~ pspline(whr) + age + sex, data = ukb)
+summary(fit_coxph_spline)
+```
+
+Get predicted values for fitted spline:
+```{r}
+predicted = predict(fit_coxph_spline , type = "terms" , se.fit = TRUE , terms = 1)
+```
+
+Get fitted values from model (also need the "x" values, after excluding any missing from the model):
+```{r}
+predicted_dat = data.frame(
+  x = ukb |> select(whr, age, sex, time_to_death, dead) |> na.omit() |> select(whr) |> pull(),
+  fit = predicted$fit[,1],
+  se = predicted$se[,1]
+)
+```
+
+If the SE is too large can cause `sm.spline()` to fail. Try without this, but might need to exclude large values:
+```{r}
+predicted_dat = predicted_dat |> filter(se < 1)
+```
+
+Use `sm.pline()` to get the predicted Hazard Ratio (and CIs) for each value of X
+```{r}
+smsp	   = sm.spline(predicted_dat$x , exp(predicted_dat$fit))
+smsp_u95 = sm.spline(predicted_dat$x , exp(predicted_dat$fit + 1.96 * predicted_dat$se))
+smsp_l95 = sm.spline(predicted_dat$x , exp(predicted_dat$fit - 1.96 * predicted_dat$se))
+
+predicted_dat_plot = data.frame(
+  x     = smsp$x,
+  x_u95 = smsp_u95$x,
+  x_l95 = smsp_l95$x,
+  y     = smsp$ysmth,
+  y_u95 = smsp_u95$ysmth,
+  y_l95 = smsp_l95$ysmth
+)
+```
+
+Use ggplot to plot a line for the HR estimate, and a shaded area for the CIs:
+```{r}
+ggplot(predicted_dat_plot, aes(x=x,y=y)) +
+  geom_hline(yintercept=1, colour="grey50", lty=2) + 
+  geom_ribbon(aes(ymin=y_l95, ymax=y_u95), fill = "grey70") +
+  geom_line() +
+  scale_y_continuous(trans='log10', breaks=c(0,0.5,1,2,4,8)) +
+  xlab("Waist:hip ratio") + 
+  ylab("Hazard Ratio [95% CIs]") +
+  labs(title="Association between baseline WhR and mortality in UK Biobank", 
+       subtitle="Analysis of 500,000 participants with up to 17 years follow-up",
+       caption="Cox PH regression models adjusted for age and sex, with {pspline} term for WhR") + 
+  theme_bw() 
+```
+
+

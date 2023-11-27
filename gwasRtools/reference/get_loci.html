@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,12 +65,15 @@
 <span>  use_pvalue <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  n_bases <span class="op">=</span> <span class="fl">5e+05</span>,</span>
 <span>  p_threshold <span class="op">=</span> <span class="fl">5e-08</span>,</span>
+<span>  exclude_hla <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  hla_pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5e+07</span>, <span class="fl">3.4e+07</span><span class="op">)</span>,</span>
 <span>  get_ld_indep <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ld_pruning_r2 <span class="op">=</span> <span class="fl">0.01</span>,</span>
 <span>  ld_clump_local <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ld_plink_bin <span class="op">=</span> <span class="st">"plink"</span>,</span>
 <span>  ld_bfile <span class="op">=</span></span>
-<span>    <span class="st">"/indy/ukbiobank/data_14631/genetics/imputed_500k/5k_eur/ukb_imp_v3.qc_sub.5k_eur"</span></span>
+<span>    <span class="st">"/indy/ukbiobank/data_14631/genetics/imputed_500k/5k_eur/ukb_imp_v3.qc_sub.5k_eur"</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -128,6 +131,14 @@
 <dd><p>A number. Default=5e-8. P-value threshold for statistical significance</p></dd>
 
 
+<dt>exclude_hla</dt>
+<dd><p>Logical. Default=TRUE. Treat HLA as one continuous locus</p></dd>
+
+
+<dt>hla_pos</dt>
+<dd><p>A numeric vector of length 2. Default=c(25e6, 34e6). The HLA region on chromosome 6 to treat as one continuous locus if `exclude_hla==TRUE`</p></dd>
+
+
 <dt>get_ld_indep</dt>
 <dd><p>Logical. Default=FALSE. Use Plink LD clumping to identify independent SNPs - see ieugwasr::ld_clump() docs</p></dd>
 
@@ -147,6 +158,10 @@
 <dt>ld_bfile</dt>
 <dd><p>A string. Default is to 5,000 random unrelated UK Biobank Europeans on my server :) needs a path to appropriate BIM/BED reference panel files on your server</p></dd>
 
+
+<dt>verbose</dt>
+<dd><p>Logical. Default=FALSE. Be verbose</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -164,6 +179,9 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu">get_loci</span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Locus size (bases) = 5e+05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> HLA region will be treated as one continuous locus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P-value threshold = 5e-08</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N variants = 319732</span>
@@ -202,6 +220,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 98740      5 TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 120461     6 TRUE</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># example if GWAS is BOLT-LMM output: gwas_loci = get_loci(gwas, maf_col="A1FREQ", p_col="P_BOLT_LMM", use_pvalue=TRUE)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -209,7 +229,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Luke Pilling.</p>
+  <p></p><p>Developed by <a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

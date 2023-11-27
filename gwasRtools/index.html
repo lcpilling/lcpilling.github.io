@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,9 +71,9 @@
 <h2 id="list-of-functions">List of functions<a class="anchor" aria-label="anchor" href="#list-of-functions"></a>
 </h2>
 <ul>
-<li><a href="#lambda_gc">lambda_gc()</a></li>
 <li><a href="#get_loci">get_loci()</a></li>
 <li><a href="#get_nearest_gene">get_nearest_gene()</a></li>
+<li><a href="#lambda_gc">lambda_gc()</a></li>
 </ul>
 </div>
 <div class="section level2">
@@ -82,7 +82,7 @@
 <p>To install the development version from GitHub use the <code>remotes</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/gwasRtools"</span><span class="op">)</span></span></code></pre></div>
-<p>I periodically “release” a version number once it works as expected. The development version may contain things that do not yet “work”</p>
+<p>I periodically “release” a version number once it works as expected. The development version may contain things that do not yet “work.”</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># To install the latest release, use:</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/gwasRtools@*release"</span><span class="op">)</span></span>
@@ -94,8 +94,8 @@
 <h2 id="example-dataset">Example dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
 </h2>
 <p>The package includes a subset of variants from the Graham et al. 2021 GWAS of LDL in 1,320,016 Europeans (GWAS catalog GCST90239658). I will use this throughout.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lukepilling/lukesRlib" class="external-link">gwasRtools</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lukepilling.github.io/gwasRtools" class="external-link">gwasRtools</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           SNP CHR        BP    A1 A2      MAF        BETA        SE     P</span></span>
 <span><span class="co">#&gt; 1 rs370704455   1 104275751 CATCT  C 7.21e-02 -0.00350057 0.0040782 0.391</span></span>
@@ -106,17 +106,9 @@
 <span><span class="co">#&gt; 6 rs551694811   1 104297001     T  A 1.97e-03 -0.01075230 0.0316984 0.734</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="lambda_gc">lambda_gc()<a class="anchor" aria-label="anchor" href="#lambda_gc"></a>
-</h2>
-<p>Estimate inflation of test statistics. Lambda GC compares the median test statistic against the expected median test statistic under the null hypothesis of no association. For well-powered GWAS of traits with a known polygenic inheritance, we expect inflation of lambda GC. For traits with no expected association, we expect lambda GC to be around 1.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/lambda_gc.html">lambda_gc</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">$</span><span class="va">P</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.41112</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="get_loci">get_loci()<a class="anchor" aria-label="anchor" href="#get_loci"></a>
 </h2>
-<p>Determine loci from a GWAS summary statistics file. Use distance (500kb by default) from lead significant SNP to estimate independent loci in GWAS summary stats. Uses -log10(p) derived from BETA/SE so does not need P as input. Example below with default input:</p>
+<p>Determine loci from a GWAS summary statistics file. Use distance from lead significant SNP to estimate independent loci in GWAS summary stats [default distance = 500kb]. By default, the HLA region is treated is one continuous locus due to the complex LD. Uses -log10(p) derived from BETA/SE so does not need P as input. Example below with default input:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_loci.html">get_loci</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -221,6 +213,14 @@
 <li>If <code>dist</code> is NA, the variant is not within <code>n_bases</code> of a gene in GENCODE.</li>
 </ul>
 </div>
+<div class="section level2">
+<h2 id="lambda_gc">lambda_gc()<a class="anchor" aria-label="anchor" href="#lambda_gc"></a>
+</h2>
+<p>Estimate inflation of test statistics. Lambda GC compares the median test statistic against the expected median test statistic under the null hypothesis of no association. For well-powered GWAS of traits with a known polygenic inheritance, we expect inflation of lambda GC. For traits with no expected association, we expect lambda GC to be around 1.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lambda_gc.html">lambda_gc</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">$</span><span class="va">P</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.41112</span></span></code></pre></div>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -257,7 +257,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.2-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.3-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/gwasRtools/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/gwasRtools.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/655790727" class="external-link"><img src="https://zenodo.org/badge/655790727.svg" alt="DOI"></a></li>

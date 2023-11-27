@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,17 +45,23 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.2" id="gwasrtools-012">gwasRtools 0.1.2<a class="anchor" aria-label="anchor" href="#gwasrtools-012"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.3" id="gwasrtools-013-27-nov-2023">gwasRtools 0.1.3 (27 Nov 2023)<a class="anchor" aria-label="anchor" href="#gwasrtools-013-27-nov-2023"></a></h2>
+<ul><li>
+<code><a href="../reference/get_loci.html">get_loci()</a></code> default is now to treat the HLA region as one continuous locus. Set <code>exclude_hla = FALSE</code> if you don’t want this. Coordinates are specified with <code>hla_pos = c(25e6, 34e6)</code> [these are the defaults]</li>
+<li>Minor documentation updates</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.2" id="gwasrtools-012-15-sept-2023">gwasRtools 0.1.2 (15 Sept 2023)<a class="anchor" aria-label="anchor" href="#gwasrtools-012-15-sept-2023"></a></h2>
 <ul><li>Added <code>gwas_example</code> data for running examples</li>
 <li>
-<code>get_loc()</code> Genetic loci are now defined around variants with p-value &lt; 5 × 10−8. The locus borders were set 500kb (<code>n_bases</code>) to each side of the highest genome-wide significant variant in each region.</li>
+<code><a href="../reference/get_loci.html">get_loci()</a></code> Genetic loci are now defined around variants with p-value &lt; 5 × 10−8. The locus borders were set 500kb (<code>n_bases</code>) to each side of the highest genome-wide significant variant in each region.</li>
 <li>
 <code><a href="../reference/get_loci.html">get_loci()</a></code> “lead” column is the best lead SNP from distance (i.e., all input SNPs) or from LD clumping (subset in reference dataset panel)</li>
 <li>Fixes for <code><a href="../reference/get_loci.html">get_loci()</a></code> niche cases</li>
 <li>Fixes for <code><a href="../reference/get_nearest_gene.html">get_nearest_gene()</a></code> niche cases</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.1" id="gwasrtools-011">gwasRtools 0.1.1<a class="anchor" aria-label="anchor" href="#gwasrtools-011"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.1" id="gwasrtools-011-30-aug-2023">gwasRtools 0.1.1 (30 Aug 2023)<a class="anchor" aria-label="anchor" href="#gwasrtools-011-30-aug-2023"></a></h2>
 <ul><li>Fix internal -log10p calculation</li>
 <li>Swap most “Depends” to “Imports”</li>
 <li>Add dependency for {ieugwasr}</li>
@@ -63,7 +69,7 @@
 <li>Add <code>use_pvalue</code> option to <code><a href="../reference/get_loci.html">get_loci()</a></code> function</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="gwasrtools-010">gwasRtools 0.1.0<a class="anchor" aria-label="anchor" href="#gwasrtools-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="gwasrtools-010-30-june-2023">gwasRtools 0.1.0 (30 June 2023)<a class="anchor" aria-label="anchor" href="#gwasrtools-010-30-june-2023"></a></h2>
 <ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -71,7 +77,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Luke Pilling.</p>
+  <p></p><p>Developed by <a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

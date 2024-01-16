@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +108,7 @@
 <div class="section level2">
 <h2 id="get_loci">get_loci()<a class="anchor" aria-label="anchor" href="#get_loci"></a>
 </h2>
-<p>Determine loci from a GWAS summary statistics file. Use distance from lead significant SNP to estimate independent loci in GWAS summary stats [default distance = 500kb]. The HLA region can be treated as one continuous locus by setting `exclude_hla` to TRUE. Uses -log10(p) derived from BETA/SE so does not need P as input. Example below with default input:</p>
+<p>Determine loci from a GWAS summary statistics file. Use distance from lead significant SNP to estimate independent loci in GWAS summary stats [default distance = 500kb]. The HLA region can be treated as one continuous locus by setting <code>exclude_hla</code> to TRUE. Uses -log10(p) derived from BETA/SE so does not need P as input. Example below with default input:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_loci.html">get_loci</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -257,7 +257,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.3-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.3.9000-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/gwasRtools/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/gwasRtools.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/655790727" class="external-link"><img src="https://zenodo.org/badge/655790727.svg" alt="DOI"></a></li>

@@ -14,7 +14,7 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
     
     <a class="navbar-brand me-2" href="../index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <span>  <span class="va">d</span>,</span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
-<span>  <span class="va">z</span>,</span>
+<span>  z <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  model <span class="op">=</span> <span class="st">"lm"</span>,</span>
 <span>  af <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  note <span class="op">=</span> <span class="st">""</span>,</span>
@@ -71,7 +71,7 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <span>  scale_y <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  inv_norm_x <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  inv_norm_y <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  subset_d <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  return_all_terms <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  progress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  beep <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  beep_sound <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -144,9 +144,9 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <code>default=FALSE</code></p></dd>
 
 
-<dt>subset_d</dt>
-<dd><p>Logical. Subset `d` before passing to analysis (much quicker when multiple exposures/outcomes used).
-<code>default=TRUE</code></p></dd>
+<dt>return_all_terms</dt>
+<dd><p>Logical. Return estimates for all independent variables (terms) in the model? If TRUE, includes an adddition column 'term'
+<code>default=FALSE</code></p></dd>
 
 
 <dt>progress</dt>
@@ -235,6 +235,33 @@ Can provide multiple exposures and/or outcomes"><!-- mathjax --><script src="htt
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">2</span>049 0.004<span style="text-decoration: underline;">35</span>  logistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">4</span>666    <span style="text-decoration: underline;">1</span>466 0.033<span style="text-decoration: underline;">1</span>   logistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">4</span>666    <span style="text-decoration: underline;">2</span>042 0.000<span style="text-decoration: underline;">649</span> logistic</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># if desired, can also return estimates for other independent variables (terms) in the model</span></span></span>
+<span class="r-in"><span><span class="va">x_vars</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bmi"</span>,<span class="st">"sbp"</span>,<span class="st">"dbp"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_assoc</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_vars</span>, y<span class="op">=</span><span class="st">"event"</span>, z<span class="op">=</span><span class="st">"+age+sex"</span>, d<span class="op">=</span><span class="va">example_data</span>, model<span class="op">=</span><span class="st">"logistic"</span>, return_all_terms<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   outcome exposure term  estimate std.error statistic  p.value conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> event   bmi      bmi       1.07   0.008<span style="text-decoration: underline;">01</span>      8.66 4.74<span style="color: #949494;">e</span><span style="color: #BB0000;">-18</span>     1.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> event   bmi      age       1.04   0.003<span style="text-decoration: underline;">88</span>      8.95 3.47<span style="color: #949494;">e</span><span style="color: #BB0000;">-19</span>     1.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> event   bmi      sex       2.10   0.065<span style="text-decoration: underline;">4</span>      11.3  1.02<span style="color: #949494;">e</span><span style="color: #BB0000;">-29</span>     1.84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> event   sbp      sbp       1.01   0.001<span style="text-decoration: underline;">52</span>      9.47 2.86<span style="color: #949494;">e</span><span style="color: #BB0000;">-21</span>     1.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> event   sbp      age       1.03   0.004<span style="text-decoration: underline;">12</span>      6.15 7.89<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span>     1.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> event   sbp      sex       2.23   0.065<span style="text-decoration: underline;">8</span>      12.2  4.15<span style="color: #949494;">e</span><span style="color: #BB0000;">-34</span>     1.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> event   dbp      dbp       1.02   0.002<span style="text-decoration: underline;">61</span>      9.24 2.43<span style="color: #949494;">e</span><span style="color: #BB0000;">-20</span>     1.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> event   dbp      age       1.03   0.003<span style="text-decoration: underline;">94</span>      8.07 7.03<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>     1.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> event   dbp      sex       2.10   0.065<span style="text-decoration: underline;">5</span>      11.3  1.01<span style="color: #949494;">e</span><span style="color: #BB0000;">-29</span>     1.85</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high     n n_cases model   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>      1.09  <span style="text-decoration: underline;">4</span>690    <span style="text-decoration: underline;">1</span>472 logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>      1.04    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>      2.38    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>      1.02  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">1</span>473 logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>      1.03    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>      2.53    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>      1.03  <span style="text-decoration: underline;">4</span>699    <span style="text-decoration: underline;">1</span>473 logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>      1.04    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span>      2.39    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> logistic</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

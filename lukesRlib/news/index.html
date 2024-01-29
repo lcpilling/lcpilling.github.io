@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,19 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.6" id="lukesrlib-026">lukesRlib 0.2.6<a class="anchor" aria-label="anchor" href="#lukesrlib-026"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.7" id="lukesrlib-027-29th-jan-2024">lukesRlib 0.2.7 (29th Jan 2024)<a class="anchor" aria-label="anchor" href="#lukesrlib-027-29th-jan-2024"></a></h2>
+<ul><li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code> - add <code>return_all_terms</code> argument. Default is false. If TRUE, adds a new col <code>terms</code> and returns the estimates for all independent variables in the models.</li>
+<li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code> - remove <code>subset_d</code> argument</li>
+<li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code> - fixed if exposure or outcome needs to be protected by backticks (previously failed if variable was something like “bmi-1”)</li>
+<li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code> - fixed problem where covariate estimates were also included in certain situations (e.g., if x=“age” do not get covariate “percentage”)</li>
+<li>Update examples for many functions</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.6" id="lukesrlib-026-13-nov-2023">lukesRlib 0.2.6 (13 Nov 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-026-13-nov-2023"></a></h2>
 <ul><li>
 <code><a href="../reference/get_assoc.html">get_assoc()</a></code> - fixed if no covariates provided</li>
 <li>
@@ -57,9 +69,10 @@
 <li>
 <code><a href="../reference/tidy_ci.html">tidy_ci()</a></code> - add some functionality for summarizing fixed-effects from <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lme4::lmer()</a></code>
 </li>
+<li>Add <code>example_data</code> object for examples. Contains ~5,000 participants from Framingham Heart Study</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.5" id="lukesrlib-025">lukesRlib 0.2.5<a class="anchor" aria-label="anchor" href="#lukesrlib-025"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.5" id="lukesrlib-025-25-aug-2023">lukesRlib 0.2.5 (25 Aug 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-025-25-aug-2023"></a></h2>
 <ul><li>
 <code><a href="../reference/get_assoc.html">get_assoc()</a></code> now expects the data as first argument, if not defined. Brings it more into the tidyverse. For instance, one can now:
 <ul><li><code>data |&gt; filter(age&gt;60) |&gt; get_assoc(x="BMI", y="diabetes", z="sex")</code></li>
@@ -70,7 +83,7 @@
 <li>Fix -log10p calculation</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.4" id="lukesrlib-024">lukesRlib 0.2.4<a class="anchor" aria-label="anchor" href="#lukesrlib-024"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.4" id="lukesrlib-024-30-jun-2023">lukesRlib 0.2.4 (30 Jun 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-024-30-jun-2023"></a></h2>
 <ul><li>Add option “get_fit” to <code><a href="../reference/get_assoc.html">get_assoc()</a></code> to also get model fit statistic when PheWASing. For each model type the <code>fit_stat</code> is:
 <ul><li>lm = R-squared</li>
 <li>logistic = McFadden’s pseudo-R2</li>
@@ -82,7 +95,7 @@
 <code><a href="../reference/tidy_ci.html">tidy_ci()</a></code> now returns the C-statistic for CoxPH models by default</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.3" id="lukesrlib-023">lukesRlib 0.2.3<a class="anchor" aria-label="anchor" href="#lukesrlib-023"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.3" id="lukesrlib-023-7-jun-2023">lukesRlib 0.2.3 (7 Jun 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-023-7-jun-2023"></a></h2>
 <ul><li>Decided to remove genetics-related functions to instead have them in a separate package, as the dependencies were getting out of hand
 <ul><li>See <a href="https://github.com/lukepilling/gwasRtools" class="external-link uri">https://github.com/lukepilling/gwasRtools</a>
 </li>
@@ -107,7 +120,7 @@
 </li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.0" id="lukesrlib-020">lukesRlib 0.2.0<a class="anchor" aria-label="anchor" href="#lukesrlib-020"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="lukesrlib-020-5-may-2023">lukesRlib 0.2.0 (5 May 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-020-5-may-2023"></a></h2>
 <ul><li>
 <code><a href="../reference/get_assoc.html">get_assoc()</a></code> can now perform <code><a href="https://rdrr.io/pkg/survival/man/coxph.html" class="external-link">coxph()</a></code> models from the {survival} package. The user provides strings depicting the survival object as the outcome e.g., “Surv(time, event)”</li>
 <li>Added two genetics-related functions: <code>lambda_gc()</code> (to calculate Lambda GC!) and <code>get_loci()</code> (to crudely determine independent loci in GWAS summary stats)</li>
@@ -169,7 +182,7 @@
 <ul><li>Added two new p-value related functions – very simple but nice to have available</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="lukesrlib-010">lukesRlib 0.1.0<a class="anchor" aria-label="anchor" href="#lukesrlib-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="lukesrlib-010-26-jan-2023">lukesRlib 0.1.0 (26 Jan 2023)<a class="anchor" aria-label="anchor" href="#lukesrlib-010-26-jan-2023"></a></h2>
 <ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -29,24 +29,8 @@ CTV3	YMAhQ	Alzheimer's disease with late onset
 CTV3	YMB0i	[X]Dementia in Alzheimer's disease
 CTV3	YMB0l	[X]Dementia in Alzheimer's dis, atypical or mixed type
 CTV3	YMB0m	[X]Dementia in Alzheimer's disease, unspecified
-ICD10	F00	Alzheimer's disease
-ICD10	F000A	NA
-ICD10	F000A	NA
-ICD10	F001A	NA
-ICD10	F001A	NA
-ICD10	F002A	NA
-ICD10	F002A	NA
-ICD10	F009A	NA
-ICD10	F009A	NA
+ICD10	F00	Dementia in Alzheimer disease
 ICD10	G30	Alzheimer disease
-ICD10	G300	Alzheimer disease with early onset
-ICD10	G300D	NA
-ICD10	G301	Alzheimer disease with late onset
-ICD10	G301D	NA
-ICD10	G308	Other Alzheimer disease
-ICD10	G308D	NA
-ICD10	G309	Alzheimer disease, unspecified
-ICD10	G309D	NA
 Read2	Eu00.	[X]Dementia in Alzheimer's disease
 Read2	Eu000	[X]Dementia in Alzheimer's disease with early onset
 Read2	Eu000	[X]Presenile dementia,Alzheimer's type

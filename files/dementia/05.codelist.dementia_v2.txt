@@ -159,51 +159,17 @@ CTV3	YMBwl	[X]Presenile psychosis NOS
 CTV3	YMK1N	[X] Primary degenerative dementia NOS
 CTV3	YMK1O	[X] Senile dementia NOS
 CTV3	YMK1P	[X] Senile psychosis NOS
-ICD10	F00	Alzheimer's disease
-ICD10	F000A	NA
-ICD10	F000A	NA
-ICD10	F001A	NA
-ICD10	F001A	NA
-ICD10	F002A	NA
-ICD10	F002A	NA
-ICD10	F009A	NA
-ICD10	F009A	NA
+ICD10	F00	Dementia in Alzheimer disease
 ICD10	F01	Vascular dementia
-ICD10	F010	Vascular dementia of acute onset
-ICD10	F011	Multi-infarct dementia
-ICD10	F012	Subcortical vascular dementia
-ICD10	F013	Mixed cortical and subcortical vascular dementia
-ICD10	F018	Other vascular dementia
-ICD10	F019	Vascular dementia, unspecified
 ICD10	F02	Dementia in other diseases classified elsewhere
-ICD10	F020A	NA
-ICD10	F020A	NA
-ICD10	F021A	NA
-ICD10	F022A	NA
-ICD10	F023A	NA
-ICD10	F024A	NA
-ICD10	F028A	NA
-ICD10	F028A	NA
-ICD10	F02A	NA
-ICD10	F03X	Unspecified dementia
-ICD10	F051	Delirium superimposed on dementia
+ICD10	F03	Unspecified dementia
 ICD10	G30	Alzheimer disease
-ICD10	G300	Alzheimer disease with early onset
-ICD10	G300D	NA
-ICD10	G301	Alzheimer disease with late onset
-ICD10	G301D	NA
-ICD10	G308	Other Alzheimer disease
-ICD10	G308D	NA
-ICD10	G309	Alzheimer disease, unspecified
-ICD10	G309D	NA
-ICD10	G310	Circumscribed brain atrophy
-ICD10	G310D	NA
-ICD10	G311	Senile degeneration of brain, not elsewhere classified
-ICD10	G318	Other specified degenerative diseases of nervous system
-ICD10	G3183	Lewy Body Dementia
-ICD10	G318D	NA
-ICD10	G319	Degenerative disease of nervous system, unspecified
-ICD10	G98X	Other disorders of nervous system, not elsewhere classified
+ICD10	F05.1	Delirium superimposed on dementia
+ICD10	F10.6	Mental and behavioural disorders due to use of alcohol
+ICD10	G31.0	Circumscribed brain atrophy
+ICD10	G31.1	Senile degeneration of brain, not elsewhere classified
+ICD10	G31.8	Other specified degenerative diseases of nervous system
+ICD10	I67.3	Progressive vascular leukoencephalopathy / Binswanger's disease
 Read2	E00..	Senile and presenile organic psychotic conditions
 Read2	E00..	Senile dementia
 Read2	E00..	Senile/presenile dementia
@@ -251,6 +217,7 @@ Read2	Eu01y	[X]Other vascular dementia
 Read2	Eu01z	[X]Vascular dementia, unspecified
 Read2	Eu02.	[X]Dementia in other diseases classified elsewhere
 Read2	Eu020	[X]Dementia in Pick's disease
+Read2	Eu022	[X]Dementia in Huntington's disease
 Read2	Eu023	[X]Dementia in Parkinson's disease
 Read2	Eu025	[X]Lewy body dementia
 Read2	Eu02y	[X]Dementia in other specified diseases classif elsewhere

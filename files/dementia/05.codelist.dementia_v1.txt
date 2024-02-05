@@ -27,8 +27,6 @@ CTV3	E0043	Arteriosclerotic dementia with depression
 CTV3	E004z	Arteriosclerotic dementia NOS
 CTV3	E00z.	Senile or presenile psychoses NOS
 CTV3	E00z.	[X]Presenile psychosis NOS
-CTV3	E0120	Chronic alcoholic brain syndrome
-CTV3	E02y1	Drug-induced dementia
 CTV3	E041.	Dementia in conditions EC
 CTV3	Eu00.	[X]Dementia in Alzheimer's disease
 CTV3	Eu00.	Dementia in Alzheimer's disease
@@ -89,16 +87,6 @@ CTV3	X003H	Argyrophilic brain disease
 CTV3	X003I	Post-traumatic dementia
 CTV3	X003J	Punch drunk syndrome
 CTV3	X003J	Dementia pugilistica
-CTV3	X003K	Spongiform encephalopathy
-CTV3	X003L	Prion protein disease
-CTV3	X003M	Gerstmann-Straussler-Scheinker syndrome
-CTV3	X003M	GSS - Gerstmann-Straussler-Scheinker syndrome
-CTV3	X003N	Familial fatal insomnia
-CTV3	X003N	FFI - Familial fatal insomnia
-CTV3	X003P	Acquired immune deficiency syndrome dementia complex
-CTV3	X003P	AIDS - Acquired immune deficiency syndrome dementia complex
-CTV3	X003P	ADC - Acquired immune deficiency syndrome dementia complex
-CTV3	X003P	Acquired immune deficiency syndrome-related dementia
 CTV3	X003R	Vascular dementia of acute onset
 CTV3	X003T	Subcortical vascular dementia
 CTV3	X003V	Mixed cortical and subcortical vascular dementia
@@ -107,7 +95,6 @@ CTV3	X003X	Patchy dementia
 CTV3	X003Y	Epileptic dementia
 CTV3	X00R2	Senile dementia
 CTV3	X00R2	SD - Senile dementia
-CTV3	X00Rk	Alcoholic dementia NOS
 CTV3	XE1aG	Dementia (& [presenile] or [senile])
 CTV3	XE1aG	Senile/presenile dementia
 CTV3	XE1aG	Senile dementia
@@ -117,7 +104,6 @@ CTV3	XE1Xs	Vascular dementia
 CTV3	XE1Xs	Arteriosclerotic dementia
 CTV3	XE1Xs	VAD - Vascular dementia
 CTV3	XE1Xt	Other senile and presenile organic psychoses
-CTV3	XE1Xu	Other alcoholic dementia
 CTV3	XE1Z6	[X]Unspecified dementia
 CTV3	Y00dJ	MID - Multi-infarct dementia
 CTV3	Y00dM	Binswanger's encephalopathy
@@ -130,8 +116,6 @@ CTV3	Y00H7	SDAT - Senile dementia, Alzheimer's type
 CTV3	Y00HC	Pick's disease
 CTV3	Y00Hk	Kuru
 CTV3	Y00HL	Lewy body disease
-CTV3	Y00Hq	Acquired immune deficiency syndrome dementia complex
-CTV3	Y00Hu	Acquired immune deficiency syndrome-related dementia
 CTV3	Y00Hv	Vascular dementia
 CTV3	Y00Hw	Arteriosclerotic dementia
 CTV3	Y00Hx	Vascular dementia of acute onset
@@ -162,10 +146,6 @@ CTV3	Y016Y	Senile dementia
 CTV3	Y016z	Arteriosclerotic dementia with delirium
 CTV3	Y016Z	Senile dementia with delirium
 CTV3	Y0170	Uncomplicated arteriosclerotic dementia
-CTV3	Y019e	Drug-induced dementia
-CTV3	Y019q	Chronic alcoholic brain syndrome
-CTV3	Y019t	Other alcoholic dementia
-CTV3	Y019u	Alcoholic dementia NOS
 CTV3	Ya1Sy	Frontotemporal degeneration
 CTV3	Ya2nk	Cerebral degeneration presenting primarily with dementia
 CTV3	YadT0	Multi-infarct dementia
@@ -194,81 +174,18 @@ CTV3	YMJwc	Jakob-Creutzfeldt disease
 CTV3	YMK1N	[X] Primary degenerative dementia NOS
 CTV3	YMK1O	[X] Senile dementia NOS
 CTV3	YMK1P	[X] Senile psychosis NOS
-ICD10	A81	Atypical virus infections of central nervous system
-ICD10	A810	Creutzfeldt-Jakob disease
-ICD10	A810D	NA
-ICD10	A818	Other atypical virus infections of central nervous system
-ICD10	A819	Atypical virus infection of central nervous system, unspecified
-ICD10	B220D	NA
-ICD10	F00	Alzheimer's disease
-ICD10	F000A	NA
-ICD10	F000A	NA
-ICD10	F001A	NA
-ICD10	F001A	NA
-ICD10	F002A	NA
-ICD10	F002A	NA
-ICD10	F009A	NA
-ICD10	F009A	NA
+ICD10	F00	Dementia in Alzheimer disease
 ICD10	F01	Vascular dementia
-ICD10	F010	Vascular dementia of acute onset
-ICD10	F011	Multi-infarct dementia
-ICD10	F012	Subcortical vascular dementia
-ICD10	F013	Mixed cortical and subcortical vascular dementia
-ICD10	F018	Other vascular dementia
-ICD10	F019	Vascular dementia, unspecified
 ICD10	F02	Dementia in other diseases classified elsewhere
-ICD10	F020A	NA
-ICD10	F020A	NA
-ICD10	F021A	NA
-ICD10	F021A	NA
-ICD10	F022A	NA
-ICD10	F022A	NA
-ICD10	F023A	NA
-ICD10	F023A	NA
-ICD10	F024A	NA
-ICD10	F024A	NA
-ICD10	F028A	NA
-ICD10	F028A	NA
-ICD10	F02A	NA
-ICD10	F03X	Unspecified dementia
-ICD10	F051	Delirium superimposed on dementia
-ICD10	F107	Mental and behavioural disorders due to use of alcohol
-ICD10	F117	Mental and behavioural disorders due to use of opioids
-ICD10	F127	Mental and behavioural disorders due to use of cannabinoids
-ICD10	F137	Mental and behavioural disorders due to use of sedatives or hypnotics
-ICD10	F147	Mental and behavioural disorders due to use of cocaine
-ICD10	F157	Mental and behavioural disorders due to use of other stimulants, including caffeine
-ICD10	F167	Mental and behavioural disorders due to use of hallucinogens
-ICD10	F177	Mental and behavioural disorders due to use of tobacco
-ICD10	F187	Mental and behavioural disorders due to use of volatile solvents
-ICD10	F197	Mental and behavioural disorders due to multiple drug use and use of other psychoactive substances
-ICD10	F32	Depressive episode
-ICD10	F329	Depressive episode, unspecified
-ICD10	F33	Recurrent depressive disorder
-ICD10	G10XD	NA
-ICD10	G20XD	NA
-ICD10	G218	Other secondary parkinsonism
+ICD10	F03	Unspecified dementia
 ICD10	G30	Alzheimer disease
-ICD10	G300	Alzheimer disease with early onset
-ICD10	G300D	NA
-ICD10	G301	Alzheimer disease with late onset
-ICD10	G301D	NA
-ICD10	G308	Other Alzheimer disease
-ICD10	G308D	NA
-ICD10	G309	Alzheimer disease, unspecified
-ICD10	G309D	NA
-ICD10	G310	Circumscribed brain atrophy
-ICD10	G310D	NA
-ICD10	G311	Senile degeneration of brain, not elsewhere classified
-ICD10	G318	Other specified degenerative diseases of nervous system
-ICD10	G3183	Lewy Body Dementia
-ICD10	G318D	NA
-ICD10	G319	Degenerative disease of nervous system, unspecified
-ICD10	G409D	NA
-ICD10	G40D	NA
-ICD10	G98X	Other disorders of nervous system, not elsewhere classified
-ICD10	I673	Progressive vascular leukoencephalopathy
-ICD10	T909	Sequelae of unspecified injury of head
+ICD10	A81.0	Creutzfeldt-Jakob disease
+ICD10	F05.1	Delirium superimposed on dementia
+ICD10	F10.6	Mental and behavioural disorders due to use of alcohol
+ICD10	G31.0	Circumscribed brain atrophy
+ICD10	G31.1	Senile degeneration of brain, not elsewhere classified
+ICD10	G31.8	Other specified degenerative diseases of nervous system
+ICD10	I67.3	Progressive vascular leukoencephalopathy / Binswanger's disease
 Read2	A410.	Kuru
 Read2	A411.	Jakob-Creutzfeldt disease
 Read2	A4110	Sporadic Creutzfeldt-Jakob disease
@@ -295,13 +212,7 @@ Read2	E0041	Arteriosclerotic dementia with delirium
 Read2	E0042	Arteriosclerotic dementia with paranoia
 Read2	E0043	Arteriosclerotic dementia with depression
 Read2	E004z	Arteriosclerotic dementia NOS
-Read2	E00y.	Presbyophrenic psychosis
 Read2	E00y.	Other senile and presenile organic psychoses
-Read2	E00z.	Senile or presenile psychoses NOS
-Read2	E012.	Other alcoholic dementia
-Read2	E012.	Alcoholic dementia NOS
-Read2	E0120	Chronic alcoholic brain syndrome
-Read2	E02y1	Drug-induced dementia
 Read2	E041.	Dementia in conditions EC
 Read2	Eu00.	[X]Dementia in Alzheimer's disease
 Read2	Eu000	[X]Dementia in Alzheimer's disease with early onset
@@ -329,7 +240,6 @@ Read2	Eu020	[X]Dementia in Pick's disease
 Read2	Eu021	[X]Dementia in Creutzfeldt-Jakob disease
 Read2	Eu022	[X]Dementia in Huntington's disease
 Read2	Eu023	[X]Dementia in Parkinson's disease
-Read2	Eu024	[X]Dementia in human immunodef virus [HIV] disease
 Read2	Eu025	[X]Lewy body dementia
 Read2	Eu02y	[X]Dementia in other specified diseases classif elsewhere
 Read2	Eu02z	[X] Unspecified dementia
@@ -339,10 +249,6 @@ Read2	Eu02z	[X] Primary degenerative dementia NOS
 Read2	Eu02z	[X] Senile dementia NOS
 Read2	Eu02z	[X] Senile psychosis NOS
 Read2	Eu02z	[X] Senile dementia, depressed or paranoid type
-Read2	Eu041	[X]Delirium superimposed on dementia
-Read2	Eu107	[X]Mental and behavioural disorders due to use of alcohol: residual and late-onset psychotic disorder
-Read2	Eu107	[X]Alcoholic dementia NOS
-Read2	Eu107	[X]Chronic alcoholic brain syndrome
 Read2	F110.	Alzheimer's disease
 Read2	F1100	Alzheimer's disease with early onset
 Read2	F1101	Alzheimer's disease with late onset

@@ -40,12 +40,6 @@ CTV3	YadT0	Multi-infarct dementia
 CTV3	YMB0s	[X]Other vascular dementia
 CTV3	YMB0t	[X]Vascular dementia, unspecified
 ICD10	F01	Vascular dementia
-ICD10	F010	Vascular dementia of acute onset
-ICD10	F011	Multi-infarct dementia
-ICD10	F012	Subcortical vascular dementia
-ICD10	F013	Mixed cortical and subcortical vascular dementia
-ICD10	F018	Other vascular dementia
-ICD10	F019	Vascular dementia, unspecified
 Read2	E004.	Arteriosclerotic dementia
 Read2	E004.	Multi infarct dementia
 Read2	E0040	Uncomplicated arteriosclerotic dementia

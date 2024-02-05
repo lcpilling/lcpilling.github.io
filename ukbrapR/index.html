@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
 <p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>death_cause</code>, <code>hesin_diag</code> and <code>gp_clinical</code> with matched codes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project</span></span>
-<span><span class="va">codes_df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_tsv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/GEMINI-multimorbidity/diagnostic_codes/main/codelists/CKD.txt"</span><span class="op">)</span></span>
+<span><span class="va">codes_df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_tsv</a></span><span class="op">(</span><span class="st">"https://lukepilling.github.io/files/CKD.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr_diagnoses.html">get_emr_diagnoses</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
@@ -274,7 +274,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.0.2-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.0.2.9000-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

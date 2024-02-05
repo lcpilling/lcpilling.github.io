@@ -1,0 +1,65 @@
+vocab_id	code	desc
+CTV3	Eu00.	[X]Dementia in Alzheimer's disease
+CTV3	Eu00.	Dementia in Alzheimer's disease
+CTV3	Eu00.	DAT - Dementia Alzheimer's type
+CTV3	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+CTV3	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+CTV3	F110.	Alzheimer's disease
+CTV3	F110.	AD - Alzheimer's disease
+CTV3	Fyu30	[X]Other Alzheimer's disease
+CTV3	X002x	Dementia in Alzheimer's disease with early onset
+CTV3	X002x	Dementia in Alzheimer's disease - type 2
+CTV3	X002x	Presenile dementia, Alzheimer's type
+CTV3	X002y	Familial Alzheimer's disease of early onset
+CTV3	X002z	Non-familial Alzheimer's disease of early onset
+CTV3	X0030	Dementia in Alzheimer's disease with late onset
+CTV3	X0030	Dementia in Alzheimer's disease - type 1
+CTV3	X0030	SDAT - Senile dementia, Alzheimer's type
+CTV3	X0031	Familial Alzheimer's disease of late onset
+CTV3	X0032	Non-familial Alzheimer's disease of late onset
+CTV3	X0033	Focal Alzheimer's disease
+CTV3	X003G	Progressive aphasia in Alzheimer's disease
+CTV3	Y00Gw	Alzheimer's disease
+CTV3	Y00H0	Dementia in Alzheimer's disease with early onset
+CTV3	Y00H2	Presenile dementia, Alzheimer's type
+CTV3	Y00H5	Dementia in Alzheimer's disease with late onset
+CTV3	Y00H7	SDAT - Senile dementia, Alzheimer's type
+CTV3	YMAhP	Alzheimer's disease with early onset
+CTV3	YMAhQ	Alzheimer's disease with late onset
+CTV3	YMB0i	[X]Dementia in Alzheimer's disease
+CTV3	YMB0l	[X]Dementia in Alzheimer's dis, atypical or mixed type
+CTV3	YMB0m	[X]Dementia in Alzheimer's disease, unspecified
+ICD10	F00	Alzheimer's disease
+ICD10	F000A	NA
+ICD10	F000A	NA
+ICD10	F001A	NA
+ICD10	F001A	NA
+ICD10	F002A	NA
+ICD10	F002A	NA
+ICD10	F009A	NA
+ICD10	F009A	NA
+ICD10	G30	Alzheimer disease
+ICD10	G300	Alzheimer disease with early onset
+ICD10	G300D	NA
+ICD10	G301	Alzheimer disease with late onset
+ICD10	G301D	NA
+ICD10	G308	Other Alzheimer disease
+ICD10	G308D	NA
+ICD10	G309	Alzheimer disease, unspecified
+ICD10	G309D	NA
+Read2	Eu00.	[X]Dementia in Alzheimer's disease
+Read2	Eu000	[X]Dementia in Alzheimer's disease with early onset
+Read2	Eu000	[X]Presenile dementia,Alzheimer's type
+Read2	Eu000	[X] Primary degenerative dementia of Alzheimer's type, presenile onset
+Read2	Eu000	[X]Alzheimer's disease type 2
+Read2	Eu001	[X]Dementia in Alzheimer's disease with late onset
+Read2	Eu001	[X]Alzheimer's disease type 1
+Read2	Eu001	[X]Senile dementia,Alzheimer's type
+Read2	Eu001	[X]Primary degenerative dementia of Alzheimer's type, senile onset
+Read2	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+Read2	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+Read2	Eu00z	[X]Alzheimer's dementia unspec
+Read2	F110.	Alzheimer's disease
+Read2	F1100	Alzheimer's disease with early onset
+Read2	F1101	Alzheimer's disease with late onset
+Read2	Fyu30	[X]Other Alzheimer's disease

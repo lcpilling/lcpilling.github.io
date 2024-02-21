@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,9 +45,39 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="ukbrapr-v010-21-feb-2024">ukbrapR v0.1.0 (21 Feb 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v010-21-feb-2024"></a></h2>
+<div class="section level4">
+<h4 id="new-features-0-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h4>
+<ul><li>
+<code><a href="../reference/get_selfrep_illness.html">get_selfrep_illness()</a></code> - gets illness information from self-report fields. Derives a “date first” from the age/year reported, incorporating all visits for the participant</li>
+<li>Two example code lists are incuded: <code>codes_df_ckd</code> (GEMINI CKD), and <code>codes_df_hh</code> (haemochromatosis, with self-report)</li>
+</ul></div>
+<div class="section level4">
+<h4 id="changes-0-1-0">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-0"></a></h4>
+<ul><li>
+<code>get_emr_df()</code> is re-named <code><a href="../reference/get_df.html">get_df()</a></code> to reflect it can now include information from self-reported illness</li>
+<li>
+<code>get_emr_diagnoses()</code> is re-named <code><a href="../reference/get_emr.html">get_emr()</a></code> to reflect it actually retrieves any record in <code>gp_clinical</code> not just diagnoses (e.g., BMI if appropriate codes provided)</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes-0-1-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-0"></a></h4>
+<ul><li>So many</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2" id="ukbrapr-v002-14-nov-2023">ukbrapR v0.0.2 (14 Nov 2023)<a class="anchor" aria-label="anchor" href="#ukbrapr-v002-14-nov-2023"></a></h2>
-<p>New function to get electronic medical records diagnoses from Spark-based death records, hospital episode statistics, and primary care (GP) databases: - <code><a href="../reference/get_emr_diagnoses.html">get_emr_diagnoses()</a></code></p>
-<p>New function to get date first diagnosed with any provided code from any above Electronic Medical Record source: - <code><a href="../reference/get_emr_df.html">get_emr_df()</a></code></p>
+<div class="section level4">
+<h4 id="new-features-0-0-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-0-2"></a></h4>
+<ul><li>
+<code>get_emr_diagnoses()</code> - function to get electronic medical records diagnoses from Spark-based death records, hospital episode statistics, and primary care (GP) databases.</li>
+<li>
+<code>get_emr_df()</code> - function to get date first diagnosed with any provided code from any above Electronic Medical Record source.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes-0-0-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-0-2"></a></h4>
+<ul><li>Extra input checking in <code><a href="../reference/get_rap_phenos.html">get_rap_phenos()</a></code> and output more consistent for direct use with <code>get_emr_*()</code> functions</li>
+<li>Updated URL for example CKD clinical codes</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="ukbrapr-v001-26-oct-2023">ukbrapR v0.0.1 (26 Oct 2023)<a class="anchor" aria-label="anchor" href="#ukbrapr-v001-26-oct-2023"></a></h2>

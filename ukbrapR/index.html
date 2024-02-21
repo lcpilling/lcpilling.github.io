@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,9 +72,15 @@
 <p><strong>Only works on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
 <p>In tools, launch a JupyterLab environment on a Spark Cluster. In R, install {ukbrapR}. This will install the necessary dependencies for interacting with Python, Apache Spark, and the Arrow C++ library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Install the development version</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR"</span><span class="op">)</span></span>
-<span>  <span class="co"># Takes a few minutes to build the dependencies. Suggest saving as a snapshot.</span></span></code></pre></div>
+<span></span>
+<span><span class="co"># To install the latest release, use:</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/lukesRlib@*release"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># To install a specific version (see tags), use:</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/lukesRlib@v0.2.0"</span><span class="op">)</span></span></code></pre></div>
+<p>I highly recommend saving a “snapshot” once all the packages are installed, and loading this when launching JupyterLab.</p>
 </div>
 <div class="section level2">
 <h2 id="get-phenotype-data">Get phenotype data<a class="anchor" aria-label="anchor" href="#get-phenotype-data"></a>
@@ -97,28 +103,28 @@
 <div class="section level2">
 <h2 id="get-medical-records-diagnoses">Get medical records diagnoses<a class="anchor" aria-label="anchor" href="#get-medical-records-diagnoses"></a>
 </h2>
-<p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>death_cause</code>, <code>hesin_diag</code> and <code>gp_clinical</code> with matched codes.</p>
+<p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>gp_clinical</code>, <code>hesin_diag</code> and <code>death_cause</code> with matched codes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project</span></span>
-<span><span class="va">codes_df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_tsv</a></span><span class="op">(</span><span class="st">"https://lukepilling.github.io/files/CKD.txt"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project are included</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
-<span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr_diagnoses.html">get_emr_diagnoses</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
+<span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 7 ICD10 codes, 40 Read2 codes, 37 CTV3 codes </span></span>
 <span><span class="co">#&gt; 298.18 sec elapsed</span></span>
 <span></span>
 <span><span class="co"># N records for each source</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">death_cause</span><span class="op">)</span>  <span class="co">#   1,962</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">gp_clinical</span><span class="op">)</span>  <span class="co">#  29,088</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">hesin_diag</span><span class="op">)</span>   <span class="co"># 206,394</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">gp_clinical</span><span class="op">)</span>  <span class="co">#  29,088</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">death_cause</span><span class="op">)</span>  <span class="co">#   1,962</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-date-first-diagnosis">Get date first diagnosis<a class="anchor" aria-label="anchor" href="#get-date-first-diagnosis"></a>
 </h2>
-<p>Identify the date first diagnosed for each participant from any of the “long” datasets ascertained from <code><a href="reference/get_emr_diagnoses.html">get_emr_diagnoses()</a></code> (cause of death, HES, and GP).</p>
+<p>Identify the date first diagnosed for each participant from any of the “long” datasets ascertained from <code><a href="reference/get_emr.html">get_emr()</a></code> (cause of death, HES, and GP).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
-<span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr_df.html">get_emr_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
+<span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 0.98 sec elapsed</span></span>
 <span></span>
 <span><span class="co"># skim data </span></span>
@@ -131,16 +137,46 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Variable type: Date ───────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt;   skim_variable  n_missing complete_rate min        max        median     n_unique</span></span>
-<span><span class="co">#&gt; 1 death_df           30018        0.0603 2008-02-20 2022-12-15 2020-03-03     1429</span></span>
+<span><span class="co">#&gt; 1 gp_df              19195        0.399  1958-01-01 2017-09-06 2009-09-15     3264</span></span>
 <span><span class="co">#&gt; 2 hes_df              7242        0.773  1995-08-29 2022-10-31 2018-05-15     5562</span></span>
-<span><span class="co">#&gt; 3 gp_df              19195        0.399  1958-01-01 2017-09-06 2009-09-15     3264</span></span>
+<span><span class="co">#&gt; 3 death_df           30018        0.0603 2008-02-20 2022-12-15 2020-03-03     1429</span></span>
 <span><span class="co">#&gt; 4 df                     6        1.00   1958-01-01 2022-12-01 2015-02-17     6367</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="identify-self-reported-illness--cancer">Identify self-reported illness / cancer<a class="anchor" aria-label="anchor" href="#identify-self-reported-illness--cancer"></a>
+</h2>
+<p>UK Biobank cancer (<a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20001" class="external-link uri">https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20001</a>) and non-cancer (<a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20002" class="external-link uri">https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20002</a>) illness codes can be included in the codes list:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example, for haemochromatosis:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span></code></pre></div>
+<p>The below function will by default pull the appropriate self-reported fields from the RAP Spark system to determine whether a participant has reported any of the provided codes, and identify the self-reported date of diagnosis:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">selfrep_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">selfrep_df</span><span class="op">$</span><span class="va">selfrep</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     0      1 </span></span>
+<span><span class="co">#&gt; 502099    170 </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">selfrep_df</span><span class="op">$</span><span class="va">selfrep_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's </span></span>
+<span><span class="co">#&gt; "1941-11-25" "2003-07-02" "2007-07-02" "2006-06-26" "2011-07-02" "2022-07-02"     "502100" </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">selfrep_df</span><span class="op">$</span><span class="va">selfrep_i</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  0  1  2  3 </span></span>
+<span><span class="co">#&gt; 86 16 65  3 </span></span></code></pre></div>
+<p>This can add quite a bit of time. If you prefer to get the fields yourself and provide them to the function each time, you can:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">selfrep_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df</span>, ukb_dat <span class="op">=</span> <span class="va">ukb_dat</span><span class="op">)</span></span></code></pre></div>
+<p>You can add this data to the diagnosis list object to get an overall date first (self-reported plus medical records):</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">diagnosis_list</span>              <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span>
+<span><span class="va">selfrep_df</span>                  <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span>
+<span><span class="va">diagnosis_list</span><span class="op">[[</span><span class="st">"selfrep"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">selfrep_df</span></span>
+<span><span class="va">diagnosis_df</span>                <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-analysis">Example analysis<a class="anchor" aria-label="anchor" href="#example-analysis"></a>
 </h2>
 <p>Hypothesis: baseline age and sex are associated with risk of incident CKD diagnosis in the medical record follow-up</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># merge phenotype data with ascertained diagnoses</span></span>
 <span><span class="va">ukb</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">ukb</span>, <span class="va">diagnosis_df</span>, by<span class="op">=</span><span class="st">"eid"</span><span class="op">)</span></span>
 <span></span>
@@ -179,7 +215,7 @@
 <h2 id="upload-file-to-the-rap">Upload file to the RAP<a class="anchor" aria-label="anchor" href="#upload-file-to-the-rap"></a>
 </h2>
 <p>A wrapper to quickly upload a file from the worker node to the RAP space.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># save phenotypes to a file and upload to current working directory</span></span>
 <span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_tsv</a></span><span class="op">(</span><span class="va">ukb</span>, <span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/upload_to_rap.html">upload_to_rap</a></span><span class="op">(</span><span class="st">"ukbrap.phenos.20231114.txt.gz"</span><span class="op">)</span></span>
@@ -274,7 +310,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.0.2.9000-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.0-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

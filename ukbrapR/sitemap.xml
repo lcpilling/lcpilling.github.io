@@ -16,6 +16,12 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/get_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_emr.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_emr_df.html</loc>
   </url>
   <url>
@@ -23,6 +29,9 @@
   </url>
   <url>
     <loc>/reference/get_rap_phenos.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_selfrep_illness.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>

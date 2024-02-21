@@ -83,7 +83,17 @@ Intended for use on the UK Biobank DNnexus Research Analysis Platform, but if th
 
 <dt>ukb_dat</dt>
 <dd><p>A data frame. Optional. If not provided, will get the phenotypes from the RAP. Contains the self-reported illness fields e.g., `p20008_i0_a0`.
-<code>default='code'</code></p></dd>
+<code>default=NULL</code></p></dd>
+
+
+<dt>n_cancer_arrays</dt>
+<dd><p>An integer. It is not trivial to determine the max number of arrays to request from Spark for the self-reported illnesses. The defaults match the currently (Feb 2024) available data but may need increasing in the future.
+<code>default=5</code></p></dd>
+
+
+<dt>n_noncancer_arrays</dt>
+<dd><p>An integer. It is not trivial to determine the max number of arrays to request from Spark for the self-reported illnesses. The defaults match the currently (Feb 2024) available data but may need increasing in the future.
+<code>default=30</code></p></dd>
 
 
 <dt>verbose</dt>

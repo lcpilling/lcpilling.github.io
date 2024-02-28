@@ -4,6 +4,9 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/LICENSE-text.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -13,48 +16,15 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/annotate_textp.html</loc>
+    <loc>/reference/get_loci.html</loc>
   </url>
   <url>
-    <loc>/reference/carrec.html</loc>
-  </url>
-  <url>
-    <loc>/reference/example_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_assoc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_p.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_p_extreme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_p_neglog10.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_p_neglog10_n.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_se.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_z.html</loc>
+    <loc>/reference/get_nearest_gene.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/inv_norm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/theme_minimal_modified.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tidy_ci.html</loc>
-  </url>
-  <url>
-    <loc>/reference/z_trans.html</loc>
+    <loc>/reference/lambda_gc.html</loc>
   </url>
 </urlset>

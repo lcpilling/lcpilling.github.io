@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +57,7 @@
 <span>  include_gp_clinical <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_hesin <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  include_death_cause <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  prefix <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -85,6 +86,11 @@
 <dt>include_death_cause</dt>
 <dd><p>logical. Include the cause of death in the combined Date First output? If present in `diagnosis_list` will still provide a separate `_df` variable
 <code>default=TRUE</code></p></dd>
+
+
+<dt>prefix</dt>
+<dd><p>String. Prefix to add to variable names (e.g., if prefix="chd") the output variables would be "chd_selfrep_df", "chd_df" etc.
+<code>default=NULL</code></p></dd>
 
 
 <dt>verbose</dt>

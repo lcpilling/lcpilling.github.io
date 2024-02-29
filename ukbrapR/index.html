@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,14 +72,10 @@
 <p><strong>Only works on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
 <p>In tools, launch a JupyterLab environment on a Spark Cluster. In R, install {ukbrapR}. This will install the necessary dependencies for interacting with Python, Apache Spark, and the Arrow C++ library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install the development version</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR"</span><span class="op">)</span>          <span class="co"># install development version</span></span>
 <span></span>
-<span><span class="co"># To install the latest release, use:</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/lukesRlib@*release"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># To install a specific version (see tags), use:</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/lukesRlib@v0.2.0"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR@*release"</span><span class="op">)</span> <span class="co"># install latest release</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR@v0.0.2"</span><span class="op">)</span>   <span class="co"># install specific version (see tags)</span></span></code></pre></div>
 <p>I highly recommend saving a “snapshot” once all the packages are installed, and loading this when launching JupyterLab.</p>
 </div>
 <div class="section level2">
@@ -107,6 +103,13 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project are included</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   vocab_id  code</span></span>
+<span><span class="co">#&gt; 1    ICD10 N18.3</span></span>
+<span><span class="co">#&gt; 2    ICD10 N18.4</span></span>
+<span><span class="co">#&gt; 3    ICD10 N18.5</span></span>
+<span><span class="co">#&gt; 4    ICD10 N18.6</span></span>
+<span><span class="co">#&gt; 5    ICD10 N18.9</span></span>
+<span><span class="co">#&gt; 6    ICD10   N19</span></span>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
@@ -148,7 +151,24 @@
 <p>UK Biobank cancer (<a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20001" class="external-link uri">https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20001</a>) and non-cancer (<a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20002" class="external-link uri">https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20002</a>) illness codes can be included in the codes list:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example, for haemochromatosis:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         vocab_id   code</span></span>
+<span><span class="co">#&gt; 1  ukb_noncancer   1507</span></span>
+<span><span class="co">#&gt; 2           ICD9 275.03</span></span>
+<span><span class="co">#&gt; 3          ICD10  E83.1</span></span>
+<span><span class="co">#&gt; 4          Read2  126A.</span></span>
+<span><span class="co">#&gt; 5          Read2  4L41.</span></span>
+<span><span class="co">#&gt; 6          Read2  677C0</span></span>
+<span><span class="co">#&gt; 7          Read2  C350.</span></span>
+<span><span class="co">#&gt; 8          Read2  C3500</span></span>
+<span><span class="co">#&gt; 9           CTV3  C3500</span></span>
+<span><span class="co">#&gt; 10          CTV3  X40QQ</span></span>
+<span><span class="co">#&gt; 11          CTV3  XaIyI</span></span>
+<span><span class="co">#&gt; 12          CTV3  XaIyx</span></span>
+<span><span class="co">#&gt; 13          CTV3  XaXHI</span></span>
+<span><span class="co">#&gt; 14          CTV3  XE13K</span></span>
+<span><span class="co">#&gt; 15          CTV3  X307o</span></span>
+<span><span class="co">#&gt; 16          CTV3  X307p</span></span></code></pre></div>
 <p>The below function will by default pull the appropriate self-reported fields from the RAP Spark system to determine whether a participant has reported any of the provided codes, and identify the self-reported date of diagnosis:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selfrep_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
@@ -310,7 +330,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.0-informational.svg"></a></li>
+<li><a href="https://github.com/lukepilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.0.9000-informational.svg"></a></li>
 <li><a href="https://github.com/lukepilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

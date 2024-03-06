@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,13 +69,15 @@
 <span>  single_hla_locus <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  hla_pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5e+07</span>, <span class="fl">3.4e+07</span><span class="op">)</span>,</span>
 <span>  ld_clump <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  get_ld_indep <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ld_clump_r2 <span class="op">=</span> <span class="fl">0.01</span>,</span>
 <span>  ld_clump_local <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ld_plink_bin <span class="op">=</span> <span class="st">"plink"</span>,</span>
 <span>  ld_bfile <span class="op">=</span></span>
 <span>    <span class="st">"/indy/ukbiobank/data_14631/genetics/imputed_500k/5k_eur/ukb_imp_v3.qc_sub.5k_eur"</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  exclude_hla <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  get_ld_indep <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ld_pruning_r2 <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -138,7 +140,7 @@
 
 
 <dt>single_hla_locus</dt>
-<dd><p>Logical. Default=FALSE. Treat HLA as one continuous locus</p></dd>
+<dd><p>Logical. Default=FALSE. Treat HLA as one continuous locus. [Previously called `exclude_hla`]</p></dd>
 
 
 <dt>hla_pos</dt>
@@ -146,11 +148,11 @@
 
 
 <dt>ld_clump</dt>
-<dd><p>Logical. Default=FALSE. [Previously called `get_ld_indep`] Use Plink LD clumping to identify independent SNPs - see ieugwasr::ld_clump() docs.</p></dd>
+<dd><p>Logical. Default=FALSE. Use Plink LD clumping to identify independent SNPs - see ieugwasr::ld_clump() docs. [Previously called `get_ld_indep`]</p></dd>
 
 
 <dt>ld_clump_r2</dt>
-<dd><p>Numeric. Default=0.01. Pruning threshold for LD.</p></dd>
+<dd><p>Numeric. Default=0.01. Pruning threshold for LD. [Previously called `ld_pruning_r2`]</p></dd>
 
 
 <dt>ld_clump_local</dt>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p><strong>Only works on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
+<p><strong>Some functions only work on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
 <p>In tools, launch a JupyterLab environment on a Spark Cluster. In R, install {ukbrapR}. This will install the necessary dependencies for interacting with Python, Apache Spark, and the Arrow C++ library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lukepilling/ukbrapR"</span><span class="op">)</span>          <span class="co"># install development version</span></span>
@@ -83,7 +83,7 @@
 <div class="section level2">
 <h2 id="get-phenotype-data">Get phenotype data<a class="anchor" aria-label="anchor" href="#get-phenotype-data"></a>
 </h2>
-<p>Pull phenotypes from Spark to an R data frame. Recommend launching a Spark cluster with at least <code>mem1_hdd1_v2_x16</code> and <strong>2 nodes</strong> otherwise this can fail with error “…ensure that workers…have sufficient resources”</p>
+<p><strong>Pull phenotypes from Apache Spark on DNAnexus to an R data frame.</strong> Recommend launching a Spark cluster with at least <code>mem1_hdd1_v2_x16</code> and <strong>2 nodes</strong> otherwise this can fail with error “…ensure that workers…have sufficient resources”</p>
 <p>The underlying code is mostly from the <a href="https://github.com/UK-Biobank/UKB-RAP-Notebooks/blob/main/NBs_Prelim/105_export_participant_data_to_r.ipynb" class="external-link">UK Biobank GitHub</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get phenotype data (participant ID, sex, baseline age, and baseline assessment date)</span></span>
@@ -101,7 +101,7 @@
 <div class="section level2">
 <h2 id="get-medical-records-diagnoses">Get medical records diagnoses<a class="anchor" aria-label="anchor" href="#get-medical-records-diagnoses"></a>
 </h2>
-<p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>gp_clinical</code>, <code>hesin_diag</code> and <code>death_cause</code> with matched codes.</p>
+<p>For a given set of diagnostic codes (ICD10, Read2, CTV3) get the participant Electronic Medical Records (EMR) data. Returns a list containing 3 data frames in “long” format (&gt;1 row per participant): the subset of <code>gp_clinical</code>, <code>hesin_diag</code> and <code>death_cause</code> with matched codes. <strong>Default behaviour is to use Apache Spark on DNAnexus. But if you have <code>gp_clinical</code> and <code>hesin</code> text files it is possible to run locally with <a href="reference/get_emr_local.html"><code>get_emr_local()</code></a>.</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD from GEMINI multimorbidity project are included</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
@@ -114,7 +114,7 @@
 <span><span class="co">#&gt; 6    ICD10   N19</span></span>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
-<span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
+<span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; 7 ICD10 codes, 40 Read2 codes, 37 CTV3 codes </span></span>
 <span><span class="co">#&gt; 298.18 sec elapsed</span></span>
 <span></span>
@@ -171,7 +171,7 @@
 <span><span class="co">#&gt; 14          CTV3  XE13K</span></span>
 <span><span class="co">#&gt; 15          CTV3  X307o</span></span>
 <span><span class="co">#&gt; 16          CTV3  X307p</span></span></code></pre></div>
-<p>The below function will by default pull the appropriate self-reported fields from the RAP Spark system to determine whether a participant has reported any of the provided codes, and identify the self-reported date of diagnosis:</p>
+<p>The below function will by default pull the appropriate self-reported fields from <strong>the DNAnexus Apache Spark</strong> system to determine whether a participant has reported any of the provided codes, and identify the self-reported date of diagnosis:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selfrep_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df</span><span class="op">)</span></span>
 <span></span>
@@ -184,7 +184,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">selfrep_df</span><span class="op">$</span><span class="va">selfrep_i</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  0  1  2  3 </span></span>
 <span><span class="co">#&gt; 86 16 65  3 </span></span></code></pre></div>
-<p>This can add quite a bit of time. If you prefer to get the fields yourself and provide them to the function each time, you can:</p>
+<p>This can add quite a bit of time. If you prefer to use an already-extracted file (this therefore does not require a DNAnexus Spark cluster) you can:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selfrep_df</span> <span class="op">=</span> <span class="fu"><a href="reference/get_selfrep_illness.html">get_selfrep_illness</a></span><span class="op">(</span><span class="va">codes_df</span>, ukb_dat <span class="op">=</span> <span class="va">ukb_dat</span><span class="op">)</span></span></code></pre></div>
 <p>You can add this data to the diagnosis list object to get an overall date first (self-reported plus medical records):</p>
@@ -332,7 +332,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.1-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.2-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

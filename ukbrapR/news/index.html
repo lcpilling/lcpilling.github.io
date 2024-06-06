@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,11 +45,16 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.1.9000" id="ukbrapr-v0119000-6-june-2024">ukbrapR v0.1.1.9000 (6 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v0119000-6-june-2024"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.2" id="ukbrapr-v012-6-june-2024">ukbrapR v0.1.2 (6 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v012-6-june-2024"></a></h2>
 <div class="section level4">
-<h4 id="changes-0-1-1-9000">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-1-9000"></a></h4>
+<h4 id="new-features-0-1-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-2"></a></h4>
+<ul><li>New function <code><a href="../reference/get_emr_local.html">get_emr_local()</a></code>. If the user has text files for <code>hesin_diag</code> and <code>gp_clinical</code> etc. these can be searched (rather than Apache Spark queries). This therefore can work on “normal” DNAnexus nodes, or local servers. Most downstream functions also do not rely on Spark clusters if data extracts are available.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="changes-0-1-2">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-2"></a></h4>
 <ul><li>Change URL to reflect my GitHub username change from <code>lukepilling</code> to <code>lcpilling</code> to be more consistent between different logins, websites, and social media – <a href="https://lcpilling.github.io/ukbrapR" class="external-link uri">https://lcpilling.github.io/ukbrapR</a> – <a href="https://github.com/lcpilling/ukbrapR" class="external-link uri">https://github.com/lcpilling/ukbrapR</a>
 </li>
+<li>Added dependency {cli} for improved alert/error reporting</li>
 </ul></div>
 </div>
     <div class="section level2">

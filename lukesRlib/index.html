@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/lukepilling/lukesRlib/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/lcpilling/lukesRlib/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -60,9 +60,9 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><img align="right" src="https://github.com/lukepilling/lukesRlib/raw/master/images/lukesRlib.png" width="200"></p>
-<div class="section level1">
-<div class="page-header"><h1 id="lukesrlib">lukesRlib<a class="anchor" aria-label="anchor" href="#lukesrlib"></a>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="lukesrlib-">lukesRlib <a href="https://lcpilling.github.io/lukesRlib/" class="external-link"><img src="images/lukesRlib.png" align="right" width="150"></a>
+<a class="anchor" aria-label="anchor" href="#lukesrlib-"></a>
 </h1></div>
 <p>My library of R functions I sometimes find useful</p>
 <!-- badges: start -->
@@ -100,7 +100,7 @@
 </h3>
 <p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> (“tidy with CIs”) runs <a href="https://broom.tidymodels.org/" class="external-link"><code>broom::tidy()</code></a> and returns the tidy estimates with CIs calculated as EST +/- 1.96*SE (i.e., the Wald method)</p>
 <p>Motivation: by default the <a href="https://broom.tidymodels.org/" class="external-link">{broom}</a> package uses <code><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint()</a></code> to estimate CIs. For GLMs this calculates CIs via the profile likelihood method. When using large datasets this takes a long time and does not meaningfully alter the CIs compared to calculating using 1.96*SE</p>
-<p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> does a few other nice things: hides the intercept by default, automatically detects logistic/CoxPH/CRR models and exponentiates the estimates, and if p==0 returns the ‘extreme p’ as a string. Other options include -log10 p-values. See the <a href="https://github.com/lukepilling/lukesRlib/wiki/tidy_ci()" class="external-link"><code>tidy_ci()</code> Wiki</a> page for more details</p>
+<p><code><a href="reference/tidy_ci.html">tidy_ci()</a></code> does a few other nice things: hides the intercept by default, automatically detects logistic/CoxPH/CRR models and exponentiates the estimates, and if p==0 returns the ‘extreme p’ as a string. Other options include -log10 p-values. See the <a href="https://github.com/lcpilling/lukesRlib/wiki/tidy_ci()" class="external-link"><code>tidy_ci()</code> Wiki</a> page for more details</p>
 <div class="section level4">
 <h4 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h4>
@@ -293,7 +293,7 @@
 <span><span class="fu">qplot</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="reference/annotate_textp.html">annotate_textp</a></span><span class="op">(</span><span class="st">'Text annotation\nx=0.1, y=0.9, hjust=0'</span>, x<span class="op">=</span><span class="fl">0</span>, y<span class="op">=</span><span class="fl">1</span>, hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="fu">qplot</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="reference/annotate_textp.html">annotate_textp</a></span><span class="op">(</span><span class="st">'Text annotation\nx = 0.5, y=0.5, hjust=0.5\nbox_just=c(0.5,0.5)'</span>, x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, hjust<span class="op">=</span><span class="fl">0.5</span>, box_just<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">qplot</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="reference/annotate_textp.html">annotate_textp</a></span><span class="op">(</span><span class="st">'Text annotation\nx = 0.5, y=0.5, hjust=0.5\nbox_just=c(0.5,0.5)\nsize=14, alpha=0.5'</span>, x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, hjust<span class="op">=</span><span class="fl">0.5</span>, box_just<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.5</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">13</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
-<p><img align="center" src="https://github.com/lukepilling/lukesRlib/raw/master/images/annotate_textp.png"></p>
+<p><img align="center" src="https://github.com/lcpilling/lukesRlib/raw/master/images/annotate_textp.png"></p>
 </div>
 <div class="section level3">
 <h3 id="theme_minimal_modified">theme_minimal_modified()<a class="anchor" aria-label="anchor" href="#theme_minimal_modified"></a>
@@ -320,16 +320,15 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span>, base_family <span class="op">=</span> <span class="st">'Source Sans Pro'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Adelie'</span><span class="op">=</span> <span class="st">'#da2c38'</span>, <span class="st">'Chinstrap'</span><span class="op">=</span> <span class="st">'#FED18C'</span>, <span class="st">'Gentoo'</span><span class="op">=</span> <span class="st">'#30C5FF'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># scale_fill_manual(values = thematic::okabe_ito(6)) +</span></span>
 <span>  <span class="fu"><a href="reference/theme_minimal_modified.html">theme_minimal_modified</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img align="center" src="https://github.com/lukepilling/lukesRlib/raw/master/images/theme_minimal_modified.png" width="600"></p>
+<p><img align="center" src="https://github.com/lcpilling/lukesRlib/raw/master/images/theme_minimal_modified.png" width="600"></p>
 </div>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/lukesRlib/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/lukepilling/lukesRlib/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/lcpilling/lukesRlib/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/lcpilling/lukesRlib/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -352,15 +351,15 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3332-8454" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://lcpilling.github.io" class="external-link">Luke Pilling</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3332-8454" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lukepilling/lukesRlib" class="external-link"><img src="https://img.shields.io/badge/version-0.2.9-informational.svg"></a></li>
-<li><a href="https://github.com/lukepilling/lukesRlib/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lukepilling/lukesRlib.svg"></a></li>
+<li><a href="https://github.com/lcpilling/lukesRlib" class="external-link"><img src="https://img.shields.io/badge/version-0.2.10-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/lukesRlib/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/lukesRlib.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/590063045" class="external-link"><img src="https://zenodo.org/badge/590063045.svg" alt="DOI"></a></li>
 </ul>
@@ -372,7 +371,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://lukepilling.github.io" class="external-link">Luke Pilling</a>.</p>
+<p>Developed by <a href="https://lcpilling.github.io" class="external-link">Luke Pilling</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

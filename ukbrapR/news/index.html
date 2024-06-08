@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,18 @@
       <small>Source: <a href="https://github.com/lcpilling/ukbrapR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.3" id="ukbrapr-v013-8-june-2024">ukbrapR v0.1.3 (8 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v013-8-june-2024"></a></h2>
+<div class="section level4">
+<h4 id="new-feature-0-1-3">New feature<a class="anchor" aria-label="anchor" href="#new-feature-0-1-3"></a></h4>
+<ul><li>It is quicker/easier to ascertain multiple conditions at once to supply <code><a href="../reference/get_emr.html">get_emr()</a></code> with all the codes (as before), but now can use <code><a href="../reference/get_df.html">get_df()</a></code> with option “group_by” to indicate the condition names in the <code>codes_df</code> object provided. See documentation.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="changes-0-1-3">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-3"></a></h4>
+<ul><li>It is no longer possible to provide custom names for the <code>codes_df</code> to <code><a href="../reference/get_emr.html">get_emr()</a></code> – these now must be <code>vocab_id</code> and <code>code</code> – makes things much simpler.</li>
+<li>Remove ICD9 code from <code>codes_df_hh</code> example as these are not currently used</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="ukbrapr-v012-6-june-2024">ukbrapR v0.1.2 (6 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v012-6-june-2024"></a></h2>
 <div class="section level4">

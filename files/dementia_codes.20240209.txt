@@ -1,0 +1,368 @@
+condition	vocab_id	code	desc
+dementia_h22gp17d22	CTV3	A410.	Kuru
+dementia_h22gp17d22	CTV3	A410.	Kuru encephalitis
+dementia_h22gp17d22	CTV3	A411.	Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	A411.	CJD - Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	A411.	JCD - Jakob-Creutzfeldt disease
+dementia_h22gp17d22	CTV3	A411.	Jakob-Creutzfeldt disease
+dementia_h22gp17d22	CTV3	E000.	Uncomplicated senile dementia
+dementia_h22gp17d22	CTV3	E001.	Presenile dementia
+dementia_h22gp17d22	CTV3	E0010	Uncomplicated presenile dementia
+dementia_h22gp17d22	CTV3	E0011	Presenile dementia with delirium
+dementia_h22gp17d22	CTV3	E0012	Presenile dementia with paranoia
+dementia_h22gp17d22	CTV3	E0013	Presenile dementia with depression
+dementia_h22gp17d22	CTV3	E001z	Presenile dementia NOS
+dementia_h22gp17d22	CTV3	E002.	Senile dementia with depressive or paranoid features
+dementia_h22gp17d22	CTV3	E0020	Senile dementia with paranoia
+dementia_h22gp17d22	CTV3	E0021	Senile dementia with depression
+dementia_h22gp17d22	CTV3	E002z	Senile dementia with depressive or paranoid features NOS
+dementia_h22gp17d22	CTV3	E003.	Senile dementia with delirium
+dementia_h22gp17d22	CTV3	E004.	Arteriosclerotic dementia (including [multi infarct dementia])
+dementia_h22gp17d22	CTV3	E004.	Arteriosclerotic dementia
+dementia_h22gp17d22	CTV3	E004.	Multi infarct dementia
+dementia_h22gp17d22	CTV3	E0040	Uncomplicated arteriosclerotic dementia
+dementia_h22gp17d22	CTV3	E0041	Arteriosclerotic dementia with delirium
+dementia_h22gp17d22	CTV3	E0042	Arteriosclerotic dementia with paranoia
+dementia_h22gp17d22	CTV3	E0043	Arteriosclerotic dementia with depression
+dementia_h22gp17d22	CTV3	E004z	Arteriosclerotic dementia NOS
+dementia_h22gp17d22	CTV3	E00z.	Senile or presenile psychoses NOS
+dementia_h22gp17d22	CTV3	E00z.	[X]Presenile psychosis NOS
+dementia_h22gp17d22	CTV3	E041.	Dementia in conditions EC
+dementia_h22gp17d22	CTV3	Eu00.	[X]Dementia in Alzheimer's disease
+dementia_h22gp17d22	CTV3	Eu00.	Dementia in Alzheimer's disease
+dementia_h22gp17d22	CTV3	Eu00.	DAT - Dementia Alzheimer's type
+dementia_h22gp17d22	CTV3	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_h22gp17d22	CTV3	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+dementia_h22gp17d22	CTV3	Eu011	[X]Dementia: [multi-infarct] or [predominantly cortical]
+dementia_h22gp17d22	CTV3	Eu011	[X]Multi-infarct dementia
+dementia_h22gp17d22	CTV3	Eu011	[X]Predominantly cortical dementia
+dementia_h22gp17d22	CTV3	Eu01y	[X]Other vascular dementia
+dementia_h22gp17d22	CTV3	Eu01z	[X]Vascular dementia, unspecified
+dementia_h22gp17d22	CTV3	Eu02.	[X]Dementia in other diseases classified elsewhere
+dementia_h22gp17d22	CTV3	Eu020	[X]Dementia in Pick's disease
+dementia_h22gp17d22	CTV3	Eu021	[X]Dementia in Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	Eu022	[X]Dementia in Huntington's disease
+dementia_h22gp17d22	CTV3	Eu023	[X]Dementia in Parkinson's disease
+dementia_h22gp17d22	CTV3	Eu02y	[X]Dementia in other specified diseases classif elsewhere
+dementia_h22gp17d22	CTV3	Eu041	[X]Delirium superimposed on dementia
+dementia_h22gp17d22	CTV3	F110.	Alzheimer's disease
+dementia_h22gp17d22	CTV3	F110.	AD - Alzheimer's disease
+dementia_h22gp17d22	CTV3	F111.	Pick's disease
+dementia_h22gp17d22	CTV3	F112.	Senile degeneration of brain
+dementia_h22gp17d22	CTV3	F11x7	Cerebral degeneration due to Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	F21y2	Binswanger's disease
+dementia_h22gp17d22	CTV3	F21y2	Binswanger's encephalopathy
+dementia_h22gp17d22	CTV3	F21y2	Subcortical arteriosclerotic encephalopathy
+dementia_h22gp17d22	CTV3	F21y2	Subcortical atherosclerotic dementia
+dementia_h22gp17d22	CTV3	F21y2	Chronic progressive subcortical encephalopathy
+dementia_h22gp17d22	CTV3	Fyu30	[X]Other Alzheimer's disease
+dementia_h22gp17d22	CTV3	X002w	Dementia
+dementia_h22gp17d22	CTV3	X002x	Dementia in Alzheimer's disease with early onset
+dementia_h22gp17d22	CTV3	X002x	Dementia in Alzheimer's disease - type 2
+dementia_h22gp17d22	CTV3	X002x	Presenile dementia, Alzheimer's type
+dementia_h22gp17d22	CTV3	X002y	Familial Alzheimer's disease of early onset
+dementia_h22gp17d22	CTV3	X002z	Non-familial Alzheimer's disease of early onset
+dementia_h22gp17d22	CTV3	X0030	Dementia in Alzheimer's disease with late onset
+dementia_h22gp17d22	CTV3	X0030	Dementia in Alzheimer's disease - type 1
+dementia_h22gp17d22	CTV3	X0030	SDAT - Senile dementia, Alzheimer's type
+dementia_h22gp17d22	CTV3	X0031	Familial Alzheimer's disease of late onset
+dementia_h22gp17d22	CTV3	X0032	Non-familial Alzheimer's disease of late onset
+dementia_h22gp17d22	CTV3	X0033	Focal Alzheimer's disease
+dementia_h22gp17d22	CTV3	X0034	Frontotemporal dementia
+dementia_h22gp17d22	CTV3	X0035	Pick's disease with Pick bodies
+dementia_h22gp17d22	CTV3	X0036	Pick's disease with Pick cells and no Pick bodies
+dementia_h22gp17d22	CTV3	X0037	Frontotemporal degeneration
+dementia_h22gp17d22	CTV3	X0037	Lobar atrophy
+dementia_h22gp17d22	CTV3	X0039	Frontal lobe degeneration with motor neurone disease
+dementia_h22gp17d22	CTV3	X003A	Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	LBD - Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	SDLT - Senile dementia of the Lewy body type
+dementia_h22gp17d22	CTV3	X003A	Cortical Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	CLBD - Cortical Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	Diffuse Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	DLBD - Diffuse Lewy body disease
+dementia_h22gp17d22	CTV3	X003A	Dementia of the Lewy body type
+dementia_h22gp17d22	CTV3	X003G	Progressive aphasia in Alzheimer's disease
+dementia_h22gp17d22	CTV3	X003H	Argyrophilic brain disease
+dementia_h22gp17d22	CTV3	X003I	Post-traumatic dementia
+dementia_h22gp17d22	CTV3	X003J	Punch drunk syndrome
+dementia_h22gp17d22	CTV3	X003J	Dementia pugilistica
+dementia_h22gp17d22	CTV3	X003R	Vascular dementia of acute onset
+dementia_h22gp17d22	CTV3	X003T	Subcortical vascular dementia
+dementia_h22gp17d22	CTV3	X003V	Mixed cortical and subcortical vascular dementia
+dementia_h22gp17d22	CTV3	X003W	Semantic dementia
+dementia_h22gp17d22	CTV3	X003X	Patchy dementia
+dementia_h22gp17d22	CTV3	X003Y	Epileptic dementia
+dementia_h22gp17d22	CTV3	X00R2	Senile dementia
+dementia_h22gp17d22	CTV3	X00R2	SD - Senile dementia
+dementia_h22gp17d22	CTV3	XE1aG	Dementia (& [presenile] or [senile])
+dementia_h22gp17d22	CTV3	XE1aG	Senile/presenile dementia
+dementia_h22gp17d22	CTV3	XE1aG	Senile dementia
+dementia_h22gp17d22	CTV3	XE1aG	Senile and presenile dementias
+dementia_h22gp17d22	CTV3	XE1aG	Senile/presenile dement
+dementia_h22gp17d22	CTV3	XE1Xs	Vascular dementia
+dementia_h22gp17d22	CTV3	XE1Xs	Arteriosclerotic dementia
+dementia_h22gp17d22	CTV3	XE1Xs	VAD - Vascular dementia
+dementia_h22gp17d22	CTV3	XE1Xt	Other senile and presenile organic psychoses
+dementia_h22gp17d22	CTV3	XE1Z6	[X]Unspecified dementia
+dementia_h22gp17d22	CTV3	Y00dJ	MID - Multi-infarct dementia
+dementia_h22gp17d22	CTV3	Y00dM	Binswanger's encephalopathy
+dementia_h22gp17d22	CTV3	Y00Gv	Dementia
+dementia_h22gp17d22	CTV3	Y00Gw	Alzheimer's disease
+dementia_h22gp17d22	CTV3	Y00H0	Dementia in Alzheimer's disease with early onset
+dementia_h22gp17d22	CTV3	Y00H2	Presenile dementia, Alzheimer's type
+dementia_h22gp17d22	CTV3	Y00H5	Dementia in Alzheimer's disease with late onset
+dementia_h22gp17d22	CTV3	Y00H7	SDAT - Senile dementia, Alzheimer's type
+dementia_h22gp17d22	CTV3	Y00HC	Pick's disease
+dementia_h22gp17d22	CTV3	Y00Hk	Kuru
+dementia_h22gp17d22	CTV3	Y00HL	Lewy body disease
+dementia_h22gp17d22	CTV3	Y00Hv	Vascular dementia
+dementia_h22gp17d22	CTV3	Y00Hw	Arteriosclerotic dementia
+dementia_h22gp17d22	CTV3	Y00Hx	Vascular dementia of acute onset
+dementia_h22gp17d22	CTV3	Y00Hz	Subcortical vascular dementia
+dementia_h22gp17d22	CTV3	Y00I0	Binswanger's disease
+dementia_h22gp17d22	CTV3	Y00I1	Mixed cortical and subcortical vascular dementia
+dementia_h22gp17d22	CTV3	Y00La	Senile degeneration of brain
+dementia_h22gp17d22	CTV3	Y016a	Senile dementia with depressive or paranoid features
+dementia_h22gp17d22	CTV3	Y016b	Senile dementia with paranoia
+dementia_h22gp17d22	CTV3	Y016c	Senile dementia with depression
+dementia_h22gp17d22	CTV3	Y016d	Senile dementia with depressive or paranoid features NOS
+dementia_h22gp17d22	CTV3	Y016e	Uncomplicated senile dementia
+dementia_h22gp17d22	CTV3	Y016f	Dementia in conditions EC
+dementia_h22gp17d22	CTV3	Y016M	Senile and presenile organic psychotic conditions
+dementia_h22gp17d22	CTV3	Y016N	Senile or presenile psychoses NOS
+dementia_h22gp17d22	CTV3	Y016O	Other senile and presenile organic psychoses
+dementia_h22gp17d22	CTV3	Y016P	Presbyophrenic psychosis
+dementia_h22gp17d22	CTV3	Y016S	Presenile dementia
+dementia_h22gp17d22	CTV3	Y016T	Uncomplicated presenile dementia
+dementia_h22gp17d22	CTV3	Y016U	Presenile dementia with delirium
+dementia_h22gp17d22	CTV3	Y016V	Presenile dementia with paranoia
+dementia_h22gp17d22	CTV3	Y016w	Arteriosclerotic dementia with paranoia
+dementia_h22gp17d22	CTV3	Y016W	Presenile dementia with depression
+dementia_h22gp17d22	CTV3	Y016x	Arteriosclerotic dementia with depression
+dementia_h22gp17d22	CTV3	Y016X	Presenile dementia NOS
+dementia_h22gp17d22	CTV3	Y016y	Arteriosclerotic dementia NOS
+dementia_h22gp17d22	CTV3	Y016Y	Senile dementia
+dementia_h22gp17d22	CTV3	Y016z	Arteriosclerotic dementia with delirium
+dementia_h22gp17d22	CTV3	Y016Z	Senile dementia with delirium
+dementia_h22gp17d22	CTV3	Y0170	Uncomplicated arteriosclerotic dementia
+dementia_h22gp17d22	CTV3	Ya1Sy	Frontotemporal degeneration
+dementia_h22gp17d22	CTV3	Ya2nk	Cerebral degeneration presenting primarily with dementia
+dementia_h22gp17d22	CTV3	YadT0	Multi-infarct dementia
+dementia_h22gp17d22	CTV3	Yady4	Cerebral degeneration due to Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	Yao4I	[X]Lewy body dementia
+dementia_h22gp17d22	CTV3	YaxJd	Sporadic Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	YaxJe	Sporadic CJD (Creutzfeldt-Jakob disease)
+dementia_h22gp17d22	CTV3	YMAhP	Alzheimer's disease with early onset
+dementia_h22gp17d22	CTV3	YMAhQ	Alzheimer's disease with late onset
+dementia_h22gp17d22	CTV3	YMB0i	[X]Dementia in Alzheimer's disease
+dementia_h22gp17d22	CTV3	YMB0l	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_h22gp17d22	CTV3	YMB0m	[X]Dementia in Alzheimer's disease, unspecified
+dementia_h22gp17d22	CTV3	YMB0s	[X]Other vascular dementia
+dementia_h22gp17d22	CTV3	YMB0t	[X]Vascular dementia, unspecified
+dementia_h22gp17d22	CTV3	YMB0u	[X]Dementia in other diseases classified elsewhere
+dementia_h22gp17d22	CTV3	YMB0v	[X]Dementia in Pick's disease
+dementia_h22gp17d22	CTV3	YMB0w	[X]Dementia in Creutzfeldt-Jakob disease
+dementia_h22gp17d22	CTV3	YMB0x	[X]Dementia in Huntington's disease
+dementia_h22gp17d22	CTV3	YMB0y	[X]Dementia in Parkinson's disease
+dementia_h22gp17d22	CTV3	YMB10	[X]Dementia in other specified diseases classif elsewhere
+dementia_h22gp17d22	CTV3	YMB11	[X]Unspecified dementia
+dementia_h22gp17d22	CTV3	YMB15	[X]Delirium superimposed on dementia
+dementia_h22gp17d22	CTV3	YMB1Z	[X]Mental and behavioural disorders due to use of alcohol: residual and late-onset psychotic disorder
+dementia_h22gp17d22	CTV3	YMBwl	[X]Presenile psychosis NOS
+dementia_h22gp17d22	CTV3	YMJwc	Jakob-Creutzfeldt disease
+dementia_h22gp17d22	CTV3	YMK1N	[X] Primary degenerative dementia NOS
+dementia_h22gp17d22	CTV3	YMK1O	[X] Senile dementia NOS
+dementia_h22gp17d22	CTV3	YMK1P	[X] Senile psychosis NOS
+dementia_h22gp17d22	ICD10	F00	Dementia in Alzheimer disease
+dementia_h22gp17d22	ICD10	F01	Vascular dementia
+dementia_h22gp17d22	ICD10	F02	Dementia in other diseases classified elsewhere
+dementia_h22gp17d22	ICD10	F03	Unspecified dementia
+dementia_h22gp17d22	ICD10	G30	Alzheimer disease
+dementia_h22gp17d22	ICD10	A81.0	Creutzfeldt-Jakob disease
+dementia_h22gp17d22	ICD10	F05.1	Delirium superimposed on dementia
+dementia_h22gp17d22	ICD10	F10.6	Mental and behavioural disorders due to use of alcohol
+dementia_h22gp17d22	ICD10	G31.0	Circumscribed brain atrophy
+dementia_h22gp17d22	ICD10	G31.1	Senile degeneration of brain, not elsewhere classified
+dementia_h22gp17d22	ICD10	G31.8	Other specified degenerative diseases of nervous system
+dementia_h22gp17d22	ICD10	I67.3	Progressive vascular leukoencephalopathy / Binswanger's disease
+dementia_h22gp17d22	Read2	A410.	Kuru
+dementia_h22gp17d22	Read2	A411.	Jakob-Creutzfeldt disease
+dementia_h22gp17d22	Read2	A4110	Sporadic Creutzfeldt-Jakob disease
+dementia_h22gp17d22	Read2	A4110	Sporadic CJD (Creutzfeldt-Jakob disease)
+dementia_h22gp17d22	Read2	E00..	Senile and presenile organic psychotic conditions
+dementia_h22gp17d22	Read2	E00..	Senile dementia
+dementia_h22gp17d22	Read2	E00..	Senile/presenile dementia
+dementia_h22gp17d22	Read2	E000.	Uncomplicated senile dementia
+dementia_h22gp17d22	Read2	E001.	Presenile dementia
+dementia_h22gp17d22	Read2	E0010	Uncomplicated presenile dementia
+dementia_h22gp17d22	Read2	E0011	Presenile dementia with delirium
+dementia_h22gp17d22	Read2	E0012	Presenile dementia with paranoia
+dementia_h22gp17d22	Read2	E0013	Presenile dementia with depression
+dementia_h22gp17d22	Read2	E001z	Presenile dementia NOS
+dementia_h22gp17d22	Read2	E002.	Senile dementia with depressive or paranoid features
+dementia_h22gp17d22	Read2	E0020	Senile dementia with paranoia
+dementia_h22gp17d22	Read2	E0021	Senile dementia with depression
+dementia_h22gp17d22	Read2	E002z	Senile dementia with depressive or paranoid features NOS
+dementia_h22gp17d22	Read2	E003.	Senile dementia with delirium
+dementia_h22gp17d22	Read2	E004.	Arteriosclerotic dementia
+dementia_h22gp17d22	Read2	E004.	Multi infarct dementia
+dementia_h22gp17d22	Read2	E0040	Uncomplicated arteriosclerotic dementia
+dementia_h22gp17d22	Read2	E0041	Arteriosclerotic dementia with delirium
+dementia_h22gp17d22	Read2	E0042	Arteriosclerotic dementia with paranoia
+dementia_h22gp17d22	Read2	E0043	Arteriosclerotic dementia with depression
+dementia_h22gp17d22	Read2	E004z	Arteriosclerotic dementia NOS
+dementia_h22gp17d22	Read2	E00y.	Other senile and presenile organic psychoses
+dementia_h22gp17d22	Read2	E041.	Dementia in conditions EC
+dementia_h22gp17d22	Read2	Eu00.	[X]Dementia in Alzheimer's disease
+dementia_h22gp17d22	Read2	Eu000	[X]Dementia in Alzheimer's disease with early onset
+dementia_h22gp17d22	Read2	Eu000	[X]Presenile dementia,Alzheimer's type
+dementia_h22gp17d22	Read2	Eu000	[X] Primary degenerative dementia of Alzheimer's type, presenile onset
+dementia_h22gp17d22	Read2	Eu000	[X]Alzheimer's disease type 2
+dementia_h22gp17d22	Read2	Eu001	[X]Dementia in Alzheimer's disease with late onset
+dementia_h22gp17d22	Read2	Eu001	[X]Alzheimer's disease type 1
+dementia_h22gp17d22	Read2	Eu001	[X]Senile dementia,Alzheimer's type
+dementia_h22gp17d22	Read2	Eu001	[X]Primary degenerative dementia of Alzheimer's type, senile onset
+dementia_h22gp17d22	Read2	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_h22gp17d22	Read2	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+dementia_h22gp17d22	Read2	Eu00z	[X]Alzheimer's dementia unspec
+dementia_h22gp17d22	Read2	Eu01.	[X]Vascular dementia
+dementia_h22gp17d22	Read2	Eu01.	[X]Arteriosclerotic dementia
+dementia_h22gp17d22	Read2	Eu010	[X]Vascular dementia of acute onset
+dementia_h22gp17d22	Read2	Eu011	[X]Multi-infarct dementia
+dementia_h22gp17d22	Read2	Eu011	[X]Predominantly cortical dementia
+dementia_h22gp17d22	Read2	Eu012	[X]Subcortical vascular dementia
+dementia_h22gp17d22	Read2	Eu013	[X]Mixed cortical and subcortical vascular dementia
+dementia_h22gp17d22	Read2	Eu01y	[X]Other vascular dementia
+dementia_h22gp17d22	Read2	Eu01z	[X]Vascular dementia, unspecified
+dementia_h22gp17d22	Read2	Eu02.	[X]Dementia in other diseases classified elsewhere
+dementia_h22gp17d22	Read2	Eu020	[X]Dementia in Pick's disease
+dementia_h22gp17d22	Read2	Eu021	[X]Dementia in Creutzfeldt-Jakob disease
+dementia_h22gp17d22	Read2	Eu022	[X]Dementia in Huntington's disease
+dementia_h22gp17d22	Read2	Eu023	[X]Dementia in Parkinson's disease
+dementia_h22gp17d22	Read2	Eu025	[X]Lewy body dementia
+dementia_h22gp17d22	Read2	Eu02y	[X]Dementia in other specified diseases classif elsewhere
+dementia_h22gp17d22	Read2	Eu02z	[X] Unspecified dementia
+dementia_h22gp17d22	Read2	Eu02z	[X] Presenile dementia NOS
+dementia_h22gp17d22	Read2	Eu02z	[X] Presenile psychosis NOS
+dementia_h22gp17d22	Read2	Eu02z	[X] Primary degenerative dementia NOS
+dementia_h22gp17d22	Read2	Eu02z	[X] Senile dementia NOS
+dementia_h22gp17d22	Read2	Eu02z	[X] Senile psychosis NOS
+dementia_h22gp17d22	Read2	Eu02z	[X] Senile dementia, depressed or paranoid type
+dementia_h22gp17d22	Read2	F110.	Alzheimer's disease
+dementia_h22gp17d22	Read2	F1100	Alzheimer's disease with early onset
+dementia_h22gp17d22	Read2	F1101	Alzheimer's disease with late onset
+dementia_h22gp17d22	Read2	F111.	Pick's disease
+dementia_h22gp17d22	Read2	F112.	Senile degeneration of brain
+dementia_h22gp17d22	Read2	F116.	Lewy body disease
+dementia_h22gp17d22	Read2	F118.	Frontotemporal degeneration
+dementia_h22gp17d22	Read2	F11x7	Cerebral degeneration due to Jakob - Creutzfeldt disease
+dementia_h22gp17d22	Read2	F21y2	Binswanger's disease
+dementia_h22gp17d22	Read2	F21y2	Binswanger's encephalopathy
+dementia_h22gp17d22	Read2	Fyu30	[X]Other Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Eu00.	[X]Dementia in Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Eu00.	Dementia in Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Eu00.	DAT - Dementia Alzheimer's type
+dementia_ad_h22gp17d22	CTV3	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_ad_h22gp17d22	CTV3	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+dementia_ad_h22gp17d22	CTV3	F110.	Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	F110.	AD - Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Fyu30	[X]Other Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	X002x	Dementia in Alzheimer's disease with early onset
+dementia_ad_h22gp17d22	CTV3	X002x	Dementia in Alzheimer's disease - type 2
+dementia_ad_h22gp17d22	CTV3	X002x	Presenile dementia, Alzheimer's type
+dementia_ad_h22gp17d22	CTV3	X002y	Familial Alzheimer's disease of early onset
+dementia_ad_h22gp17d22	CTV3	X002z	Non-familial Alzheimer's disease of early onset
+dementia_ad_h22gp17d22	CTV3	X0030	Dementia in Alzheimer's disease with late onset
+dementia_ad_h22gp17d22	CTV3	X0030	Dementia in Alzheimer's disease - type 1
+dementia_ad_h22gp17d22	CTV3	X0030	SDAT - Senile dementia, Alzheimer's type
+dementia_ad_h22gp17d22	CTV3	X0031	Familial Alzheimer's disease of late onset
+dementia_ad_h22gp17d22	CTV3	X0032	Non-familial Alzheimer's disease of late onset
+dementia_ad_h22gp17d22	CTV3	X0033	Focal Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	X003G	Progressive aphasia in Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Y00Gw	Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	Y00H0	Dementia in Alzheimer's disease with early onset
+dementia_ad_h22gp17d22	CTV3	Y00H2	Presenile dementia, Alzheimer's type
+dementia_ad_h22gp17d22	CTV3	Y00H5	Dementia in Alzheimer's disease with late onset
+dementia_ad_h22gp17d22	CTV3	Y00H7	SDAT - Senile dementia, Alzheimer's type
+dementia_ad_h22gp17d22	CTV3	YMAhP	Alzheimer's disease with early onset
+dementia_ad_h22gp17d22	CTV3	YMAhQ	Alzheimer's disease with late onset
+dementia_ad_h22gp17d22	CTV3	YMB0i	[X]Dementia in Alzheimer's disease
+dementia_ad_h22gp17d22	CTV3	YMB0l	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_ad_h22gp17d22	CTV3	YMB0m	[X]Dementia in Alzheimer's disease, unspecified
+dementia_ad_h22gp17d22	ICD10	F00	Dementia in Alzheimer disease
+dementia_ad_h22gp17d22	ICD10	G30	Alzheimer disease
+dementia_ad_h22gp17d22	Read2	Eu00.	[X]Dementia in Alzheimer's disease
+dementia_ad_h22gp17d22	Read2	Eu000	[X]Dementia in Alzheimer's disease with early onset
+dementia_ad_h22gp17d22	Read2	Eu000	[X]Presenile dementia,Alzheimer's type
+dementia_ad_h22gp17d22	Read2	Eu000	[X] Primary degenerative dementia of Alzheimer's type, presenile onset
+dementia_ad_h22gp17d22	Read2	Eu000	[X]Alzheimer's disease type 2
+dementia_ad_h22gp17d22	Read2	Eu001	[X]Dementia in Alzheimer's disease with late onset
+dementia_ad_h22gp17d22	Read2	Eu001	[X]Alzheimer's disease type 1
+dementia_ad_h22gp17d22	Read2	Eu001	[X]Senile dementia,Alzheimer's type
+dementia_ad_h22gp17d22	Read2	Eu001	[X]Primary degenerative dementia of Alzheimer's type, senile onset
+dementia_ad_h22gp17d22	Read2	Eu002	[X]Dementia in Alzheimer's dis, atypical or mixed type
+dementia_ad_h22gp17d22	Read2	Eu00z	[X]Dementia in Alzheimer's disease, unspecified
+dementia_ad_h22gp17d22	Read2	Eu00z	[X]Alzheimer's dementia unspec
+dementia_ad_h22gp17d22	Read2	F110.	Alzheimer's disease
+dementia_ad_h22gp17d22	Read2	F1100	Alzheimer's disease with early onset
+dementia_ad_h22gp17d22	Read2	F1101	Alzheimer's disease with late onset
+dementia_ad_h22gp17d22	Read2	Fyu30	[X]Other Alzheimer's disease
+dementia_vasc_h22gp17d22	CTV3	E004.	Arteriosclerotic dementia (including [multi infarct dementia])
+dementia_vasc_h22gp17d22	CTV3	E004.	Arteriosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	E004.	Multi infarct dementia
+dementia_vasc_h22gp17d22	CTV3	E0040	Uncomplicated arteriosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	E0041	Arteriosclerotic dementia with delirium
+dementia_vasc_h22gp17d22	CTV3	E0042	Arteriosclerotic dementia with paranoia
+dementia_vasc_h22gp17d22	CTV3	E0043	Arteriosclerotic dementia with depression
+dementia_vasc_h22gp17d22	CTV3	E004z	Arteriosclerotic dementia NOS
+dementia_vasc_h22gp17d22	CTV3	Eu011	[X]Dementia: [multi-infarct] or [predominantly cortical]
+dementia_vasc_h22gp17d22	CTV3	Eu011	[X]Multi-infarct dementia
+dementia_vasc_h22gp17d22	CTV3	Eu011	[X]Predominantly cortical dementia
+dementia_vasc_h22gp17d22	CTV3	Eu01y	[X]Other vascular dementia
+dementia_vasc_h22gp17d22	CTV3	Eu01z	[X]Vascular dementia, unspecified
+dementia_vasc_h22gp17d22	CTV3	F21y2	Binswanger's disease
+dementia_vasc_h22gp17d22	CTV3	F21y2	Binswanger's encephalopathy
+dementia_vasc_h22gp17d22	CTV3	F21y2	Subcortical arteriosclerotic encephalopathy
+dementia_vasc_h22gp17d22	CTV3	F21y2	Subcortical atherosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	F21y2	Chronic progressive subcortical encephalopathy
+dementia_vasc_h22gp17d22	CTV3	X003R	Vascular dementia of acute onset
+dementia_vasc_h22gp17d22	CTV3	X003T	Subcortical vascular dementia
+dementia_vasc_h22gp17d22	CTV3	X003V	Mixed cortical and subcortical vascular dementia
+dementia_vasc_h22gp17d22	CTV3	XE1Xs	Vascular dementia
+dementia_vasc_h22gp17d22	CTV3	XE1Xs	Arteriosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	XE1Xs	VAD - Vascular dementia
+dementia_vasc_h22gp17d22	CTV3	Y00dJ	MID - Multi-infarct dementia
+dementia_vasc_h22gp17d22	CTV3	Y00dM	Binswanger's encephalopathy
+dementia_vasc_h22gp17d22	CTV3	Y00Hv	Vascular dementia
+dementia_vasc_h22gp17d22	CTV3	Y00Hw	Arteriosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	Y00Hx	Vascular dementia of acute onset
+dementia_vasc_h22gp17d22	CTV3	Y00Hz	Subcortical vascular dementia
+dementia_vasc_h22gp17d22	CTV3	Y00I0	Binswanger's disease
+dementia_vasc_h22gp17d22	CTV3	Y00I1	Mixed cortical and subcortical vascular dementia
+dementia_vasc_h22gp17d22	CTV3	Y016w	Arteriosclerotic dementia with paranoia
+dementia_vasc_h22gp17d22	CTV3	Y016x	Arteriosclerotic dementia with depression
+dementia_vasc_h22gp17d22	CTV3	Y016y	Arteriosclerotic dementia NOS
+dementia_vasc_h22gp17d22	CTV3	Y016z	Arteriosclerotic dementia with delirium
+dementia_vasc_h22gp17d22	CTV3	Y0170	Uncomplicated arteriosclerotic dementia
+dementia_vasc_h22gp17d22	CTV3	YadT0	Multi-infarct dementia
+dementia_vasc_h22gp17d22	CTV3	YMB0s	[X]Other vascular dementia
+dementia_vasc_h22gp17d22	CTV3	YMB0t	[X]Vascular dementia, unspecified
+dementia_vasc_h22gp17d22	ICD10	F01	Vascular dementia
+dementia_vasc_h22gp17d22	Read2	E004.	Arteriosclerotic dementia
+dementia_vasc_h22gp17d22	Read2	E004.	Multi infarct dementia
+dementia_vasc_h22gp17d22	Read2	E0040	Uncomplicated arteriosclerotic dementia
+dementia_vasc_h22gp17d22	Read2	E0041	Arteriosclerotic dementia with delirium
+dementia_vasc_h22gp17d22	Read2	E0042	Arteriosclerotic dementia with paranoia
+dementia_vasc_h22gp17d22	Read2	E0043	Arteriosclerotic dementia with depression
+dementia_vasc_h22gp17d22	Read2	E004z	Arteriosclerotic dementia NOS
+dementia_vasc_h22gp17d22	Read2	Eu01.	[X]Vascular dementia
+dementia_vasc_h22gp17d22	Read2	Eu01.	[X]Arteriosclerotic dementia
+dementia_vasc_h22gp17d22	Read2	Eu010	[X]Vascular dementia of acute onset
+dementia_vasc_h22gp17d22	Read2	Eu011	[X]Multi-infarct dementia
+dementia_vasc_h22gp17d22	Read2	Eu012	[X]Subcortical vascular dementia
+dementia_vasc_h22gp17d22	Read2	Eu013	[X]Mixed cortical and subcortical vascular dementia
+dementia_vasc_h22gp17d22	Read2	Eu01y	[X]Other vascular dementia
+dementia_vasc_h22gp17d22	Read2	Eu01z	[X]Vascular dementia, unspecified
+dementia_vasc_h22gp17d22	Read2	F21y2	Binswanger's disease
+dementia_vasc_h22gp17d22	Read2	F21y2	Binswanger's encephalopathy

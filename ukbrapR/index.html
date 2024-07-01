@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,10 +80,9 @@
 <p><strong>Some functions only work on <a href="https://ukbiobank.dnanexus.com" class="external-link">DNAnexus</a> in a UK Biobank project in JupyterLab on a Spark Cluster.</strong></p>
 <p>In tools, launch a JupyterLab environment on a Spark Cluster. In R, install {ukbrapR}. This will install the necessary dependencies for interacting with Python, Apache Spark, and the Arrow C++ library.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR"</span><span class="op">)</span>          <span class="co"># install development version</span></span>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR"</span><span class="op">)</span>        <span class="co"># development version</span></span>
 <span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@*release"</span><span class="op">)</span> <span class="co"># install latest release</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@v0.0.2"</span><span class="op">)</span>   <span class="co"># install specific version (see tags)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@v0.1.0"</span><span class="op">)</span> <span class="co"># specific release (see tags)</span></span></code></pre></div>
 <p>I highly recommend saving a “snapshot” once all the packages are installed, and loading this when launching JupyterLab.</p>
 </div>
 <div class="section level2">
@@ -354,7 +353,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.3-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.1.5-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 </ul>

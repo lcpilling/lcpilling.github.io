@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,21 +136,10 @@ in the provided data frame.</p>
 <span><span class="co">#&gt; 298.18 sec elapsed</span></span></code></pre></div>
 <p>If running on your own server, use this function and provide paths to
 the files. Note: if you are in my group and using servers
-<code>indy</code>, <code>shpater</code> or <code>snow</code> you do not
+<code>indy</code>, <code>shapter</code> or <code>snow</code> you do not
 need to provide the paths</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_emr_local.html">get_emr_local</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span></code></pre>
-<pre><code>##  - N unique ICD10 codes: 1 
-##  - N unique Read2 codes: 5 
-##  - N unique CTV3 codes: 8
-## ℹ Ascertaining cause of death data.
-## ✔ Loaded `death_cause` with 42 matched rows.
-## ℹ Ascertaining HES data.
-## ✔ Loaded `hesin_diag` with 32697 matched rows.
-## ℹ Ascertaining GP data (can take a few minutes).
-## ✔ Loaded `gp_clinical` with 1441 matched rows.
-## ✔ Finished. Time taken: 27.9s.</code></pre>
-</div>
+<code class="sourceCode R"><span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_emr_local.html">get_emr_local</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="determine-the-date-first-diagnosed">Determine the date first diagnosed<a class="anchor" aria-label="anchor" href="#determine-the-date-first-diagnosed"></a>
@@ -165,7 +154,6 @@ the “long” datasets ascertained above.</p>
 can add a variable prefix like:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, prefix<span class="op">=</span><span class="st">"hh"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## ✔ Identified date of first diagnosis from any source for 1976 participants.</code></pre>
 <p>The function produces 5 variables for each condition. For
 haemochromatosis, as ran above, these are:</p>
 <table class="table">
@@ -204,7 +192,7 @@ searched for codes for multiple conditions at once and want to identify
 the date first for each one, indicate this using
 <code>group_by="condition"</code> (assuming the field was called
 “condition”).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># combine haemochromatosis and CKD codes together</span></span>
 <span><span class="va">codes_df_combined</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">codes_df_hh</span>, <span class="va">codes_df_ckd</span><span class="op">)</span></span>
 <span></span>

@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,12 +134,12 @@ in the provided data frame.</p>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 7 ICD10 codes, 40 Read2 codes, 37 CTV3 codes </span></span>
 <span><span class="co">#&gt; 298.18 sec elapsed</span></span></code></pre></div>
-<p>If running on your own server, use this function and provide paths to
-the files. Note: if you are in my group and using servers
-<code>indy</code>, <code>shapter</code> or <code>snow</code> you do not
-need to provide the paths</p>
+<p>If running on your own server, provide paths to the files. Note: if
+you are in my group and using servers <code>indy</code>,
+<code>shapter</code> or <code>snow</code> you do not need to provide the
+paths</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_emr_local.html">get_emr_local</a></span><span class="op">(</span><span class="va">codes_df_hh</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_emr.html">get_emr</a></span><span class="op">(</span><span class="va">codes_df_hh</span>, file_paths<span class="op">=</span><span class="va">paths</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="determine-the-date-first-diagnosed">Determine the date first diagnosed<a class="anchor" aria-label="anchor" href="#determine-the-date-first-diagnosed"></a>

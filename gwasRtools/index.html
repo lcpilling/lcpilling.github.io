@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">gwasRtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.6.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="gwasrtools-">gwasRtools <a href="https://lcpilling.github.io/gwasRtools/" class="external-link"><img src="reference/figures/gwasRtools.png" align="right" width="150"></a>
+<div class="page-header"><h1 id="gwasrtools-">gwasRtools <a href="https://lcpilling.github.io/gwasRtools/"><img src="reference/figures/gwasRtools.png" align="right" width="150"></a>
 <a class="anchor" aria-label="anchor" href="#gwasrtools-"></a>
 </h1></div>
 <p>Some useful R functions for processing GWAS output</p>
@@ -81,21 +81,17 @@
 </h2>
 <p>To install the development version from GitHub use the <code>remotes</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools"</span><span class="op">)</span></span></code></pre></div>
-<p>The development version may not “work.” Install a “release” version if needed.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># To install the latest release, use:</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools@*release"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># To install a specific version (see tags), use:</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools@v0.1.3"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools@*release"</span><span class="op">)</span> <span class="co"># To install the latest release</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/gwasRtools@v0.1.3"</span><span class="op">)</span>   <span class="co"># To install a specific version (see tags)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-dataset">Example dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
 </h2>
 <p>The package includes a subset of variants from the Graham et al. 2021 GWAS of LDL in 1,320,016 Europeans (GWAS catalog GCST90239658). I will use this throughout.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lcpilling.github.io/gwasRtools" class="external-link">gwasRtools</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lcpilling.github.io/gwasRtools">gwasRtools</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           SNP CHR        BP    A1 A2      MAF        BETA        SE     P</span></span>
 <span><span class="co">#&gt; 1 rs370704455   1 104275751 CATCT  C 7.21e-02 -0.00350057 0.0040782 0.391</span></span>
@@ -109,7 +105,7 @@
 <h2 id="get_loci">get_loci()<a class="anchor" aria-label="anchor" href="#get_loci"></a>
 </h2>
 <p>Determine loci from GWAS summary statistics. Use distance from lead significant SNP to estimate independent loci [default distance = 500kb]. Uses -log10(p) derived from BETA/SE so does not need P as input. Example below with default input.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_loci.html">get_loci</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Locus size (bases) = 5e+05</span></span>
@@ -146,7 +142,7 @@
 </h3>
 <p>Setting option <code>ld_clump=TRUE</code> will use {<a href="https://github.com/MRCIEU/ieugwasr" class="external-link">ieugwasr</a>} package <code>ld_clump()</code> function to run Plink LD clumping.</p>
 <p>Default is to use a local Plink installation (this is faster) with EUR reference panel. But setting option <code>ld_clump_local</code> to FALSE will use the online IEU API. See the {ieugwasr} docs for details. Default R2 threshold for LD pruning is 0.01 (modify with <code>ld_pruning_r2</code> option).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_loci.html">get_loci</a></span><span class="op">(</span><span class="va">gwas_example</span>, ld_clump<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ** Performing LD clumping. Can take a few minutes</span></span>
 <span><span class="co">#&gt; ** Local Plink installation will be called -- output appears in your R terminal</span></span>
@@ -185,7 +181,7 @@
 <h2 id="get_nearest_gene">get_nearest_gene()<a class="anchor" aria-label="anchor" href="#get_nearest_gene"></a>
 </h2>
 <p>Get nearest gene from a set of variants using GENCODE data. Need to provide a data.frame of variant IDs (e.g., rsids), CHR and POS. Default column names are the same as for <code><a href="reference/get_loci.html">get_loci()</a></code>. Default max distance from variant to gene is 100kb.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas_loci</span> <span class="op">=</span> <span class="fu"><a href="reference/get_nearest_gene.html">get_nearest_gene</a></span><span class="op">(</span><span class="va">gwas_loci</span>, build<span class="op">=</span><span class="fl">37</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using human genome build 37</span></span>
 <span><span class="co">#&gt; Getting nearest gene for 4131 unique variants</span></span>
@@ -218,7 +214,7 @@
 <h2 id="lambda_gc">lambda_gc()<a class="anchor" aria-label="anchor" href="#lambda_gc"></a>
 </h2>
 <p>Estimate inflation of test statistics. Lambda GC compares the median test statistic against the expected median test statistic under the null hypothesis of no association. For well-powered GWAS of traits with a known polygenic inheritance, we expect inflation of lambda GC. For traits with no expected association, we expect lambda GC to be around 1.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/lambda_gc.html">lambda_gc</a></span><span class="op">(</span><span class="va">gwas_example</span><span class="op">$</span><span class="va">P</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.41112</span></span></code></pre></div>
 </div>
@@ -257,7 +253,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.6.9000-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/gwasRtools" class="external-link"><img src="https://img.shields.io/badge/version-0.1.7-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/gwasRtools/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/gwasRtools.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/655790727" class="external-link"><img src="https://zenodo.org/badge/655790727.svg" alt="DOI"></a></li>

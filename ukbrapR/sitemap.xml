@@ -22,7 +22,16 @@
     <loc>https://lcpilling.github.io/ukbrapR/news/index.html</loc>
   </url>
   <url>
+    <loc>https://lcpilling.github.io/ukbrapR/reference/download_from_rap.html</loc>
+  </url>
+  <url>
+    <loc>https://lcpilling.github.io/ukbrapR/reference/export_tables.html</loc>
+  </url>
+  <url>
     <loc>https://lcpilling.github.io/ukbrapR/reference/get_df.html</loc>
+  </url>
+  <url>
+    <loc>https://lcpilling.github.io/ukbrapR/reference/get_diagnoses.html</loc>
   </url>
   <url>
     <loc>https://lcpilling.github.io/ukbrapR/reference/get_emr.html</loc>
@@ -31,10 +40,16 @@
     <loc>https://lcpilling.github.io/ukbrapR/reference/get_emr_local.html</loc>
   </url>
   <url>
+    <loc>https://lcpilling.github.io/ukbrapR/reference/get_emr_spark.html</loc>
+  </url>
+  <url>
     <loc>https://lcpilling.github.io/ukbrapR/reference/get_rap_phenos.html</loc>
   </url>
   <url>
     <loc>https://lcpilling.github.io/ukbrapR/reference/get_selfrep_illness.html</loc>
+  </url>
+  <url>
+    <loc>https://lcpilling.github.io/ukbrapR/reference/get_selfrep_illness_spark.html</loc>
   </url>
   <url>
     <loc>https://lcpilling.github.io/ukbrapR/reference/index.html</loc>

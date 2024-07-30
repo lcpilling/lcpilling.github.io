@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,12 +20,6 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/ascertain_diagnoses.html">Ascertaining UK Biobank diagnoses</a>
-  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -50,7 +44,39 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="export-required-data">Export required data<a class="anchor" aria-label="anchor" href="#export-required-data"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="export_tables.html">export_tables()</a></code> 
+        </dt>
+        <dd>Export diagnosis files to RAP persistent storage</dd>
+      </dl></div><div class="section level2">
+      <h2 id="ascertain-diagnoses">Ascertain diagnoses<a class="anchor" aria-label="anchor" href="#ascertain-diagnoses"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="get_diagnoses.html">get_diagnoses()</a></code> 
+        </dt>
+        <dd>Get UK Biobank participant diagnosis data</dd>
+      </dl></div><div class="section level2">
+      <h2 id="determine-date-first-diagnosed-from-any-source">Determine date first diagnosed from any source<a class="anchor" aria-label="anchor" href="#determine-date-first-diagnosed-from-any-source"></a></h2>
       
       
 
@@ -65,28 +91,56 @@
           <code><a href="get_df.html">get_df()</a></code> 
         </dt>
         <dd>Get UK Biobank participant Date First (DF) diagnosis</dd>
+      </dl></div><div class="section level2">
+      <h2 id="upload-download-from-rap-worker-storage">Upload/download from RAP/worker storage<a class="anchor" aria-label="anchor" href="#upload-download-from-rap-worker-storage"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="upload_to_rap.html">upload_to_rap()</a></code> 
+        </dt>
+        <dd>Use R to upload a file to the UK Biobank RAP</dd>
       </dl><dl><dt>
           
-          <code><a href="get_emr.html">get_emr()</a></code> 
+          <code><a href="download_from_rap.html">download_from_rap()</a></code> 
         </dt>
-        <dd>Get UK Biobank participant Electronic Medical Records (EMR) data</dd>
-      </dl><dl><dt>
+        <dd>Use R to download a file to the UK Biobank RAP</dd>
+      </dl></div><div class="section level2">
+      <h2 id="spark">Spark<a class="anchor" aria-label="anchor" href="#spark"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="get_rap_phenos.html">get_rap_phenos()</a></code> 
         </dt>
         <dd>Get UK Biobank participant phenotype data</dd>
       </dl><dl><dt>
           
-          <code><a href="get_selfrep_illness.html">get_selfrep_illness()</a></code> 
+          <code><a href="get_emr_spark.html">get_emr_spark()</a></code> 
         </dt>
-        <dd>Get UK Biobank participant self-reported illness/year data for specific codes</dd>
+        <dd>Get UK Biobank participant Electronic Medical Records (EMR) data in a RAP Spark environment</dd>
       </dl><dl><dt>
           
-          <code><a href="upload_to_rap.html">upload_to_rap()</a></code> 
+          <code><a href="get_selfrep_illness_spark.html">get_selfrep_illness_spark()</a></code> 
         </dt>
-        <dd>Use R to upload a file to the UK Biobank RAP</dd>
+        <dd>Get UK Biobank participant self-reported illness/year data for specific codes</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

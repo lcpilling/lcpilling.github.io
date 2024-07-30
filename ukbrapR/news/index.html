@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,12 +20,6 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/ascertain_diagnoses.html">Ascertaining UK Biobank diagnoses</a>
-  </div>
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -51,6 +45,34 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="ukbrapr-v020-30-july-2024">ukbrapR v0.2.0 (30 July 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v020-30-july-2024"></a></h2>
+<p>This is a major update as I move away from using Spark as the default environment, mostly due to the cost implications; it is significantly cheaper (and quicker!) to store and search exported raw text files in the RAP persistant storage than do everything in a Spark environment (plus the added benefit that the RStudio interface is available in “normal” instances).</p>
+<p>The Spark functions are available as before but all updates are to improve functionality in “normal” instances using RStudio, as we move to the new era of RAP-only UK Biobank analysis.</p>
+<div class="section level4">
+<h4 id="changes-0-2-0">Changes<a class="anchor" aria-label="anchor" href="#changes-0-2-0"></a></h4>
+<ul><li>Added internal data frame containing default paths for exported files in a RAP project (view with <code>ukbrapR:::ukbrapr_paths</code>)</li>
+<li>Added function <code><a href="../reference/export_tables.html">export_tables()</a></code> which only needs to be run once when a new project is created. This submits the required table exporter commands to extract each of the tables in <code>ukbrapR:::ukbrapr_paths</code>. This can take ~15 minutes to export all the tables. ~10Gb of text files are created. This will cost ~£0.15 per month to store in the RAP standard storage.</li>
+<li>
+<code>get_emr()</code> is split into two primary underlying functions: <code><a href="../reference/get_emr_spark.html">get_emr_spark()</a></code> which has not changed, and <code>get_emr()</code> which is the “new way” (i.e., <code>get_emr_local()</code> is entirely removed)</li>
+<li>Added functionality for <code>hesin_oper</code> (HES OPCS operations) searching for ICD10 codes in <code>get_emr()</code>
+</li>
+<li>New/updated internal functions <code>get_cancer_registry()</code> asceratains cases using ICD10s in the <code>cancer_registry</code> data, and works much the same as <code>get_selfrep_illness()</code>
+</li>
+<li>New function <code><a href="../reference/get_diagnoses.html">get_diagnoses()</a></code> is a wrapper to get HES diagnosis, operations, cause of death, GP, cancer registry, and self-reported illness data – i.e., once function to provide all codes to, and return all health-related data</li>
+<li>
+<code><a href="../reference/get_df.html">get_df()</a></code> takes all output from <code><a href="../reference/get_diagnoses.html">get_diagnoses()</a></code> i.e., now also identifies date of first in matched <code>cancer_registry</code> and <code>hesin_oper</code> entries, in addition to <code>hes_diag</code>, <code>gp_clinical</code>, <code>death_cause</code> and <code>selfrep_illness</code> as before.</li>
+<li>When getting “date first” using <code><a href="../reference/get_df.html">get_df()</a></code> the baseline data is used to create binary case/control variables (for ever and prevalent), and for controls the censoring date is included in the overall <code>_df</code> variable (default is 30-10-2022).</li>
+</ul><p><strong>To make it absolutely clear:</strong> the Spark function <code><a href="../reference/get_emr_spark.html">get_emr_spark()</a></code> has not been updated but I am no longer focussed on doing things this way. If you want to submit Pull Requests to improve functions please do. The below changes are to substantially improve the experience of using exported tables in the RAP environment only (if you have all the data on a local system already it will work, assuming you format correctly and provide the paths, but the RAP is the future).</p>
+</div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.7" id="ukbrapr-v017-28-july-2024">ukbrapR v0.1.7 (28 July 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v017-28-july-2024"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-1-7">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-7"></a></h4>
+<ul><li>Fix Spark database error when &gt;1 dataset file is available. Fixes issue <a href="https://github.com/lcpilling/ukbrapR/issues/3" class="external-link">#3</a></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.6" id="ukbrapr-v016-03-july-2024">ukbrapR v0.1.6 (03 July 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v016-03-july-2024"></a></h2>
 <div class="section level4">
 <h4 id="bug-fixes-0-1-6">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-6"></a></h4>
@@ -59,7 +81,7 @@
 <div class="section level4">
 <h4 id="changes-0-1-6">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-6"></a></h4>
 <ul><li>
-<code><a href="../reference/get_emr.html">get_emr()</a></code> now accepts option “file_paths” - if not provided, attempts to get from Spark</li>
+<code>get_emr()</code> now accepts option “file_paths” - if not provided, attempts to get from Spark</li>
 <li>Improve documentation and examples</li>
 </ul></div>
 </div>
@@ -72,7 +94,7 @@
 <div class="section level4">
 <h4 id="changes-0-1-5">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-5"></a></h4>
 <ul><li>
-<code><a href="../reference/get_emr_local.html">get_emr_local()</a></code> option “local_paths” is now “file_paths”</li>
+<code>get_emr_local()</code> option “local_paths” is now “file_paths”</li>
 <li>Improve documentation and examples</li>
 </ul></div>
 </div>
@@ -88,11 +110,11 @@
 <h2 class="pkg-version" data-toc-text="0.1.3" id="ukbrapr-v013-8-june-2024">ukbrapR v0.1.3 (8 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v013-8-june-2024"></a></h2>
 <div class="section level4">
 <h4 id="new-feature-0-1-3">New feature<a class="anchor" aria-label="anchor" href="#new-feature-0-1-3"></a></h4>
-<ul><li>It is quicker/easier to ascertain multiple conditions at once to supply <code><a href="../reference/get_emr.html">get_emr()</a></code> with all the codes (as before), but now can use <code><a href="../reference/get_df.html">get_df()</a></code> with option “group_by” to indicate the condition names in the <code>codes_df</code> object provided. See documentation.</li>
+<ul><li>It is quicker/easier to ascertain multiple conditions at once to supply <code>get_emr()</code> with all the codes (as before), but now can use <code><a href="../reference/get_df.html">get_df()</a></code> with option “group_by” to indicate the condition names in the <code>codes_df</code> object provided. See documentation.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="changes-0-1-3">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-3"></a></h4>
-<ul><li>It is no longer possible to provide custom names for the <code>codes_df</code> to <code><a href="../reference/get_emr.html">get_emr()</a></code> – these now must be <code>vocab_id</code> and <code>code</code> – makes things much simpler.</li>
+<ul><li>It is no longer possible to provide custom names for the <code>codes_df</code> to <code>get_emr()</code> – these now must be <code>vocab_id</code> and <code>code</code> – makes things much simpler.</li>
 <li>Remove ICD9 code from <code>codes_df_hh</code> example as these are not currently used</li>
 </ul></div>
 </div>
@@ -100,7 +122,7 @@
 <h2 class="pkg-version" data-toc-text="0.1.2" id="ukbrapr-v012-6-june-2024">ukbrapR v0.1.2 (6 June 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v012-6-june-2024"></a></h2>
 <div class="section level4">
 <h4 id="new-features-0-1-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-2"></a></h4>
-<ul><li>New function <code><a href="../reference/get_emr_local.html">get_emr_local()</a></code>. If the user has text files for <code>hesin_diag</code> and <code>gp_clinical</code> etc. these can be searched (rather than Apache Spark queries). This therefore can work on “normal” DNAnexus nodes, or local servers. Most downstream functions also do not rely on Spark clusters if data extracts are available.</li>
+<ul><li>New function <code>get_emr_local()</code>. If the user has text files for <code>hesin_diag</code> and <code>gp_clinical</code> etc. these can be searched (rather than Apache Spark queries). This therefore can work on “normal” DNAnexus nodes, or local servers. Most downstream functions also do not rely on Spark clusters if data extracts are available.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="changes-0-1-2">Changes<a class="anchor" aria-label="anchor" href="#changes-0-1-2"></a></h4>
@@ -121,7 +143,7 @@
 <div class="section level4">
 <h4 id="new-features-0-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h4>
 <ul><li>
-<code><a href="../reference/get_selfrep_illness.html">get_selfrep_illness()</a></code> - gets illness information from self-report fields. Derives a “date first” from the age/year reported, incorporating all visits for the participant</li>
+<code>get_selfrep_illness()</code> - gets illness information from self-report fields. Derives a “date first” from the age/year reported, incorporating all visits for the participant</li>
 <li>Two example code lists are incuded: <code>codes_df_ckd</code> (GEMINI CKD), and <code>codes_df_hh</code> (haemochromatosis, with self-report)</li>
 </ul></div>
 <div class="section level4">
@@ -129,7 +151,7 @@
 <ul><li>
 <code>get_emr_df()</code> is re-named <code><a href="../reference/get_df.html">get_df()</a></code> to reflect it can now include information from self-reported illness</li>
 <li>
-<code>get_emr_diagnoses()</code> is re-named <code><a href="../reference/get_emr.html">get_emr()</a></code> to reflect it actually retrieves any record in <code>gp_clinical</code> not just diagnoses (e.g., BMI if appropriate codes provided)</li>
+<code>get_emr_diagnoses()</code> is re-named <code>get_emr()</code> to reflect it actually retrieves any record in <code>gp_clinical</code> not just diagnoses (e.g., BMI if appropriate codes provided)</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-0-1-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-0"></a></h4>

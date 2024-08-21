@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
 <h2 id="get-gp-hes-cancer-registry-and-self-reported-illness-data">Get GP, HES, cancer registry, and self-reported illness data<a class="anchor" aria-label="anchor" href="#get-gp-hes-cancer-registry-and-self-reported-illness-data"></a>
 </h2>
 <p>For a given set of diagnostic codes get the participant Electronic Medical Records (EMR) and self-reported illess data. Returns a list containing up to 6 data frames: the subset of the clinical files with matched codes.</p>
-<p>Codes need to be provided as a data frame with two fields: <code>vocab_id</code> and <code>code</code>. Valid code vocabularies are: - <code>ICD10</code> (for searching HES diagnoses, cause of death, and cancer registry) - <code>Read2</code> and <code>CTV3</code> (for GP clinical events) - <code>OPCS3</code> and <code>OPCS4</code> (for HES operations) - <code>ukb_cancer</code> and <code>ukb_noncancer</code> (for self-reported illness at UK Biobank assessments - all instances will be searched)</p>
+<p>Codes need to be provided as a data frame with two fields: <code>vocab_id</code> and <code>code</code>. Valid code vocabularies are: - <code>ICD10</code> (for searching HES diagnoses, cause of death, and cancer registry) - <code>ICD9</code> (for searching older HES diagnosis data) - <code>Read2</code> and <code>CTV3</code> (for GP clinical events) - <code>OPCS3</code> and <code>OPCS4</code> (for HES operations) - <code>ukb_cancer</code> and <code>ukb_noncancer</code> (for self-reported illness at UK Biobank assessments - all instances will be searched)</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD </span></span>
 <span><span class="va">codes_df_ckd</span> <span class="op">&lt;-</span> <span class="fu">ukbrapR</span><span class="fu">:::</span><span class="va">codes_df_ckd</span></span>
@@ -216,7 +216,7 @@
 <div class="section level2">
 <h2 id="questions-and-comments">Questions and comments<a class="anchor" aria-label="anchor" href="#questions-and-comments"></a>
 </h2>
-<p>I am very open to suggestions and comments, either as <a href="https://github.com/lcpilling/ukbrapR/issues" class="external-link">issues</a> or <a href="https://github.com/lcpilling/ukbrapR/pulls" class="external-link">pull requests</a>, or via e-mail <a href="mailto:L.Pilling@exeter.ac.uk" class="email">L.Pilling@exeter.ac.uk</a></p>
+<p>Please report any bugs or <a href="https://github.com/lcpilling/ukbrapR/issues" class="external-link">issues</a>, and feel free to suggest changes as <a href="https://github.com/lcpilling/ukbrapR/pulls" class="external-link">pull requests</a>. Alternatively, feel free to contact me via e-mail <a href="mailto:L.Pilling@exeter.ac.uk" class="email">L.Pilling@exeter.ac.uk</a></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -253,7 +253,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.0-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.2-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>

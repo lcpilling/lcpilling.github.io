@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,19 @@
 <h2 id="get-gp-hes-cancer-registry-and-self-reported-illness-data">Get GP, HES, cancer registry, and self-reported illness data<a class="anchor" aria-label="anchor" href="#get-gp-hes-cancer-registry-and-self-reported-illness-data"></a>
 </h2>
 <p>For a given set of diagnostic codes get the participant Electronic Medical Records (EMR) and self-reported illess data. Returns a list containing up to 6 data frames: the subset of the clinical files with matched codes.</p>
-<p>Codes need to be provided as a data frame with two fields: <code>vocab_id</code> and <code>code</code>. Valid code vocabularies are: - <code>ICD10</code> (for searching HES diagnoses, cause of death, and cancer registry) - <code>ICD9</code> (for searching older HES diagnosis data) - <code>Read2</code> and <code>CTV3</code> (for GP clinical events) - <code>OPCS3</code> and <code>OPCS4</code> (for HES operations) - <code>ukb_cancer</code> and <code>ukb_noncancer</code> (for self-reported illness at UK Biobank assessments - all instances will be searched)</p>
+<p>Codes need to be provided as a data frame with two fields: <code>vocab_id</code> and <code>code</code>. Valid code vocabularies are:</p>
+<ul>
+<li>
+<code>ICD10</code> (for searching HES diagnoses, cause of death, and cancer registry)</li>
+<li>
+<code>ICD9</code> (for searching older HES diagnosis data)</li>
+<li>
+<code>Read2</code> and <code>CTV3</code> (for GP clinical events)</li>
+<li>
+<code>OPCS3</code> and <code>OPCS4</code> (for HES operations)</li>
+<li>
+<code>ukb_cancer</code> and <code>ukb_noncancer</code> (for self-reported illness at UK Biobank assessments - all instances will be searched)</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD </span></span>
 <span><span class="va">codes_df_ckd</span> <span class="op">&lt;-</span> <span class="fu">ukbrapR</span><span class="fu">:::</span><span class="va">codes_df_ckd</span></span>
@@ -116,7 +128,12 @@
 <h2 id="get-date-first-diagnosed">Get date first diagnosed<a class="anchor" aria-label="anchor" href="#get-date-first-diagnosed"></a>
 </h2>
 <p>Identify the date first diagnosed for each participant from any of datasets searched with <code><a href="reference/get_diagnoses.html">get_diagnoses()</a></code> (cause of death, HES diagnoses, GP clinical, cancer registry, HES operations, and self-reported illness fields).</p>
-<p>Also included are: - a <code>src</code> field indicating the source of the date of first diagnosis. - a <code>bin</code> field indicating the cases [1] and controls [0]. This relies on a small number of baseline fields also exported. The <code>df</code> field for the controls is the date of censoring (currently 30 October 2022). - a <code>bin_prev</code> field indicating whether the case was before the UK Biobank baseline assessment</p>
+<p>Also included are:</p>
+<ul>
+<li>a <code>src</code> field indicating the source of the date of first diagnosis.</li>
+<li>a <code>bin</code> field indicating the cases [1] and controls [0]. This relies on a small number of baseline fields also exported. The <code>df</code> field for the controls is the date of censoring (currently 30 October 2022).</li>
+<li>a <code>bin_prev</code> field indicating whether the case was before the UK Biobank baseline assessment</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
@@ -253,7 +270,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.2-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.3-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,8 +76,14 @@
 </h2>
 <p>In the DNAnexus Tools menu launch an RStudio environment on a normal priority instance. Install {ukbrapR} as below:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR"</span><span class="op">)</span>        <span class="co"># development version</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@v0.1.7"</span><span class="op">)</span> <span class="co"># specific release (see tags)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install latest release (recommended)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@*release"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># development version</span></span>
+<span><span class="co"># remotes::install_github("lcpilling/ukbrapR")</span></span>
+<span></span>
+<span><span class="co"># previous release (see tags)</span></span>
+<span><span class="co"># remotes::install_github("lcpilling/ukbrapR@v0.1.7")</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="export-tables-of-raw-data">Export tables of raw data<a class="anchor" aria-label="anchor" href="#export-tables-of-raw-data"></a>

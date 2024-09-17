@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,15 @@
       <small>Source: <a href="https://github.com/lcpilling/ukbrapR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.6" id="ukbrapr-v026-16-september-2024">ukbrapR v0.2.6 (16 September 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v026-16-september-2024"></a></h2>
+<div class="section level4">
+<h4 id="bug-fix-0-2-6">Bug fix<a class="anchor" aria-label="anchor" href="#bug-fix-0-2-6"></a></h4>
+<ul><li>Fix for issue <a href="https://github.com/lcpilling/ukbrapR/issues/10" class="external-link">#10</a>. Grep issues if user provided only Read2 or CTV3 codes, if Read2 or CTV3 were &lt;5 characters, or if Read2/CTV3 codes contained a hyphen. Thanks to <a href="https://github.com/Simon-Leyss" class="external-link">@Simon-Leyss</a> for highlighting.</li>
+<li>Fix for issue <a href="https://github.com/lcpilling/ukbrapR/issues/11" class="external-link">#11</a>. When getting self-reported illness codes there was a problem joining the tables if user only provided cancer codes. Thanks to <a href="https://github.com/LauricF" class="external-link">@LauricF</a> for highlighting.</li>
+<li>Fix for when both types self-reported illness codes were provided. (Incorrect subsetting to just those codes provided after pivoting the long object.)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.5" id="ukbrapr-v025-07-september-2024">ukbrapR v0.2.5 (07 September 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v025-07-september-2024"></a></h2>
 <div class="section level4">

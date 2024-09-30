@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -214,11 +214,77 @@
 <p>In the above example we also included a UK Biobank self-reported illness code for haemochromatosis, that was also ascertained (the Date First is run on each condition separately, they do not all need to have the same data sources).</p>
 </div>
 <div class="section level2">
+<h2 id="label-uk-biobank-data-fields">Label UK Biobank data fields<a class="anchor" aria-label="anchor" href="#label-uk-biobank-data-fields"></a>
+</h2>
+<p>Categorical fields are exported as integers but are encoded with labels. For example <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=20116" class="external-link">20116 “Smoking status”</a>:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Coding</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>-3</td>
+<td>Prefer not to answer</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>Never</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>Previous</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Current</td>
+</tr>
+</tbody>
+</table>
+<p>This package includes two functions to label a single UK Biobank field or a data frame of them using the <a href="https://biobank.ctsu.ox.ac.uk/crystal/schema.cgi" class="external-link">UK Biobank encoding schema</a>. Examples:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># update the Smoking status field</span></span>
+<span><span class="va">ukb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/label_ukb_field.html">label_ukb_field</a></span><span class="op">(</span><span class="va">ukb</span>, field<span class="op">=</span><span class="st">"p20116_i0"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">$</span><span class="va">p20116_i0</span><span class="op">)</span>                   <span class="co"># tabulates the values</span></span>
+<span><span class="co">#&gt;    -3      0      1      2 </span></span>
+<span><span class="co">#&gt;  2057 273405 172966  52949 </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">$</span><span class="va">p20116_i0</span><span class="op">)</span><span class="op">)</span> <span class="co"># tabulates the labels</span></span>
+<span><span class="co">#&gt; Prefer not to answer                Never             Previous              Current </span></span>
+<span><span class="co">#&gt;                 2057               273405               172966                52949</span></span>
+<span></span>
+<span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/print_labels.html" class="external-link">print_labels</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">$</span><span class="va">p20116_i0</span><span class="op">)</span>     <span class="co"># show the value:label mapping for this variable</span></span>
+<span><span class="co">#&gt; Labels:</span></span>
+<span><span class="co">#&gt;  value                label</span></span>
+<span><span class="co">#&gt;     -3 Prefer not to answer</span></span>
+<span><span class="co">#&gt;      0                Never</span></span>
+<span><span class="co">#&gt;      1             Previous</span></span>
+<span><span class="co">#&gt;      2              Current</span></span>
+<span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># if you have a whole data frame of exported fields, you can use the wrapper function label_ukb_fields()</span></span>
+<span></span>
+<span><span class="co"># say the `ukb` data frame contains 4 variables: `eid`, `p54_i0`, `p31` and `age_at_assessment` </span></span>
+<span></span>
+<span><span class="co"># update the variables that looks like UK Biobank fields with titles and, where cateogrical, labels </span></span>
+<span><span class="co"># i.e., `p54_i0` and `p31` only -- `eid` and `age_at_assessment` are ignored</span></span>
+<span><span class="va">ukb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/label_ukb_fields.html">label_ukb_fields</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">$</span><span class="va">p31</span><span class="op">)</span>                   <span class="co"># tabulates the values</span></span>
+<span><span class="co">#&gt;      0      1 </span></span>
+<span><span class="co">#&gt; 273238 229031 </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span><span class="va">ukb</span><span class="op">$</span><span class="va">p31</span><span class="op">)</span><span class="op">)</span> <span class="co"># tabulates the labels</span></span>
+<span><span class="co">#&gt; Female   Male </span></span>
+<span><span class="co">#&gt; 273238 229031 </span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="pull-phenotype-data-from-spark-environment">Pull phenotype data from Spark environment<a class="anchor" aria-label="anchor" href="#pull-phenotype-data-from-spark-environment"></a>
 </h2>
 <p><strong>Pull phenotypes from Apache Spark on DNAnexus to an R data frame.</strong> Recommend launching a Spark cluster with at least <code>mem1_hdd1_v2_x16</code> and <strong>2 nodes</strong> otherwise this can fail with error “…ensure that workers…have sufficient resources”</p>
 <p>The underlying code is mostly from the <a href="https://github.com/UK-Biobank/UKB-RAP-Notebooks/blob/main/NBs_Prelim/105_export_participant_data_to_r.ipynb" class="external-link">UK Biobank GitHub</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get phenotype data (participant ID, sex, baseline age, and baseline assessment date)</span></span>
 <span><span class="va">ukb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_rap_phenos.html">get_rap_phenos</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eid"</span>, <span class="st">"p31"</span>, <span class="st">"p21003_i0"</span>, <span class="st">"p53_i0"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 48.02 sec elapsed</span></span>
@@ -276,7 +342,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.6-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.7-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>

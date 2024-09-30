@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,18 @@
       <small>Source: <a href="https://github.com/lcpilling/ukbrapR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.7" id="ukbrapr-v027-30-september-2024">ukbrapR v0.2.7 (30 September 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v027-30-september-2024"></a></h2>
+<div class="section level4">
+<h4 id="updates-0-2-7">Updates<a class="anchor" aria-label="anchor" href="#updates-0-2-7"></a></h4>
+<ul><li>New function <code><a href="../reference/label_ukb_field.html">label_ukb_field()</a></code> allows user to add titles and labels to UK Biobank fields provided as integers but are categorical.</li>
+<li>New function <code><a href="../reference/label_ukb_fields.html">label_ukb_fields()</a></code> is a wrapper for the above. User just provides a data frame containing UK Biobank fields, and they all get formatted with titles (and labels if categorical).</li>
+<li>Data from the UK Biobank schema (<a href="https://biobank.ctsu.ox.ac.uk/crystal/schema.cgi" class="external-link uri">https://biobank.ctsu.ox.ac.uk/crystal/schema.cgi</a>) are stored internally in <code>ukbrapR:::ukb_schema</code>
+</li>
+<li>{haven} dependency added for labelling</li>
+<li>Exported <code>baseline_dates.tsv</code> now also includes the assessment centres for completeness (but keeps the same filename to avoid any issues for current projects relying on already-exported files)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.6" id="ukbrapr-v026-16-september-2024">ukbrapR v0.2.6 (16 September 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v026-16-september-2024"></a></h2>
 <div class="section level4">

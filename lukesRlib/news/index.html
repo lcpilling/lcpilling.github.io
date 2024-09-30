@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">lukesRlib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.11</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,17 +45,34 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.11" id="lukesrlib-0211-30th-sept-2024">lukesRlib 0.2.11 (30th Sept 2024)<a class="anchor" aria-label="anchor" href="#lukesrlib-0211-30th-sept-2024"></a></h2>
+<div class="section level4">
+<h4 id="changes-0-2-11">Changes<a class="anchor" aria-label="anchor" href="#changes-0-2-11"></a></h4>
+<ul><li>
+<code><a href="../reference/tidy_ci.html">tidy_ci()</a></code> now recognises and tidies factor naming if <code><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">haven::as_factor()</a></code> is used instead of the base R <code><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor()</a></code>
+</li>
+<li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code> now uses <code><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">haven::as_factor()</a></code> instead of base R <code><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor()</a></code> for categorical exposures so that labels are shown nicely</li>
+<li>Update dependencies to include {haven} and be more explicit which tidyverse packages are desired</li>
+<li>Update example data categorical variables to include labels</li>
+<li>Fix NEWS formatting</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.10" id="lukesrlib-0210-6th-june-2024">lukesRlib 0.2.10 (6th June 2024)<a class="anchor" aria-label="anchor" href="#lukesrlib-0210-6th-june-2024"></a></h2>
 <div class="section level4">
 <h4 id="changes-0-2-10">Changes<a class="anchor" aria-label="anchor" href="#changes-0-2-10"></a></h4>
-<ul><li>Change URL to reflect my GitHub username change from <code>lukepilling</code> to <code>lcpilling</code> to be more consistent between different logins, websites, and social media</li>
-<li><a href="https://lcpilling.github.io/lukesRlib" class="external-link uri">https://lcpilling.github.io/lukesRlib</a></li>
+<ul><li>Change URL to reflect my GitHub username change from <code>lukepilling</code> to <code>lcpilling</code> to be more consistent between different logins, websites, and social media
+<ul><li><a href="https://lcpilling.github.io/lukesRlib" class="uri">https://lcpilling.github.io/lukesRlib</a></li>
 <li><a href="https://github.com/lcpilling/lukesRlib" class="external-link uri">https://github.com/lcpilling/lukesRlib</a></li>
-<li><code><a href="../reference/get_assoc.html">get_assoc()</a></code></li>
-<li>Add options to Winsorize the exposure or outcome</li>
+</ul></li>
+<li>
+<code><a href="../reference/get_assoc.html">get_assoc()</a></code>
+<ul><li>Add options to Winsorize the exposure or outcome</li>
 <li>Remove <code>beep</code>
 </li>
 <li>Improved <code>verbose</code> reporting</li>
+</ul></li>
 </ul></div>
 </div>
     <div class="section level2">

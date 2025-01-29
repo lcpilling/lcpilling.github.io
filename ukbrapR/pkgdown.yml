@@ -1,13 +1,12 @@
-pandoc: 3.1.1
-pkgdown: 2.1.1
+pandoc: 3.1.11
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   ascertain_diagnoses: ascertain_diagnoses.html
   extract_fields: extract_fields.html
-  extract_variants: extract_variants.html
   label_fields: label_fields.html
   spark_functions: spark_functions.html
-last_built: 2024-10-06T20:45Z
+last_built: 2025-01-29T22:50Z
 urls:
   reference: https://lcpilling.github.io/ukbrapR/reference
   article: https://lcpilling.github.io/ukbrapR/articles

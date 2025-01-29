@@ -3,15 +3,16 @@
 <url><loc>https://lcpilling.github.io/ukbrapR/LICENSE-text.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/articles/ascertain_diagnoses.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/articles/extract_fields.html</loc></url>
-<url><loc>https://lcpilling.github.io/ukbrapR/articles/extract_variants.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/articles/index.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/articles/label_fields.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/articles/spark_functions.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/authors.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/index.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/news/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/ukbrapR/reference/create_pgs.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/download_from_rap.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/export_tables.html</loc></url>
+<url><loc>https://lcpilling.github.io/ukbrapR/reference/extract_variants.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/get_df.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/get_diagnoses.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/get_emr_spark.html</loc></url>
@@ -20,6 +21,9 @@
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/index.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/label_ukb_field.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/label_ukb_fields.html</loc></url>
+<url><loc>https://lcpilling.github.io/ukbrapR/reference/load_bed.html</loc></url>
+<url><loc>https://lcpilling.github.io/ukbrapR/reference/make_dragen_bed.html</loc></url>
+<url><loc>https://lcpilling.github.io/ukbrapR/reference/make_imputed_bed.html</loc></url>
 <url><loc>https://lcpilling.github.io/ukbrapR/reference/upload_to_rap.html</loc></url>
 </urlset>
 

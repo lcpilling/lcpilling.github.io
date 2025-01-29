@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,7 +150,7 @@ ignored.</p>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_diagnoses.html">get_diagnoses</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.2.8</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.0</span></span>
 <span><span class="co">#&gt; → Checking provided codes (remember only the first 5 characters are used)</span></span>
 <span><span class="co">#&gt;  - N unique ICD10 codes: 7 </span></span>
 <span><span class="co">#&gt;  - N unique Read2 codes: 40 </span></span>
@@ -158,16 +158,16 @@ ignored.</p>
 <span><span class="co">#&gt; → Ascertaining cause of death data.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `death_cause` with 1962 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining HES diagnosis data (ICD10s).</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 202562 matched rows.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 206390 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining GP data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 30938 matched rows.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 29083 matched rows.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 29.2s.</span></span>
 <span></span>
 <span><span class="co"># N records for each source</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">gp_clinical</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 30938</span></span>
+<span><span class="co">#&gt; [1] 29083</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">hesin_diag</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 202562</span></span>
+<span><span class="co">#&gt; [1] 206390</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">death_cause</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1962</span></span></code></pre></div>
 <p>If providing primary care codes for measures (BMI etc) these are also
@@ -196,8 +196,8 @@ the UK Biobank baseline assessment</li>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.2.8</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first diagnosis in 31683 participants.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.0</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first diagnosis in 31935 participants.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "eid"      "gp_df"    "hes_df"   "death_df" "df"       "bin"      "bin_prev"</span></span>
@@ -205,22 +205,22 @@ the UK Biobank baseline assessment</li>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       eid              gp_df                hes_df          </span></span>
 <span><span class="co">#&gt;  Min.   :1000014   Min.   :1958-01-01   Min.   :1995-08-29  </span></span>
-<span><span class="co">#&gt;  1st Qu.:2256719   1st Qu.:2007-04-27   1st Qu.:2014-10-29  </span></span>
-<span><span class="co">#&gt;  Median :3513172   Median :2009-09-15   Median :2018-04-24  </span></span>
-<span><span class="co">#&gt;  Mean   :3513237   Mean   :2010-02-11   Mean   :2017-04-01  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:4769764   3rd Qu.:2013-01-01   3rd Qu.:2020-11-04  </span></span>
+<span><span class="co">#&gt;  1st Qu.:2256733   1st Qu.:2007-04-27   1st Qu.:2014-11-26  </span></span>
+<span><span class="co">#&gt;  Median :3513182   Median :2009-09-15   Median :2018-05-15  </span></span>
+<span><span class="co">#&gt;  Mean   :3513253   Mean   :2010-02-11   Mean   :2017-04-21  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:4769770   3rd Qu.:2012-12-31   3rd Qu.:2020-11-15  </span></span>
 <span><span class="co">#&gt;  Max.   :6026565   Max.   :2017-09-06   Max.   :2022-10-31  </span></span>
-<span><span class="co">#&gt;                    NA's   :489524       NA's   :478078      </span></span>
+<span><span class="co">#&gt;                    NA's   :489522       NA's   :477568      </span></span>
 <span><span class="co">#&gt;     death_df                df                  bin             bin_prev      </span></span>
 <span><span class="co">#&gt;  Min.   :2008-02-20   Min.   :1958-01-01   Min.   :0.00000   Min.   :0.00000  </span></span>
 <span><span class="co">#&gt;  1st Qu.:2017-08-01   1st Qu.:2022-10-30   1st Qu.:0.00000   1st Qu.:0.00000  </span></span>
 <span><span class="co">#&gt;  Median :2020-03-03   Median :2022-10-30   Median :0.00000   Median :0.00000  </span></span>
-<span><span class="co">#&gt;  Mean   :2019-04-03   Mean   :2022-04-22   Mean   :0.06308   Mean   :0.01314  </span></span>
+<span><span class="co">#&gt;  Mean   :2019-04-03   Mean   :2022-04-21   Mean   :0.06358   Mean   :0.01314  </span></span>
 <span><span class="co">#&gt;  3rd Qu.:2021-07-16   3rd Qu.:2022-10-30   3rd Qu.:0.00000   3rd Qu.:0.00000  </span></span>
 <span><span class="co">#&gt;  Max.   :2022-12-15   Max.   :2022-12-01   Max.   :1.00000   Max.   :1.00000  </span></span>
-<span><span class="co">#&gt;  NA's   :500347                                              NA's   :5        </span></span>
+<span><span class="co">#&gt;  NA's   :500342                                                               </span></span>
 <span><span class="co">#&gt;      src           </span></span>
-<span><span class="co">#&gt;  Length:502274     </span></span>
+<span><span class="co">#&gt;  Length:502269     </span></span>
 <span><span class="co">#&gt;  Class :character  </span></span>
 <span><span class="co">#&gt;  Mode  :character  </span></span>
 <span><span class="co">#&gt;                    </span></span>
@@ -231,27 +231,25 @@ the UK Biobank baseline assessment</li>
 “prefix” option:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, prefix<span class="op">=</span><span class="st">"ckd"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.2.8</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31683 participants.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.0</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31935 participants.</span></span>
 <span></span>
 <span><span class="co"># how many cases ascertained?</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">$</span><span class="va">ckd_bin</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      0      1 </span></span>
-<span><span class="co">#&gt; 470591  31683</span></span>
+<span><span class="co">#&gt; 470334  31935</span></span>
 <span></span>
 <span><span class="co"># source of earliest diagnosis date</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">$</span><span class="va">ckd_src</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; death    gp   hes </span></span>
-<span><span class="co">#&gt;   243 12401 19039</span></span>
+<span><span class="co">#&gt;   224 12396 19315</span></span>
 <span></span>
 <span><span class="co"># date of diagnosis for prevalent cases (i.e., before UK Biobank baseline assessment)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">$</span><span class="va">ckd_df</span><span class="op">[</span> <span class="va">diagnosis_df</span><span class="op">$</span><span class="va">ckd_bin_prev</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. </span></span>
-<span><span class="co">#&gt; "1958-01-01" "2006-06-21" "2007-01-12" "2006-06-24" "2007-11-19" "2010-06-16" </span></span>
-<span><span class="co">#&gt;         NA's </span></span>
-<span><span class="co">#&gt;          "5"</span></span></code></pre></div>
+<span><span class="co">#&gt; "1958-01-01" "2006-06-21" "2007-01-12" "2006-06-24" "2007-11-19" "2010-06-16"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="ascertaining-multiple-conditions-at-once">Ascertaining multiple conditions at once<a class="anchor" aria-label="anchor" href="#ascertaining-multiple-conditions-at-once"></a>
@@ -271,7 +269,7 @@ prefixes.</p>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_diagnoses.html">get_diagnoses</a></span><span class="op">(</span><span class="va">codes_df_combined</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.2.8</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.0</span></span>
 <span><span class="co">#&gt; → Checking provided codes (remember only the first 5 characters are used)</span></span>
 <span><span class="co">#&gt;  - N unique ICD10 codes: 8 </span></span>
 <span><span class="co">#&gt;  - N unique ICD9 codes: 1 </span></span>
@@ -281,33 +279,33 @@ prefixes.</p>
 <span><span class="co">#&gt; → Ascertaining cause of death data.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `death_cause` with 2004 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining HES diagnosis data (ICD10s).</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 235259 matched rows.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 239398 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining HES diagnosis data (ICD9s).</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 0 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining GP data.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 32379 matched rows.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 30393 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining self-reported illness data.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `selfrep_illness` with 185 matched rows.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 42.2s.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 58.6s.</span></span>
 <span></span>
 <span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, group_by<span class="op">=</span><span class="st">"condition"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.2.8</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.0</span></span>
 <span><span class="co">#&gt; → 2 groups identified - getting date first for each</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first hh diagnosis in 2002 participants.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31683 participants.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first hh diagnosis in 2015 participants.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31935 participants.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Finished getting date first diagnosed for each group/condition.</span></span>
 <span></span>
 <span><span class="co"># each condition has full set of output</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">$</span><span class="va">hh_bin</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      0      1 </span></span>
-<span><span class="co">#&gt; 500267   2002</span></span>
+<span><span class="co">#&gt; 500254   2015</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">$</span><span class="va">ckd_bin</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      0      1 </span></span>
-<span><span class="co">#&gt; 470591  31683</span></span></code></pre></div>
+<span><span class="co">#&gt; 470334  31935</span></span></code></pre></div>
 <p>In the above example we also included a UK Biobank self-reported
 illness code for haemochromatosis, that was also ascertained (the Date
 First is run on each condition separately, they do not all need to have
@@ -324,7 +322,7 @@ the same data sources).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,40 @@
       <small>Source: <a href="https://github.com/lcpilling/ukbrapR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="ukbrapr-v030-29th-january-2025">ukbrapR v0.3.0 (29th January 2025)<a class="anchor" aria-label="anchor" href="#ukbrapr-v030-29th-january-2025"></a></h2>
+<div class="section level4">
+<h4 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h4>
+<ul><li>Suite of functions to extract and load genetic variants. Main ones of interest will be:
+<ol style="list-style-type: decimal"><li>
+<code><a href="../reference/extract_variants.html">extract_variants()</a></code> takes a list of variant rsIDs as input and extracts the imputed genotypes, loading to memory. This is really a wrapper around two other new functions: <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code> and <code><a href="../reference/load_bed.html">load_bed()</a></code>. Also available in <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> to extract from whole genome sequence VCF files but this is pretty slow so usually user wants imputed variants.</li>
+<li>
+<code><a href="../reference/create_pgs.html">create_pgs()</a></code> creates a polygenic score (weighted allele score) using user-provided variants and weights. Loaded to memory but also saves a nicely formatted .tsv</li>
+</ol></li>
+</ul></div>
+<div class="section level4">
+<h4 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h4>
+<ul><li>Removing dependencies: reticulate, arrow, sparklyr. These take a few previous seconds to install every time and are rarely needed. Instead will be installed if user tries to use <code><a href="../reference/get_rap_phenos.html">get_rap_phenos()</a></code>
+</li>
+<li>
+<code><a href="../reference/get_emr_spark.html">get_emr_spark()</a></code> removed entirely. Much better to use <code><a href="../reference/get_diagnoses.html">get_diagnoses()</a></code> which has had a <em>lot</em> of updates to functionality ad bud fixes.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.9" id="ukbrapr-v029-12th-january-2025">ukbrapR v0.2.9 (12th January 2025)<a class="anchor" aria-label="anchor" href="#ukbrapr-v029-12th-january-2025"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-2-9">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-9"></a></h4>
+<ul><li>Fixes for issue <a href="https://github.com/lcpilling/ukbrapR/issues/19" class="external-link">#19</a> (thanks to <a href="https://github.com/nsandau" class="external-link">@nsandau</a> for the help):
+<ol style="list-style-type: decimal"><li>Where OPCS searches were not always performed correctly if only OPCS3/4 codes were provided.</li>
+<li>When using “group_by” in <code><a href="../reference/get_df.html">get_df()</a></code> some diagnoses were incorrectly carried over between groups when different vocabs were provided for each group (condition).</li>
+</ol></li>
+</ul></div>
+<div class="section level4">
+<h4 id="updates-0-2-9">Updates<a class="anchor" aria-label="anchor" href="#updates-0-2-9"></a></h4>
+<ul><li>Additional checking of <code><a href="../reference/get_diagnoses.html">get_diagnoses()</a></code> input to abort if “blank” codes are provided to the grep.</li>
+<li>When getting date first from self-reported illness data exclude “year” if &lt; 1936 (earliest birth year for any participant)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.8" id="ukbrapr-v028-05-october-2024">ukbrapR v0.2.8 (05 October 2024)<a class="anchor" aria-label="anchor" href="#ukbrapr-v028-05-october-2024"></a></h2>
 <div class="section level4">
@@ -261,7 +295,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer></div>

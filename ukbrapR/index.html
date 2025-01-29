@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="R functions to use in the UK Biobank Research Analysis Platform (RAP)">
-<meta name="description" content='R functions to use in the UK Biobank Research Analysis Platform (RAP). The aim is to make working in the RAP quicker, easier, and more reproducible. Though some functions require a Spark cluster, the package is mostly aimed to work in a "normal" cluster using RStudio, and raw UK Biobank data from the table-exporter.'>
-<meta property="og:description" content='R functions to use in the UK Biobank Research Analysis Platform (RAP). The aim is to make working in the RAP quicker, easier, and more reproducible. Though some functions require a Spark cluster, the package is mostly aimed to work in a "normal" cluster using RStudio, and raw UK Biobank data from the table-exporter.'>
+<meta name="description" content='R functions to use in the UK Biobank Research Analysis Platform (RAP). The aim is to make working in the RAP quicker, easier, and more reproducible. The package is designed to work in a "normal" cluster using RStudio, and raw UK Biobank data from the table-exporter (rather than on a Spark cluster).'>
+<meta property="og:description" content='R functions to use in the UK Biobank Research Analysis Platform (RAP). The aim is to make working in the RAP quicker, easier, and more reproducible. The package is designed to work in a "normal" cluster using RStudio, and raw UK Biobank data from the table-exporter (rather than on a Spark cluster).'>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,13 +78,79 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>In the DNAnexus Tools menu launch an RStudio environment on a normal priority instance.</p>
+<p>In the DNAnexus Tools menu launch Posit Workbench and start an RStudio environment.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install latest release (recommended)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR@*release"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># install current version</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"lcpilling/ukbrapR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
+</h2>
+<p>There are three main groups of functions: 
+<ul>
+<li><span class="emoji" data-emoji="dna">🧬</span> <a href="#genetic-variants">Genetics</a>: extract genotypes from Bulk data, create polygenic score
+</li>
+<li><span class="emoji" data-emoji="clipboard">📋</span> <a href="#ascertain-diagnoses">Diagnoses</a>: ascertain from health records and self-reported illness data, determine date first diagnosed
+</li>
+<li><span class="emoji" data-emoji="hammer_and_wrench">🛠️</span> <a href="#other-functions">Utilities</a>: label UK Biobank data fields, upload/download files from RAP, and pull phenotypes from Spark</p>
+</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="genetic-variants">Genetic variants<a class="anchor" aria-label="anchor" href="#genetic-variants"></a>
+</h2>
+<p>Bulk imputed genotypes and variant calls from Whole Genome Sequencing are available and can be easily accessed in an RStudio instance.</p>
+<div class="section level3">
+<h3 id="extract-variants">Extract variants<a class="anchor" aria-label="anchor" href="#extract-variants"></a>
+</h3>
+<p><code><a href="reference/extract_variants.html">extract_variants()</a></code> by default uses <a href="https://enkre.net/cgi-bin/code/bgen" class="external-link">bgenix</a> and <a href="https://www.cog-genomics.org/plink/" class="external-link">plink</a> to subset the <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=22828" class="external-link">imputed BGEN files</a> and read it quickly and easily into R.</p>
+<p>The only required input is a data frame (or path to file) containing “rsid” and “chr” variables. See function documentation for further details/options (including the available <code><a href="reference/make_imputed_bed.html">make_imputed_bed()</a></code> and <code><a href="reference/load_bed.html">load_bed()</a></code> internal functions).</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">varlist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rsid<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rs1800562"</span>,<span class="st">"rs429358"</span><span class="op">)</span>, chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">19</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># development version</span></span>
-<span><span class="co"># remotes::install_github("lcpilling/ukbrapR")</span></span></code></pre></div>
+<span><span class="va">imputed_genotypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/extract_variants.html">extract_variants</a></span><span class="op">(</span><span class="va">varlist</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ~10 seconds</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">imputed_genotypes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 487409      3</span></span></code></pre></div>
+<p>By setting option <code>source="dragen"</code> the function will instead use <a href="https://www.htslib.org/doc/tabix.html" class="external-link">tabix</a> and <a href="https://www.cog-genomics.org/plink/" class="external-link">plink</a> to subset the <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=24310" class="external-link">DRAGEN WGS pVCF files</a>. This requires “pos” in the input data frame (build 38). It is much slower than the imputed version, so unless you actually need the WGS calls it is not necessary.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">varlist_b38</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rsid<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rs1800562"</span>,<span class="st">"rs429358"</span><span class="op">)</span>, chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">19</span><span class="op">)</span>, pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26092913</span>,<span class="fl">44908684</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dragen_genotypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/extract_variants.html">extract_variants</a></span><span class="op">(</span><span class="va">varlist_b38</span>, source<span class="op">=</span><span class="st">"dragen"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ~3 minutes (takes ~90 seconds per pVCF file)</span></span></code></pre></div>
+<p>The highlight of developing this feature was naming internal function <code><a href="reference/make_dragen_bed.html">make_dragen_bed()</a></code> <span class="emoji" data-emoji="dragon">🐉</span> <span class="emoji" data-emoji="bed">🛏️</span></p>
+</div>
+<div class="section level3">
+<h3 id="create-polygenic-score">Create polygenic score<a class="anchor" aria-label="anchor" href="#create-polygenic-score"></a>
+</h3>
+<p><code><a href="reference/create_pgs.html">create_pgs()</a></code> takes a data frame containing a list of variant associations with a trait and creates a weighted allele score using <a href="https://www.cog-genomics.org/plink/1.9/score" class="external-link">plink</a>. By default it uses the <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=22828" class="external-link">imputed</a> genotypes.</p>
+<p>The only required input is a data frame (or path to file) containing rsid, chr, pos, effect_allele, other_allele, beta. For DRAGEN pos is build 38.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># weights from GWAS of liver cirrhosis (Innes 2020 Gastroenterology doi:10.1053/j.gastro.2020.06.014)</span></span>
+<span><span class="va">varlist_pgs</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_tsv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"files"</span>, <span class="st">"pgs_liver_cirrhosis.txt"</span>, package<span class="op">=</span><span class="st">"ukbrapR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">varlist_pgs</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rsID         CHR       POS effect_allele other_allele effect_weight locus_name</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt; 1 rs2642438      1 220796686 A             G                   -0.177 MARC1     </span></span>
+<span><span class="co">#&gt; 2 rs11925835     3  56831417 T             C                   -0.235 ARHGEF3   </span></span>
+<span><span class="co">#&gt; 3 rs72613567     4  87310241 TA            T                   -0.166 HSD17B13  </span></span>
+<span><span class="co">#&gt; 4 rs2954038      8 125495147 C             A                    0.16  TRIB1     </span></span>
+<span><span class="co">#&gt; 5 rs11065384    12 120985482 T             C                    0.275 HNF1A     </span></span>
+<span><span class="co">#&gt; 6 rs28929474    14  94378610 T             C                    0.561 SERPINA1  </span></span>
+<span></span>
+<span><span class="va">liver_pgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_pgs.html">create_pgs</a></span><span class="op">(</span></span>
+<span>    in_file<span class="op">=</span><span class="va">varlist_pgs</span>,                     <span class="co"># can be a data frame or file path</span></span>
+<span>    out_file<span class="op">=</span><span class="st">"liver_cirrhosis.imputed.pgs"</span>,  <span class="co"># {optional} prefix for created .bed and .tsv files</span></span>
+<span>    pgs_name<span class="op">=</span><span class="st">"liver_cirrhosis_pgs"</span><span class="op">)</span>          <span class="co"># {optional} variable name</span></span>
+<span><span class="co">#&gt; → Extracting 9 variants from 8 imputed files</span></span>
+<span><span class="co">#&gt; ✔ PGS created! See file liver_cirrhosis.imputed.pgs.tsv</span></span>
+<span><span class="co">#&gt; ~1 minute</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">liver_pgs</span><span class="op">$</span><span class="va">liver_cirrhosis_pgs</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt; 0.00000 0.06006 0.08200 0.08589 0.10722 0.26639</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="ascertain-diagnoses">Ascertain diagnoses<a class="anchor" aria-label="anchor" href="#ascertain-diagnoses"></a>
@@ -112,7 +178,7 @@
 <li>
 <code>ukb_cancer</code> and <code>ukb_noncancer</code> (for self-reported illness at UK Biobank assessments - all instances will be searched)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># example diagnostic codes for CKD </span></span>
 <span><span class="va">codes_df_ckd</span> <span class="op">&lt;-</span> <span class="fu">ukbrapR</span><span class="fu">:::</span><span class="va">codes_df_ckd</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span></span>
@@ -142,7 +208,7 @@
 <li>a <code>bin</code> field indicating the cases [1] and controls [0]. This relies on a small number of baseline fields also exported. The <code>df</code> field for the controls is the date of censoring (currently 30 October 2022).</li>
 <li>a <code>bin_prev</code> field indicating whether the case was before the UK Biobank baseline assessment</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="co">#   {optional} add a prefix to the variable names with "prefix"</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, prefix<span class="op">=</span><span class="st">"ckd"</span><span class="op">)</span></span>
@@ -167,7 +233,7 @@
 <h3 id="ascertaining-multiple-conditions-at-once">Ascertaining multiple conditions at once<a class="anchor" aria-label="anchor" href="#ascertaining-multiple-conditions-at-once"></a>
 </h3>
 <p>The default <code><a href="reference/get_df.html">get_df()</a></code> behaviour is to use all available codes. However the most time-efficient way to get multiple conditions is to run <code><a href="reference/get_diagnoses.html">get_diagnoses()</a></code> once for all codes for the conditions you wish to ascertain, then get the “date first diagnosed” for each condition separately. In the codes data frame you just need a field indicating the condition name, that will become the variable prefixes.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># combine haemochromatosis and CKD codes together</span></span>
 <span><span class="co">#   each contain there columns: condition, vocab_id, and code</span></span>
 <span><span class="co">#   where `condition` is either "hh" or "ckd" and will become the variable prefix</span></span>
@@ -242,7 +308,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.2.8-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.0-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>
@@ -258,7 +324,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>

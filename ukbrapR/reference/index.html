@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,59 @@
         </dt>
         <dd>Export diagnosis files to RAP persistent storage</dd>
       </dl></div><div class="section level2">
-      <h2 id="ascertain-diagnoses">Ascertain diagnoses<a class="anchor" aria-label="anchor" href="#ascertain-diagnoses"></a></h2>
+      <h2 id="extract-genetic-variants">Extract genetic variants<a class="anchor" aria-label="anchor" href="#extract-genetic-variants"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="extract_variants.html">extract_variants()</a></code>
+
+        </dt>
+        <dd>Extract variants from bulk data and load to memory</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_imputed_bed.html">make_imputed_bed()</a></code>
+
+        </dt>
+        <dd>Extract variants from imputed genotype file(s) into single BED file</dd>
+      </dl><dl><dt>
+
+          <code><a href="make_dragen_bed.html">make_dragen_bed()</a></code>
+
+        </dt>
+        <dd>Extract variants from DRAGEN pVCF file(s) into single BED file</dd>
+      </dl><dl><dt>
+
+          <code><a href="load_bed.html">load_bed()</a></code>
+
+        </dt>
+        <dd>Load BED file into memory</dd>
+      </dl></div><div class="section level2">
+      <h2 id="create-polygenic-score">Create polygenic score<a class="anchor" aria-label="anchor" href="#create-polygenic-score"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="create_pgs.html">create_pgs()</a></code>
+
+        </dt>
+        <dd>Create a polygenic score</dd>
+      </dl></div><div class="section level2">
+      <h2 id="ascertain-diagnoses-and-determine-date-first-diagnosed">Ascertain diagnoses and determine date first diagnosed<a class="anchor" aria-label="anchor" href="#ascertain-diagnoses-and-determine-date-first-diagnosed"></a></h2>
 
 
 
@@ -79,18 +131,7 @@
 
         </dt>
         <dd>Get UK Biobank participant diagnosis data</dd>
-      </dl></div><div class="section level2">
-      <h2 id="determine-date-first-diagnosed-from-any-source">Determine date first diagnosed from any source<a class="anchor" aria-label="anchor" href="#determine-date-first-diagnosed-from-any-source"></a></h2>
-
-
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
+      </dl><dl><dt>
 
           <code><a href="get_df.html">get_df()</a></code>
 
@@ -161,16 +202,16 @@
         <dd>Get UK Biobank participant phenotype data</dd>
       </dl><dl><dt>
 
-          <code><a href="get_emr_spark.html">get_emr_spark()</a></code>
-
-        </dt>
-        <dd>Get UK Biobank participant Electronic Medical Records (EMR) data in a RAP Spark environment</dd>
-      </dl><dl><dt>
-
           <code><a href="get_selfrep_illness_spark.html">get_selfrep_illness_spark()</a></code>
 
         </dt>
         <dd>Get UK Biobank participant self-reported illness/year data for specific codes</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_emr_spark.html">get_emr_spark()</a></code>
+
+        </dt>
+        <dd>Get UK Biobank participant Electronic Medical Records (EMR) data in a RAP Spark environment</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
@@ -181,7 +222,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer></div>

@@ -1,33 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gmte_aalen.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gmte_binary.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gmte_combine.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gmte_continuous.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gmte_plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://lcpilling.github.io/twistR/404.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/authors.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/news/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/gmte_aalen.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/gmte_binary.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/gmte_combine.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/gmte_continuous.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/gmte_plot.html</loc></url>
+<url><loc>https://lcpilling.github.io/twistR/reference/index.html</loc></url>
 </urlset>
+

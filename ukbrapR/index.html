@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,14 +86,14 @@
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
-<p>There are three main groups of functions: 
+<p>There are three main groups of functions:</p>
 <ul>
-<li><span class="emoji" data-emoji="dna">🧬</span> <a href="#genetic-variants">Genetics</a>: extract genotypes from Bulk data, create polygenic score
-</li>
-<li><span class="emoji" data-emoji="clipboard">📋</span> <a href="#ascertain-diagnoses">Diagnoses</a>: ascertain from health records and self-reported illness data, determine date first diagnosed
-</li>
-<li><span class="emoji" data-emoji="hammer_and_wrench">🛠️</span> <a href="#other-functions">Utilities</a>: label UK Biobank data fields, upload/download files from RAP, and pull phenotypes from Spark</p>
-</li>
+<li>
+<span class="emoji" data-emoji="dna">🧬</span> <a href="#genetic-variants">Genetics</a>: extract genotypes from Bulk data, create polygenic score</li>
+<li>
+<span class="emoji" data-emoji="clipboard">📋</span> <a href="#ascertain-diagnoses">Diagnoses</a>: ascertain from health records and self-reported illness data, determine date first diagnosed</li>
+<li>
+<span class="emoji" data-emoji="hammer_and_wrench">🛠️</span> <a href="#other-functions">Utilities</a>: label UK Biobank data fields, upload/download files from RAP, and pull phenotypes from Spark</li>
 </ul>
 </div>
 <div class="section level2">
@@ -119,7 +119,7 @@
 <span></span>
 <span><span class="va">dragen_genotypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/extract_variants.html">extract_variants</a></span><span class="op">(</span><span class="va">varlist_b38</span>, source<span class="op">=</span><span class="st">"dragen"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ~3 minutes (takes ~90 seconds per pVCF file)</span></span></code></pre></div>
-<p>The highlight of developing this feature was naming internal function <code><a href="reference/make_dragen_bed.html">make_dragen_bed()</a></code> <span class="emoji" data-emoji="dragon">🐉</span> <span class="emoji" data-emoji="bed">🛏️</span></p>
+<p>The highlight of developing this feature was naming the internal function <code><a href="reference/make_dragen_bed.html">make_dragen_bed()</a></code> <span class="emoji" data-emoji="dragon">🐉</span> <span class="emoji" data-emoji="bed">🛏️</span></p>
 </div>
 <div class="section level3">
 <h3 id="create-polygenic-score">Create polygenic score<a class="anchor" aria-label="anchor" href="#create-polygenic-score"></a>
@@ -308,7 +308,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.0-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.2-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>
@@ -324,7 +324,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

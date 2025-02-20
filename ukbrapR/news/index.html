@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,16 +47,35 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.2" id="ukbrapr-v032-19th-february-2025">ukbrapR v0.3.2 (19th February 2025)<a class="anchor" aria-label="anchor" href="#ukbrapr-v032-19th-february-2025"></a></h2>
+<div class="section level4">
+<h4 id="changes-0-3-2">Changes<a class="anchor" aria-label="anchor" href="#changes-0-3-2"></a></h4>
+<ul><li>Remove bundled plink, plink2 and bgenix files. Instead, download only if needed.</li>
+<li>Add more consistent progress updates for <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> and <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code>
+</li>
+<li>Add “progress” options to <code><a href="../reference/extract_variants.html">extract_variants()</a></code> and <code><a href="../reference/create_pgs.html">create_pgs()</a></code> (default is FALSE). Default is TRUE if you directly call <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> or <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code>
+</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes-0-3-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-2"></a></h4>
+<ul><li>Fix <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> so it doesn’t crash if the pVCF subset is empty (i.e., a searched-for chr:pos was missing)</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="ukbrapr-v031-10th-february-2025">ukbrapR v0.3.1 (10th February 2025)<a class="anchor" aria-label="anchor" href="#ukbrapr-v031-10th-february-2025"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-3-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-1"></a></h4>
+<ul><li>Fix <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> position awk search, plink call</li>
+<li>Fix <code><a href="../reference/create_pgs.html">create_pgs()</a></code> when using WGS - needed to use chr:pos:a1:a2 not rsid</li>
+<li>Fix <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code> so it doesn’t crash if the BGEN subset is empty (i.e., a searched-for rsid was missing)</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="ukbrapr-v030-29th-january-2025">ukbrapR v0.3.0 (29th January 2025)<a class="anchor" aria-label="anchor" href="#ukbrapr-v030-29th-january-2025"></a></h2>
 <div class="section level4">
 <h4 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h4>
-<ul><li>Suite of functions to extract and load genetic variants. Main ones of interest will be:
-<ol style="list-style-type: decimal"><li>
-<code><a href="../reference/extract_variants.html">extract_variants()</a></code> takes a list of variant rsIDs as input and extracts the imputed genotypes, loading to memory. This is really a wrapper around two other new functions: <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code> and <code><a href="../reference/load_bed.html">load_bed()</a></code>. Also available in <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> to extract from whole genome sequence VCF files but this is pretty slow so usually user wants imputed variants.</li>
-<li>
-<code><a href="../reference/create_pgs.html">create_pgs()</a></code> creates a polygenic score (weighted allele score) using user-provided variants and weights. Loaded to memory but also saves a nicely formatted .tsv</li>
-</ol></li>
-</ul></div>
+<p>Suite of functions to extract and load genetic variants. Main ones of interest will be: 1. <code><a href="../reference/extract_variants.html">extract_variants()</a></code> takes a list of variant rsIDs as input and extracts the imputed genotypes, loading to memory. This is really a wrapper around two other new functions: <code><a href="../reference/make_imputed_bed.html">make_imputed_bed()</a></code> and <code><a href="../reference/load_bed.html">load_bed()</a></code>. Also available in <code><a href="../reference/make_dragen_bed.html">make_dragen_bed()</a></code> to extract from whole genome sequence VCF files but this is pretty slow so usually user wants imputed variants. 2. <code><a href="../reference/create_pgs.html">create_pgs()</a></code> creates a polygenic score (weighted allele score) using user-provided variants and weights. Loaded to memory but also saves a nicely formatted .tsv</p>
+</div>
 <div class="section level4">
 <h4 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h4>
 <ul><li>Removing dependencies: reticulate, arrow, sparklyr. These take a few previous seconds to install every time and are rarely needed. Instead will be installed if user tries to use <code><a href="../reference/get_rap_phenos.html">get_rap_phenos()</a></code>
@@ -295,7 +314,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>

@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,8 +38,6 @@
 <li><a class="dropdown-item" href="articles/ascertain_diagnoses.html">Ascertain diagnoses</a></li>
     <li><a class="dropdown-item" href="articles/label_fields.html">Label fields</a></li>
     <li><a class="dropdown-item" href="articles/spark_functions.html">Spark functions</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="articles/index.html">More articles...</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -93,7 +91,7 @@
 <li>
 <span class="emoji" data-emoji="clipboard">📋</span> <a href="#ascertain-diagnoses">Diagnoses</a>: ascertain from health records and self-reported illness data, determine date first diagnosed</li>
 <li>
-<span class="emoji" data-emoji="hammer_and_wrench">🛠️</span> <a href="#other-functions">Utilities</a>: label UK Biobank data fields, upload/download files from RAP, and pull phenotypes from Spark</li>
+<span class="emoji" data-emoji="hammer_and_wrench">🛠️</span> <a href="#utility-functions">Utilities</a>: Check field names, label data fields, upload/download files from RAP, and pull phenotypes from Spark</li>
 </ul>
 </div>
 <div class="section level2">
@@ -257,9 +255,11 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="other-functions">Other functions<a class="anchor" aria-label="anchor" href="#other-functions"></a>
+<h2 id="utility-functions">Utility functions<a class="anchor" aria-label="anchor" href="#utility-functions"></a>
 </h2>
 <ul>
+<li>Check if field IDs are valid and return phenotype names with <code><a href="reference/fields_to_phenos.html">fields_to_phenos()</a></code>
+</li>
 <li>Label UK Biobank data fields with <code><a href="reference/label_ukb_fields.html">label_ukb_fields()</a></code>
 </li>
 <li>Upload/download files between worker and RAP with <code><a href="reference/upload_to_rap.html">upload_to_rap()</a></code> and <code><a href="reference/download_from_rap.html">download_from_rap()</a></code>
@@ -308,7 +308,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.2-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.3-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>
@@ -324,7 +324,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>

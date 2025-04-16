@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,7 +148,7 @@ ignored.</p>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_diagnoses.html">get_diagnoses</a></span><span class="op">(</span><span class="va">codes_df_ckd</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.5</span></span>
 <span><span class="co">#&gt; → Checking provided codes (remember only the first 5 characters are used)</span></span>
 <span><span class="co">#&gt;  - N unique ICD10 codes: 7 </span></span>
 <span><span class="co">#&gt;  - N unique Read2 codes: 40 </span></span>
@@ -159,7 +159,7 @@ ignored.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `hesin_diag` with 202562 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining GP data.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 30938 matched rows.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 47.3s.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 55.9s.</span></span>
 <span></span>
 <span><span class="co"># N records for each source</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">$</span><span class="va">gp_clinical</span><span class="op">)</span></span>
@@ -194,7 +194,7 @@ the UK Biobank baseline assessment</li>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first diagnosis in 31683 participants.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">diagnosis_df</span><span class="op">)</span></span>
@@ -229,7 +229,7 @@ the UK Biobank baseline assessment</li>
 “prefix” option:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, prefix<span class="op">=</span><span class="st">"ckd"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31683 participants.</span></span>
 <span></span>
 <span><span class="co"># how many cases ascertained?</span></span>
@@ -269,7 +269,7 @@ prefixes.</p>
 <span></span>
 <span><span class="co"># get diagnosis data - returns list of data frames (one per source)</span></span>
 <span><span class="va">diagnosis_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_diagnoses.html">get_diagnoses</a></span><span class="op">(</span><span class="va">codes_df_combined</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.5</span></span>
 <span><span class="co">#&gt; → Checking provided codes (remember only the first 5 characters are used)</span></span>
 <span><span class="co">#&gt;  - N unique ICD10 codes: 8 </span></span>
 <span><span class="co">#&gt;  - N unique ICD9 codes: 1 </span></span>
@@ -286,11 +286,11 @@ prefixes.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `gp_clinical` with 32379 matched rows.</span></span>
 <span><span class="co">#&gt; → Ascertaining self-reported illness data.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Loaded `selfrep_illness` with 185 matched rows.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 1m 7.1s.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Finished. Time taken: 1m 8.2s.</span></span>
 <span></span>
 <span><span class="co"># for each participant, get Date First diagnosed with the condition</span></span>
 <span><span class="va">diagnosis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_df.html">get_df</a></span><span class="op">(</span><span class="va">diagnosis_list</span>, group_by<span class="op">=</span><span class="st">"condition"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ukbrapR v0.3.5</span></span>
 <span><span class="co">#&gt; → 2 groups identified - getting date first for each</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first hh diagnosis in 2002 participants.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Identified date of first ckd diagnosis in 31683 participants.</span></span>

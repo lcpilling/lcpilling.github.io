@@ -9,7 +9,7 @@ If selecting the DRAGEN data as the source, this assumes your project has access
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,7 @@ If selecting the DRAGEN data as the source, this assumes your project has access
 <span>  out_file <span class="op">=</span> <span class="st">"tmp"</span>,</span>
 <span>  pgs_name <span class="op">=</span> <span class="st">"pgs"</span>,</span>
 <span>  source <span class="op">=</span> <span class="st">"imputed"</span>,</span>
+<span>  is_bed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  progress <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -85,8 +86,13 @@ If selecting the DRAGEN data as the source, this assumes your project has access
 
 
 <dt id="arg-source">source<a class="anchor" aria-label="anchor" href="#arg-source"></a></dt>
-<dd><p>A string. Either "imputed" or "dragen" - indicating whether the variants should be from "UKB imputation from genotype" (field 22828) or "DRAGEN population level WGS variants, PLINK format [500k release]" (field 24308)
+<dd><p>A string. Either "imputed" or "dragen" - indicating whether the variants should be from "UKB imputation from genotype" (field 22828) or "DRAGEN population level WGS variants, PLINK format [500k release]" (field 24308). Can instead be a path to a local BED file, if `is_bed=TRUE`.
 <code>default="imputed"</code></p></dd>
+
+
+<dt id="arg-is-bed">is_bed<a class="anchor" aria-label="anchor" href="#arg-is-bed"></a></dt>
+<dd><p>Logical. If you already have a BED file containing the required variants set this to TRUE and provide a path to the BED file in the `source` option,
+<code>default=FALSE</code></p></dd>
 
 
 <dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>

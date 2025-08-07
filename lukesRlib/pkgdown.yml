@@ -1,9 +1,8 @@
 pandoc: 3.1.1
-pkgdown: 2.0.7
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-09-30T19:56Z
+last_built: 2025-08-07T14:51Z
 urls:
   reference: https://lcpilling.github.io/lukesRlib/reference
   article: https://lcpilling.github.io/lukesRlib/articles
-

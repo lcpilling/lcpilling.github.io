@@ -1,60 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/404.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/annotate_textp.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/carrec.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/example_data.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_assoc.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_p.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_p_extreme.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_p_neglog10.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_p_neglog10_n.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_se.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/get_z.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/inv_norm.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/theme_minimal_modified.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/tidy_ci.html</loc>
-  </url>
-  <url>
-    <loc>https://lcpilling.github.io/lukesRlib/reference/z_trans.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://lcpilling.github.io/lukesRlib/404.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/authors.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/news/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/annotate_textp.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/carrec.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/example_data.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_assoc.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_p.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_p_extreme.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_p_neglog10.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_p_neglog10_n.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_se.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/get_z.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/index.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/inv_norm.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/theme_minimal_modified.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/tidy_ci.html</loc></url>
+<url><loc>https://lcpilling.github.io/lukesRlib/reference/z_trans.html</loc></url>
 </urlset>
+

@@ -114,7 +114,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> Setup</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#openstack" id="toc-openstack" class="nav-link" data-scroll-target="#openstack"><span class="header-section-number">2.1</span> OpenStack</a></li>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">2.2</span> R</a></li>
+  </ul></li>
   <li><a href="#data-loading-and-inspection" id="toc-data-loading-and-inspection" class="nav-link" data-scroll-target="#data-loading-and-inspection"><span class="header-section-number">3</span> Data Loading and Inspection</a>
   <ul class="collapse">
   <li><a href="#load-the-uk-biobank-baseline-assessment-data" id="toc-load-the-uk-biobank-baseline-assessment-data" class="nav-link" data-scroll-target="#load-the-uk-biobank-baseline-assessment-data"><span class="header-section-number">3.1</span> Load the UK Biobank Baseline Assessment Data</a></li>
@@ -148,7 +152,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10</span> Summary</a>
   <ul class="collapse">
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">10.1</span> Further reading</a></li>
+  <li><a href="#final-task" id="toc-final-task" class="nav-link" data-scroll-target="#final-task"><span class="header-section-number">10.1</span> Final task</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">10.2</span> Further reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -168,11 +173,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
-<p>We’ll use functions from the {<a href="https://tidyverse.org/">tidyverse</a>} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.</p>
+<section id="openstack" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="openstack"><span class="header-section-number">2.1</span> OpenStack</h2>
+<p>Log in to your OpenStack instance as usual. Activate the <code>conda</code> environment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate hpdm098</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>We’ll use functions from the {<a href="https://tidyverse.org/">tidyverse</a>} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.</p>
+<p>To install these in the <code>conda</code> environment, type the below into your Linux terminal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> r r-tidyverse <span class="at">-y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">2.2</span> R</h2>
+<p>To launch R on the Linux command line just type <code>R</code>. The following commands in this workshop are designed to be run in R itself.</p>
+<p>Load the {tidyverse} library.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 </section>
 <section id="data-loading-and-inspection" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Data Loading and Inspection</h1>
@@ -181,22 +202,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.1" class="anchored" data-anchor-id="load-the-uk-biobank-baseline-assessment-data"><span class="header-section-number">3.1</span> Load the UK Biobank Baseline Assessment Data</h2>
 <p>This is a simulated dataset designed to look like the real UK Biobank data (data types, ranges, and approximate correlation structure), but is synthetic to preserve participant anonymity.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"~/hpdm208z/workshops/intro_epidemiology/baseline.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ukb &lt;- read_tsv("https://lcpilling.github.io/HPDM208Z/workshop_01/baseline.tsv.gz")  # to read from the internet</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"~/hpdm208z/workshops/intro_epidemiology/baseline.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="inspecting-the-data" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="inspecting-the-data"><span class="header-section-number">3.2</span> Inspecting the Data</h2>
 <p>We inspect the data’s dimensions, preview the first few rows, and check the variable types—these are shown at the top of the preview table (<code>chr</code>=character string, <code>dbl</code>=numeric).</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check dimensions (rows and columns)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check dimensions (rows and columns)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 500000     11</code></pre>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the first 6 rows</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the first 6 rows</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 11
@@ -221,9 +243,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.1" class="anchored" data-anchor-id="summary-information"><span class="header-section-number">4.1</span> Summary Information</h2>
 <p>Get summary of numeric variables.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, hba1c) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, sex, bmi, hba1c) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age             sex              bmi            hba1c      
@@ -241,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We “selected” the variables we wanted from the dataset <code>ukb</code> and passed them to be summarized.</p>
 <p>The equivalent “base R” solution (not using the pipe or the tidyverse <code>select()</code> function) would be:</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"sex"</span>,<span class="st">"bmi"</span>,<span class="st">"hba1c"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"sex"</span>,<span class="st">"bmi"</span>,<span class="st">"hba1c"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age             sex              bmi            hba1c      
@@ -262,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.2" class="anchored" data-anchor-id="tabulate"><span class="header-section-number">4.2</span> Tabulate</h2>
 <p>Categorical variables such as “sex” and “t2d” can be tabulated, which is more informative that the summary above.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -278,32 +300,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We use histograms for continuous variables to show the distribution and bar charts for categorical variables.</p>
 <p>Here, we will use the tidyverse <code>ggplot()</code> function to specify the data we will use, then specify the plot type (with <code>geom_*</code>) and options. See the “Visualize” section of the <a href="https://r4ds.hadley.nz/visualize.html">R for Data Science</a> book for detail on this versatile gg “grammar of graphics” approach.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Age Histogram</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Age by Decade"</span>, <span class="at">x =</span> <span class="st">"Age (Years)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Age Histogram</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Age by Decade"</span>, <span class="at">x =</span> <span class="st">"Age (Years)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workshop_01_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workshop_01_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex Bar Chart</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make a new variable using `mutate()` to pass text labels to ggplot</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">factor</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sex)) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Sex"</span>, <span class="at">x =</span> <span class="st">"Sex"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex Bar Chart</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make a new variable using `mutate()` to pass text labels to ggplot</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">factor</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Sex"</span>, <span class="at">x =</span> <span class="st">"Sex"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workshop_01_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workshop_01_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -316,13 +338,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We might hypothesise that BMI differs between males and females.</p>
 <p>First, we can simply compare the mean BMI between the sexes.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_bmi =</span> <span class="fu">sd</span>(bmi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_group =</span> <span class="fu">n</span>()</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_bmi =</span> <span class="fu">sd</span>(bmi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_group =</span> <span class="fu">n</span>()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
@@ -338,11 +360,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="5.1" class="anchored" data-anchor-id="linear-regression-model"><span class="header-section-number">5.1</span> Linear Regression Model</h2>
 <p>We model BMI (Outcome) with a single predictor variable: sex.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Model (lm): BMI ~ Sex</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> sex, <span class="at">data =</span> ukb)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the model results</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Model (lm): BMI ~ Sex</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> sex, <span class="at">data =</span> ukb)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the model results</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -379,11 +401,11 @@ F-statistic:  4765 on 1 and 487291 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We can add <code>age</code> to the model, to see whether this changes the estimates.</p>
 <p>We model BMI (Outcome) as a function of age and sex (Predictors).</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Model (lm): BMI ~ Age + Sex</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lm_model_adjusted <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> age <span class="sc">+</span> sex, <span class="at">data =</span> ukb)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the model results</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model_adjusted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Model (lm): BMI ~ Age + Sex</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lm_model_adjusted <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> age <span class="sc">+</span> sex, <span class="at">data =</span> ukb)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarise the model results</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model_adjusted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -419,7 +441,7 @@ F-statistic:  2915 on 2 and 487290 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 data-number="5.3" class="anchored" data-anchor-id="confidence-intervals-ci"><span class="header-section-number">5.3</span> Confidence Intervals (CI)</h2>
 <p>We can calculate the 95% CIs for the coefficients.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_model_adjusted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_model_adjusted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %      97.5 %
@@ -440,11 +462,11 @@ sex          0.88402808  0.93698683</code></pre>
 <h2 data-number="6.1" class="anchored" data-anchor-id="identifying-obese-participants"><span class="header-section-number">6.1</span> Identifying “Obese” Participants</h2>
 <p>We create a new binary variable, obese, where 1 indicates BMI &gt; 30 kg/m<sup>2</sup> and 0 otherwise.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">obese =</span> <span class="fu">if_else</span>(bmi <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabulate new variable</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>obese)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">obese =</span> <span class="fu">if_else</span>(bmi <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabulate new variable</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>obese)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -458,13 +480,13 @@ sex          0.88402808  0.93698683</code></pre>
 <h2 data-number="6.2" class="anchored" data-anchor-id="comparing-mean-hba1c"><span class="header-section-number">6.2</span> Comparing Mean HbA1c</h2>
 <p>We can compare the average HbA1c (Glycated haemoglobin, a measure of blood glucose) between the obese and non-obese groups.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(obese) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hba1c =</span> <span class="fu">mean</span>(hba1c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hba1c =</span> <span class="fu">sd</span>(hba1c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_group =</span> <span class="fu">n</span>()</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(obese) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_hba1c =</span> <span class="fu">mean</span>(hba1c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_hba1c =</span> <span class="fu">sd</span>(hba1c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_group =</span> <span class="fu">n</span>()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -487,12 +509,12 @@ sex          0.88402808  0.93698683</code></pre>
 <p>Let’s use our above hypothesis as the example: we hypothesise that HbA1c differs between the obese and non-obese groups.</p>
 <p>We model the odds of being obese (Binary Outcome) as a function of age, sex, and hba1c</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generalised Linear Model (glm) with family="binomial"</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>logistic_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(obese <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> hba1c,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logistic_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generalised Linear Model (glm) with family="binomial"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>logistic_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(obese <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> hba1c,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logistic_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -522,8 +544,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 <p>The model coefficients are in terms of log-odds. To interpret them as Odds Ratios (OR), we must exponentiate them.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>odds_ratios <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(logistic_model))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds_ratios)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>odds_ratios <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(logistic_model))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(odds_ratios)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)         age         sex       hba1c 
@@ -539,13 +561,13 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <h1 data-number="8"><span class="header-section-number">8</span> Another Example of Confounding</h1>
 <p>In this example, we will test the hypothesis that smokers have higher likelihood of having Coronary Heart Disease (CHD).</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression for CHD ~ Smoking</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>chd_unadjusted_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd <span class="sc">~</span> current_smoker,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> ukb,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get and print the unadjusted estimates</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(chd_unadjusted_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression for CHD ~ Smoking</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>chd_unadjusted_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd <span class="sc">~</span> current_smoker,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> ukb,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get and print the unadjusted estimates</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(chd_unadjusted_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Estimate  Std. Error    z value    Pr(&gt;|z|)
@@ -557,13 +579,13 @@ current_smoker  0.3516525 0.019739057   17.81506 5.39968e-71</code></pre>
 <p>Yes, the current smokers have higher CHD rates. But is this confounded by age? Age is a classic confounder: it may be associated with smoking (smoking rates may differ in older participants) and is a strong independent risk factor for CHD.</p>
 <p>We now add age to the model to see how it affects the estimated relationship between smoking and CHD.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression for CHD ~ Smoking + Age</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>chd_adjusted_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd <span class="sc">~</span> current_smoker <span class="sc">+</span> age,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> ukb,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get and print the unadjusted Odds Ratio for current_smoker</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(chd_adjusted_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression for CHD ~ Smoking + Age</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>chd_adjusted_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(chd <span class="sc">~</span> current_smoker <span class="sc">+</span> age,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> ukb,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get and print the unadjusted Odds Ratio for current_smoker</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(chd_adjusted_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  Estimate  Std. Error    z value      Pr(&gt;|z|)
@@ -572,14 +594,14 @@ current_smoker  0.61013795 0.020242105   30.14202 1.364682e-199
 age             0.09868043 0.001008072   97.89021  0.000000e+00</code></pre>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Odds Ratios:</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Unadjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_unadjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Odds Ratios:</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Unadjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_unadjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Unadjusted OR = 1.42"</code></pre>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Adjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_adjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Adjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_adjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted OR = 1.84"</code></pre>
@@ -599,8 +621,8 @@ age             0.09868043 0.001008072   97.89021  0.000000e+00</code></pre>
 <h1 data-number="9"><span class="header-section-number">9</span> Hypothesis Testing: T2D and HbA1c</h1>
 <p>Next, we test a direct clinical hypothesis regarding Type 2 Diabetes (t2d) status and HbA1c (a measure of average blood glucose).</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># N UK Biobank participants with type-2 diabetes at baseline</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>t2d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># N UK Biobank participants with type-2 diabetes at baseline</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>t2d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -608,12 +630,12 @@ age             0.09868043 0.001008072   97.89021  0.000000e+00</code></pre>
 485178  14822 </code></pre>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression model</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>logistic_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(t2d <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> hba1c,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb,</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logistic_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression model</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>logistic_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(t2d <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> hba1c,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logistic_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -638,7 +660,7 @@ AIC: 110150
 Number of Fisher Scoring iterations: 7</code></pre>
 </div>
 </details>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(logistic_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(logistic_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)          age          sex        hba1c 
@@ -651,22 +673,22 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <h2 data-number="9.1" class="anchored" data-anchor-id="visualisation-1"><span class="header-section-number">9.1</span> Visualisation</h2>
 <p>A boxplot is a useful visualisation to see difference in means across groups.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure T2D status is labelled clearly on the plot</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">t2d_group =</span> <span class="fu">factor</span>(t2d, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Diabetic"</span>, <span class="st">"T2D"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t2d_group, <span class="at">y =</span> hba1c, <span class="at">fill =</span> t2d_group)) <span class="sc">+</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"HbA1c Distribution by Type 2 Diabetes Status"</span>,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"T2D Status"</span>,</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"HbA1c (mmol/mol)"</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure T2D status is labelled clearly on the plot</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">t2d_group =</span> <span class="fu">factor</span>(t2d, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-Diabetic"</span>, <span class="st">"T2D"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t2d_group, <span class="at">y =</span> hba1c, <span class="at">fill =</span> t2d_group)) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"HbA1c Distribution by Type 2 Diabetes Status"</span>,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"T2D Status"</span>,</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"HbA1c (mmol/mol)"</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workshop_01_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workshop_01_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -678,8 +700,21 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <h1 data-number="10"><span class="header-section-number">10</span> Summary</h1>
 <p>In this workshop you have loaded and inspected a large human cohort, tested hypotheses using regression models, adjusted for potential confounders, and begun to explore methods for visualisation.</p>
 <p>There is more to “Stratified Medicine” than epidemiolgy of course, but understanding these basic data science skills and how health data scientists analyse and interpret cohort data is crucial for the wider context.</p>
-<section id="further-reading" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">10.1</span> Further reading</h2>
+<section id="final-task" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="final-task"><span class="header-section-number">10.1</span> Final task</h2>
+<p>Repeat the above instructions, but this time inspect the Systolic Blood Pressre “<code>systolic_bp</code>” variable.</p>
+<ul>
+<li>Does the mean and range seem sensible?</li>
+<li>Does the distribution on the histogram look approximately Gaussian (“normal”)?</li>
+<li>Test associations with age and sex. Are they associated?</li>
+<li>Create a binary variable “hypertension” where participants with <code>systolic_bp &gt;= 140</code> are defined as cases. How many are there?</li>
+<li>What is the association between hypertension and age and sex?</li>
+<li>What is the association between hypertension and prevalent Coronary Heart Disease (<code>chd</code>)?</li>
+<li>Any other ideas you with to explore?</li>
+</ul>
+</section>
+<section id="further-reading" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">10.2</span> Further reading</h2>
 <p>You can find a free “Epidemiology for the uninitiated” online book (<a href="https://www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated">www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated</a>, which includes definitions, study design, sources of bias, and more.</p>
 <p>You can find a free “R for Data Science” online book (<a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a>) on how to do data science with R—from the introductory to the advanced.</p>
 </section>

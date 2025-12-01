@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr Luke C Pilling">
-<meta name="dcterms.date" content="2025-11-03">
+<meta name="dcterms.date" content="2025-12-01">
 
 <title>HPDM208Z Stratified Medicine Workshop 1: Introduction to Epidemiology in R</title>
 <style>
@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2025-11-03</p>
+        <p class="date">2025-12-01</p>
       </div>
     </div>
     
@@ -153,7 +153,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10</span> Summary</a>
   <ul class="collapse">
   <li><a href="#final-task" id="toc-final-task" class="nav-link" data-scroll-target="#final-task"><span class="header-section-number">10.1</span> Final task</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">10.2</span> Further reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -167,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>This workshop introduces fundamental concepts in epidemiology and statistical analysis using R, focused on health data science. You will learn how to load a text file into R—a commonly used, open source, highly versatile data science program—and perform introductory epidemiological analyses. You will learn how to perform and interpret regression models to estimate associations, including adjusting for confounders.</p>
-<p>We’ll use a synthetic version of a subset of UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years (<a href="https://www.ukbiobank.ac.uk/">www.ukbiobank.ac.uk</a>). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes.</p>
+<p>We’ll use data similar to the UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years (<a href="https://www.ukbiobank.ac.uk/">www.ukbiobank.ac.uk</a>). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.</p>
 <p>You can find a free “R for Data Science” online book (<a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a>) on how to do data science with R—from the introductory to the advanced.</p>
 <p>You can find a free “Epidemiology for the uninitiated” online book (<a href="https://www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated">www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated</a>, which includes definitions, study design, sources of bias, and more.</p>
 </section>
@@ -175,9 +174,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
 <section id="openstack" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="openstack"><span class="header-section-number">2.1</span> OpenStack</h2>
-<p>Log in to your OpenStack instance as usual. Activate the <code>conda</code> environment.</p>
+<p>Log in to your OpenStack instance as usual. Activate the <code>conda</code> environment by typing the below into your Linux terminal.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate hpdm098</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate hpdm208z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We’ll use functions from the {<a href="https://tidyverse.org/">tidyverse</a>} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.</p>
 <p>To install these in the <code>conda</code> environment, type the below into your Linux terminal.</p>
@@ -214,22 +213,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 500000     11</code></pre>
+<pre><code>[1] 500000     10</code></pre>
 </div>
 </details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the first 6 rows</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  eid      age   sex   bmi current_smoker   ldl hba1c diastolic_bp systolic_bp   t2d   chd
-  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 x10001    48     0  21.6              0  3.91  30.9         82.2        130.     0     0
-2 x10002    46     1  27.2              0  2.37  33.2         76.5        119.     0     0
-3 x10003    42     1  21.0              0  2.31  33.5         72.0        127.     0     0
-4 x10004    55     0  30.2              0  2.85  32.7         96.5         NA      0     0
-5 x10005    43     0  23.6              0  3.96  19.5         81.0        129.     0     0
-6 x10006    62     1  23.8              0  4.49  45.2         75.9        156.     0     0</code></pre>
+<pre><code># A tibble: 6 × 10
+  eid      age   sex   bmi current_smoker   ldl hba1c systolic_bp   t2d   chd
+  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 x10001    53     0  22.7              1  4.34  39.3        122.     0     0
+2 x10002    64     0  29.8              0  4.94  42.7        166.     0     0
+3 x10003    63     0  25.8              0  3.21  52.0        158.     0     0
+4 x10004    61     1  30.4              0  3.74  31.5        137.     0     0
+5 x10005    52     0  25.9              0  2.5   27.1        122.     0     0
+6 x10006    59     1  26.2              1  2.17  41.1        162.     0     1</code></pre>
 </div>
 </details>
 </div>
@@ -249,13 +248,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age             sex              bmi            hba1c      
- Min.   :40.00   Min.   :0.0000   Min.   :12.27   Min.   :11.73  
- 1st Qu.:49.00   1st Qu.:0.0000   1st Qu.:23.90   1st Qu.:31.84  
- Median :56.00   Median :0.0000   Median :26.86   Median :35.88  
- Mean   :55.46   Mean   :0.4583   Mean   :27.24   Mean   :36.30  
- 3rd Qu.:62.00   3rd Qu.:1.0000   3rd Qu.:30.15   3rd Qu.:40.30  
- Max.   :69.00   Max.   :1.0000   Max.   :59.34   Max.   :82.34  
-                                  NA's   :12707                  </code></pre>
+ Min.   :40.00   Min.   :0.0000   Min.   :12.19   Min.   :14.26  
+ 1st Qu.:49.00   1st Qu.:0.0000   1st Qu.:23.91   1st Qu.:31.85  
+ Median :56.00   Median :0.0000   Median :26.85   Median :35.89  
+ Mean   :55.45   Mean   :0.4583   Mean   :27.24   Mean   :36.30  
+ 3rd Qu.:62.00   3rd Qu.:1.0000   3rd Qu.:30.14   3rd Qu.:40.31  
+ Max.   :69.00   Max.   :1.0000   Max.   :59.05   Max.   :77.67  
+                                  NA's   :12530                  </code></pre>
 </div>
 </details>
 </div>
@@ -267,13 +266,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age             sex              bmi            hba1c      
- Min.   :40.00   Min.   :0.0000   Min.   :12.27   Min.   :11.73  
- 1st Qu.:49.00   1st Qu.:0.0000   1st Qu.:23.90   1st Qu.:31.84  
- Median :56.00   Median :0.0000   Median :26.86   Median :35.88  
- Mean   :55.46   Mean   :0.4583   Mean   :27.24   Mean   :36.30  
- 3rd Qu.:62.00   3rd Qu.:1.0000   3rd Qu.:30.15   3rd Qu.:40.30  
- Max.   :69.00   Max.   :1.0000   Max.   :59.34   Max.   :82.34  
-                                  NA's   :12707                  </code></pre>
+ Min.   :40.00   Min.   :0.0000   Min.   :12.19   Min.   :14.26  
+ 1st Qu.:49.00   1st Qu.:0.0000   1st Qu.:23.91   1st Qu.:31.85  
+ Median :56.00   Median :0.0000   Median :26.85   Median :35.89  
+ Mean   :55.45   Mean   :0.4583   Mean   :27.24   Mean   :36.30  
+ 3rd Qu.:62.00   3rd Qu.:1.0000   3rd Qu.:30.14   3rd Qu.:40.31  
+ Max.   :69.00   Max.   :1.0000   Max.   :59.05   Max.   :77.67  
+                                  NA's   :12530                  </code></pre>
 </div>
 </details>
 </div>
@@ -289,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-270871 229129 </code></pre>
+270870 229130 </code></pre>
 </div>
 </details>
 </div>
@@ -350,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 2 × 4
     sex mean_bmi sd_bmi n_group
   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;int&gt;
-1     0     26.8   4.70  270871
-2     1     27.7   4.69  229129</code></pre>
+1     0     26.8   4.70  270870
+2     1     27.8   4.69  229130</code></pre>
 </div>
 </details>
 </div>
@@ -372,20 +371,20 @@ Call:
 lm(formula = bmi ~ sex, data = ukb)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--14.6967  -3.3243  -0.3943   2.8933  31.5933 
+    Min      1Q  Median      3Q     Max 
+-14.611  -3.313  -0.393   2.877  31.287 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 26.814296   0.009143 2932.67   &lt;2e-16 ***
-sex          0.932409   0.013508   69.03   &lt;2e-16 ***
+(Intercept) 26.801142   0.009134 2934.18   &lt;2e-16 ***
+sex          0.961821   0.013496   71.27   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 4.698 on 487291 degrees of freedom
-  (12707 observations deleted due to missingness)
-Multiple R-squared:  0.009683,  Adjusted R-squared:  0.009681 
-F-statistic:  4765 on 1 and 487291 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 4.695 on 487468 degrees of freedom
+  (12530 observations deleted due to missingness)
+Multiple R-squared:  0.01031,   Adjusted R-squared:  0.01031 
+F-statistic:  5079 on 1 and 487468 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </details>
 </div>
@@ -414,20 +413,20 @@ lm(formula = bmi ~ age + sex, data = ukb)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--14.4617  -3.3223  -0.3944   2.8922  31.2700 
+-14.4535  -3.3117  -0.3912   2.8687  31.5946 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 25.341527   0.046248  547.95   &lt;2e-16 ***
-age          0.026734   0.000823   32.48   &lt;2e-16 ***
-sex          0.910508   0.013510   67.39   &lt;2e-16 ***
+(Intercept) 2.537e+01  4.623e-02  548.85   &lt;2e-16 ***
+age         2.589e-02  8.227e-04   31.47   &lt;2e-16 ***
+sex         9.413e-01  1.350e-02   69.74   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 4.693 on 487290 degrees of freedom
-  (12707 observations deleted due to missingness)
-Multiple R-squared:  0.01182,   Adjusted R-squared:  0.01182 
-F-statistic:  2915 on 2 and 487290 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 4.69 on 487467 degrees of freedom
+  (12530 observations deleted due to missingness)
+Multiple R-squared:  0.01232,   Adjusted R-squared:  0.01231 
+F-statistic:  3040 on 2 and 487467 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </details>
 </div>
@@ -445,9 +444,9 @@ F-statistic:  2915 on 2 and 487290 DF,  p-value: &lt; 2.2e-16</code></pre>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  2.5 %      97.5 %
-(Intercept) 25.25088225 25.43217203
-age          0.02512124  0.02834727
-sex          0.88402808  0.93698683</code></pre>
+(Intercept) 25.28430315 25.46553316
+age          0.02427686  0.02750191
+sex          0.91485363  0.96776495</code></pre>
 </div>
 </details>
 </div>
@@ -460,7 +459,7 @@ sex          0.88402808  0.93698683</code></pre>
 <p>This demonstrates data stratification based on clinical thresholds.</p>
 <section id="identifying-obese-participants" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="identifying-obese-participants"><span class="header-section-number">6.1</span> Identifying “Obese” Participants</h2>
-<p>We create a new binary variable, obese, where 1 indicates BMI &gt; 30 kg/m<sup>2</sup> and 0 otherwise.</p>
+<p>We create a new binary variable <code>obese</code> where [1] indicates BMI &gt; 30 kg/m<sup>2</sup> and [0] otherwise.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">obese =</span> <span class="fu">if_else</span>(bmi <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
@@ -471,14 +470,14 @@ sex          0.88402808  0.93698683</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-361051 126242 </code></pre>
+361582 125888 </code></pre>
 </div>
 </details>
 </div>
 </section>
 <section id="comparing-mean-hba1c" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="comparing-mean-hba1c"><span class="header-section-number">6.2</span> Comparing Mean HbA1c</h2>
-<p>We can compare the average HbA1c (Glycated haemoglobin, a measure of blood glucose) between the obese and non-obese groups.</p>
+<p>We can compare HbA1c (Glycated haemoglobin, a measure of blood glucose) between the obese and non-obese groups.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(obese) <span class="sc">|&gt;</span></span>
@@ -492,13 +491,13 @@ sex          0.88402808  0.93698683</code></pre>
 <pre><code># A tibble: 3 × 4
   obese mean_hba1c sd_hba1c n_group
   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;int&gt;
-1     0       35.6     6.28  361051
-2     1       38.4     6.27  126242
-3    NA       36.4     6.35   12707</code></pre>
+1     0       35.6     6.27  361582
+2     1       38.3     6.23  125888
+3    NA       36.2     6.30   12530</code></pre>
 </div>
 </details>
 </div>
-<p>Note: “NA” means missing. Not all participants will have data on every phenotype. This group has HbA1c but not BMI.</p>
+<p>Note: “NA” means missing. Not all participants will have data on every phenotype. NAs here show the group with HbA1c but not BMI.</p>
 </section>
 </section>
 <section id="logistic-regression" class="level1" data-number="7">
@@ -523,20 +522,20 @@ glm(formula = obese ~ age + sex + hba1c, family = "binomial",
     data = ukb)
 
 Coefficients:
-              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -3.5421105  0.0278758 -127.07  &lt; 2e-16 ***
-age         -0.0014952  0.0004165   -3.59 0.000331 ***
-sex          0.2230137  0.0066952   33.31  &lt; 2e-16 ***
-hba1c        0.0668338  0.0005349  124.94  &lt; 2e-16 ***
+              Estimate Std. Error  z value Pr(&gt;|z|)    
+(Intercept) -3.5432746  0.0279410 -126.813  &lt; 2e-16 ***
+age         -0.0012962  0.0004170   -3.108  0.00188 ** 
+sex          0.2394041  0.0066978   35.743  &lt; 2e-16 ***
+hba1c        0.0662329  0.0005371  123.317  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 557541  on 487292  degrees of freedom
-Residual deviance: 538893  on 487289  degrees of freedom
-  (12707 observations deleted due to missingness)
-AIC: 538901
+    Null deviance: 556901  on 487469  degrees of freedom
+Residual deviance: 538468  on 487466  degrees of freedom
+  (12530 observations deleted due to missingness)
+AIC: 538476
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
@@ -549,7 +548,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)         age         sex       hba1c 
- 0.02895216  0.99850594  1.24983769  1.06911782 </code></pre>
+ 0.02891847  0.99870465  1.27049189  1.06847557 </code></pre>
 </div>
 </details>
 </div>
@@ -570,9 +569,9 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(chd_unadjusted_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
-<pre><code>                 Estimate  Std. Error    z value    Pr(&gt;|z|)
-(Intercept)    -3.0936520 0.007337877 -421.60039 0.00000e+00
-current_smoker  0.3516525 0.019739057   17.81506 5.39968e-71</code></pre>
+<pre><code>                 Estimate  Std. Error    z value     Pr(&gt;|z|)
+(Intercept)    -3.0971417 0.007350017 -421.37886 0.000000e+00
+current_smoker  0.3172115 0.020021710   15.84338 1.562033e-56</code></pre>
 </div>
 </details>
 </div>
@@ -589,22 +588,22 @@ current_smoker  0.3516525 0.019739057   17.81506 5.39968e-71</code></pre>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  Estimate  Std. Error    z value      Pr(&gt;|z|)
-(Intercept)    -8.86619650 0.061855293 -143.33772  0.000000e+00
-current_smoker  0.61013795 0.020242105   30.14202 1.364682e-199
-age             0.09868043 0.001008072   97.89021  0.000000e+00</code></pre>
+(Intercept)    -8.87328166 0.062141556 -142.79143  0.000000e+00
+current_smoker  0.58188316 0.020524501   28.35066 8.214332e-177
+age             0.09875301 0.001012954   97.49017  0.000000e+00</code></pre>
 </div>
 </details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Odds Ratios:</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Unadjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_unadjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Unadjusted OR = 1.42"</code></pre>
+<pre><code>[1] "Unadjusted OR = 1.37"</code></pre>
 </div>
 </details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">str_c</span>(<span class="st">"Adjusted OR = "</span>, <span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(chd_adjusted_model)[<span class="st">"current_smoker"</span>]),<span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Adjusted OR = 1.84"</code></pre>
+<pre><code>[1] "Adjusted OR = 1.79"</code></pre>
 </div>
 </details>
 </div>
@@ -627,7 +626,7 @@ age             0.09868043 0.001008072   97.89021  0.000000e+00</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-485178  14822 </code></pre>
+485407  14593 </code></pre>
 </div>
 </details>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression model</span></span>
@@ -644,18 +643,18 @@ glm(formula = t2d ~ age + sex + hba1c, family = "binomial", data = ukb)
 
 Coefficients:
               Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -13.433785   0.088164 -152.37   &lt;2e-16 ***
-age           0.054316   0.001204   45.11   &lt;2e-16 ***
-sex           0.364382   0.017737   20.54   &lt;2e-16 ***
-hba1c         0.165695   0.001285  128.90   &lt;2e-16 ***
+(Intercept) -13.155505   0.087657 -150.08   &lt;2e-16 ***
+age           0.049976   0.001198   41.71   &lt;2e-16 ***
+sex           0.376834   0.017836   21.13   &lt;2e-16 ***
+hba1c         0.164822   0.001299  126.90   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 133502  on 499999  degrees of freedom
-Residual deviance: 110142  on 499996  degrees of freedom
-AIC: 110150
+    Null deviance: 131901  on 499999  degrees of freedom
+Residual deviance: 109674  on 499996  degrees of freedom
+AIC: 109682
 
 Number of Fisher Scoring iterations: 7</code></pre>
 </div>
@@ -664,7 +663,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <details><summary>View output</summary>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)          age          sex        hba1c 
-1.464810e-06 1.055818e+00 1.439624e+00 1.180213e+00 </code></pre>
+1.934803e-06 1.051246e+00 1.457662e+00 1.179183e+00 </code></pre>
 </div>
 </details>
 </div>
@@ -704,19 +703,11 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <h2 data-number="10.1" class="anchored" data-anchor-id="final-task"><span class="header-section-number">10.1</span> Final task</h2>
 <p>Repeat the above instructions, but this time inspect the Systolic Blood Pressre “<code>systolic_bp</code>” variable.</p>
 <ul>
-<li>Does the mean and range seem sensible?</li>
+<li>What is the mean? Does the range of values seem realistic?</li>
 <li>Does the distribution on the histogram look approximately Gaussian (“normal”)?</li>
-<li>Test associations with age and sex. Are they associated?</li>
+<li>Test associations with age and sex. What are the associations?</li>
 <li>Create a binary variable “hypertension” where participants with <code>systolic_bp &gt;= 140</code> are defined as cases. How many are there?</li>
-<li>What is the association between hypertension and age and sex?</li>
-<li>What is the association between hypertension and prevalent Coronary Heart Disease (<code>chd</code>)?</li>
-<li>Any other ideas you with to explore?</li>
 </ul>
-</section>
-<section id="further-reading" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">10.2</span> Further reading</h2>
-<p>You can find a free “Epidemiology for the uninitiated” online book (<a href="https://www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated">www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated</a>, which includes definitions, study design, sources of bias, and more.</p>
-<p>You can find a free “R for Data Science” online book (<a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a>) on how to do data science with R—from the introductory to the advanced.</p>
 </section>
 </section>
 

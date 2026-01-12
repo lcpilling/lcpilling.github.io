@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Luke C Pilling">
+<meta name="dcterms.date" content="2026-01-12">
+
+<title>HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="workshop_04-1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="workshop_04-1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="workshop_04-1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="workshop_04-1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="workshop_04-1_files/libs/quarto-html/popper.min.js"></script>
+<script src="workshop_04-1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="workshop_04-1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="workshop_04-1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="workshop_04-1_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="workshop_04-1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="workshop_04-1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="workshop_04-1_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1</h1>
+            <p class="subtitle lead">MSc Health Data Science, University of Exeter</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dr Luke C Pilling <a href="mailto:L.Pilling@exeter.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2026-01-12</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#openstack" id="toc-openstack" class="nav-link" data-scroll-target="#openstack"><span class="header-section-number">2.1</span> OpenStack</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory"><span class="header-section-number">2.2</span> Working directory</a></li>
+  </ul></li>
+  <li><a href="#uk-biobank-gp-prescribing-data" id="toc-uk-biobank-gp-prescribing-data" class="nav-link" data-scroll-target="#uk-biobank-gp-prescribing-data"><span class="header-section-number">3</span> UK Biobank GP prescribing data</a></li>
+  <li><a href="#identify-clinical-codes-for-atorvastatin" id="toc-identify-clinical-codes-for-atorvastatin" class="nav-link" data-scroll-target="#identify-clinical-codes-for-atorvastatin"><span class="header-section-number">4</span> Identify clinical codes for atorvastatin</a>
+  <ul class="collapse">
+  <li><a href="#bnf" id="toc-bnf" class="nav-link" data-scroll-target="#bnf"><span class="header-section-number">4.1</span> BNF</a></li>
+  <li><a href="#snomed-ct" id="toc-snomed-ct" class="nav-link" data-scroll-target="#snomed-ct"><span class="header-section-number">4.2</span> SNOMED CT</a></li>
+  </ul></li>
+  <li><a href="#subset-prescription-records" id="toc-subset-prescription-records" class="nav-link" data-scroll-target="#subset-prescription-records"><span class="header-section-number">5</span> Subset prescription records</a></li>
+  <li><a href="#launch-r-and-tidyverse" id="toc-launch-r-and-tidyverse" class="nav-link" data-scroll-target="#launch-r-and-tidyverse"><span class="header-section-number">6</span> Launch R and tidyverse</a></li>
+  <li><a href="#load-uk-biobank-data" id="toc-load-uk-biobank-data" class="nav-link" data-scroll-target="#load-uk-biobank-data"><span class="header-section-number">7</span> Load UK Biobank data</a>
+  <ul class="collapse">
+  <li><a href="#baseline-assessment-data" id="toc-baseline-assessment-data" class="nav-link" data-scroll-target="#baseline-assessment-data"><span class="header-section-number">7.1</span> Baseline assessment data</a></li>
+  <li><a href="#gp-prescriptions-of-atorvastatin" id="toc-gp-prescriptions-of-atorvastatin" class="nav-link" data-scroll-target="#gp-prescriptions-of-atorvastatin"><span class="header-section-number">7.2</span> GP prescriptions of atorvastatin</a></li>
+  </ul></li>
+  <li><a href="#investigate-participants-prescribed-atorvastatin" id="toc-investigate-participants-prescribed-atorvastatin" class="nav-link" data-scroll-target="#investigate-participants-prescribed-atorvastatin"><span class="header-section-number">8</span> Investigate participants prescribed atorvastatin</a>
+  <ul class="collapse">
+  <li><a href="#identify-prevalent-prescriptions" id="toc-identify-prevalent-prescriptions" class="nav-link" data-scroll-target="#identify-prevalent-prescriptions"><span class="header-section-number">8.1</span> Identify prevalent prescriptions</a></li>
+  <li><a href="#hypothesis-1-statins-affect-ldl-levels" id="toc-hypothesis-1-statins-affect-ldl-levels" class="nav-link" data-scroll-target="#hypothesis-1-statins-affect-ldl-levels"><span class="header-section-number">8.2</span> Hypothesis 1: statins affect LDL levels</a></li>
+  <li><a href="#hypothesis-2-current-ldl-predicts-future-statin-likelihood" id="toc-hypothesis-2-current-ldl-predicts-future-statin-likelihood" class="nav-link" data-scroll-target="#hypothesis-2-current-ldl-predicts-future-statin-likelihood"><span class="header-section-number">8.3</span> Hypothesis 2: current LDL predicts future statin likelihood</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In this workshop you will learn how to identify clinical codes for a specific medication (atorvastatin), extract prescriptions that contain this chemical substance, and perform epidemiological analysis with the derived data. This builds on skills from previous modules, and the workshops you have already undertaken.</p>
+<p>We’ll use data similar to the UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years (<a href="https://www.ukbiobank.ac.uk/">www.ukbiobank.ac.uk</a>). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.</p>
+</section>
+<section id="setup" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
+<section id="openstack" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="openstack"><span class="header-section-number">2.1</span> OpenStack</h2>
+<p>Log in to your OpenStack instance as usual. Activate the <code>conda</code> environment by typing the below into your Linux terminal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate hpdm208z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We will use some linux command line tools you have met before for file manipulation, and then R for statistical analysis.</p>
+<p>We’ll use functions from the {<a href="https://tidyverse.org/">tidyverse</a>} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.</p>
+<p>If not already installed in your <code>conda</code> environment, type the below into your Linux terminal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> r r-tidyverse <span class="at">-y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can complete this workshop directly in the linux terminal, or create a JupyterLab notebook if you prefer. If the former make sure to save your commands in a text file.</p>
+</section>
+<section id="working-directory" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="working-directory"><span class="header-section-number">2.2</span> Working directory</h2>
+<p>All data for this workshop are on your OpenStack instance at the below location. Code examples assume this is your working directory:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/hpdm208z/workshops/medications_data/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="uk-biobank-gp-prescribing-data" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> UK Biobank GP prescribing data</h1>
+<p>This synthetic version of primary care (GP) prescribing data linked to UK Biobank can be viewed as below:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> ukb_gp_scripts.tsv.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eid date    bnf sct
+x100001 2010-12-16  0212000B0AAANAN 
+x100001 2011-08-07  0206020A0BBABAB 
+x100001 2012-09-24  0206020A0BBAAAA 
+x100001 2012-12-27  0212000B0AAAQAQ 
+x100001 2013-03-27  0206020A0AAAVAV 
+x100001 2013-10-03  0206020A0AAABAB 
+x100001 2014-08-26  0212000B0AAAMAM 
+x100001 2015-03-04  0212000B0AAALAL 
+x100006 2000-08-19      3760211000001100
+x100006 2001-03-08      5296611000001102
+x100006 2005-07-19      6001811000001102
+x100006 2015-01-18      9305301000001100
+x100007 2003-04-15  1106000AKBBAAAA 
+x100007 2003-11-01  23604106523 </code></pre>
+</div>
+</div>
+<p>It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data.</p>
+<p>Depending on the computer system the GP used, a prescription may be coded with British National Formulary (<code>bnf</code>) codes or with SNOMED CT (<code>sct</code>) codes.</p>
+</section>
+<section id="identify-clinical-codes-for-atorvastatin" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Identify clinical codes for atorvastatin</h1>
+<section id="bnf" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="bnf"><span class="header-section-number">4.1</span> BNF</h2>
+<p>The BNF is the “go to” guide for prescribing professionals in the UK (<a href="https://bnf.nice.org.uk/">bnf.nice.org.uk</a>).</p>
+<p>The NHS Business Services Authority (BSA) host the current and past releases of the BNF look up files <a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic">here</a>.</p>
+<p>You will find “<a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic/resource/2ddc9855-8b46-44d1-bac4-3cf475a2bcea">Historic 2024 Version 86</a>” in a file named:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bnf_code_historic_2024_version_86.tsv.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Find the BNF Chemical Substance code for “Atorvastatin”.</p>
+<p>Because BNF codes are hierarchical, all the BNF Product Codes that include this chemical substance should start with the chemical substance code. Save the chemical substance code to a text file for use later. In some situations you may want to search for multiple chemical substance codes, which is why we will still save to a file rather than typing manually later.</p>
+<p>You can use Linux command line tools (such as <code>grep</code>) or you can use R or Python to achieve this.</p>
+</section>
+<section id="snomed-ct" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="snomed-ct"><span class="header-section-number">4.2</span> SNOMED CT</h2>
+<p>SNOMED CT (Systemized Nomenclature of Medicine – Clinical Terms) is an international standard covering all aspects of healthcare. The NHS dm+d (Dictionary of Medicines and Devices) provides unique identifiers for medical products, all of which are linked to SNOMED CT codes.</p>
+<p>The NHS provides a “SNOMED CT browser” (https://termbrowser.nhs.uk/). You can use this to find the “substance” code for atorvastatin.</p>
+<p>We will use the SNOMED CT UK Drug Extension v41.3.0 from NHS Digital to find the relevant product codes. You will find an extract of this (download from <a href="https://isd.digital.nhs.uk/trud/users/authenticated/filters/0/categories/26/items/105/releases">here</a>) on your OpenStack instance named:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sct2_chemical_product_map.tsv.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This maps substance codes (<code>destinationId</code>) to product codes (<code>sourceId</code>). Find all the SNOMED CT product codes that include atorvastatin and save these to a text file.</p>
+<p>You can use Linux command line tools (such as <code>grep</code>) or you can use R or Python to achieve this.</p>
+</section>
+</section>
+<section id="subset-prescription-records" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Subset prescription records</h1>
+<p>You should now have two text files containing BNF Chemical Substance and SNOMED CT product codes for atorvastatin for the two systems.</p>
+<p>Extract the rows in <code>ukb_gp_scripts.tsv.gz</code> that correspond to prescriptions of atorvastatin. Also include the file header, so that columns are labelled.</p>
+<p>Use Linux command line tools (such as <code>grep</code>) to achieve this. Whilst it is possible to load this file into R, it is good practice to subset prior to loading. A real medical records dataset may be many Gb in size.</p>
+<p>We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted atorvastatin GP prescriptions, and undertake some epidemiological analysis.</p>
+</section>
+<section id="launch-r-and-tidyverse" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Launch R and tidyverse</h1>
+<p>To launch R on the Linux command line just type <code>R</code>. The following commands in this workshop are designed to be run in R itself.</p>
+<p>Load the {tidyverse} library.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="load-uk-biobank-data" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Load UK Biobank data</h1>
+<p>This initial step is crucial to ensure the data is imported correctly and that we understand its structure.</p>
+<section id="baseline-assessment-data" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="baseline-assessment-data"><span class="header-section-number">7.1</span> Baseline assessment data</h2>
+<p>This is a simulated dataset designed to look like the real UK Biobank data (data types, ranges, and approximate correlation structure), but is synthetic to preserve participant anonymity.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Inspect the data by previewing the first few rows, check the variable types, etc. to make sure the data looks sensible.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+  eid     assessment_date   age   sex   bmi current_smoker   ldl hba1c systolic_bp chd_prevalent chd_incident
+  &lt;chr&gt;   &lt;date&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 x100001 2010-07-28         61     1  28.4              0  3.55  43.3        192.             0            1
+2 x100002 2010-09-07         51     0  28.0              0  3.05  33.4        143.             0            0
+3 x100003 2007-06-07         49     1  29.3              0  3.72  35.6        128.             0            0
+4 x100004 2010-02-24         51     1  24.8              0  2.72  34.8        152.             0            0
+5 x100005 2009-03-17         57     1  31.3              0  3.34  37.3        162.             0            0
+6 x100006 2008-08-05         42     0  33.9              0  3.85  30.1        156.             0            0
+  t2d_prevalent t2d_incident in_gp
+          &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1             0            0     1
+2             0            0     0
+3             0            0     1
+4             0            0     0
+5             0            1     0
+6             0            0     1</code></pre>
+</div>
+</div>
+<p>Only a subset of UK Biobank participants currently have linked GP data. Let’s subset our dataset to these participants only:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 500000     14</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(in_gp<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 225017     14</code></pre>
+</div>
+</div>
+</section>
+<section id="gp-prescriptions-of-atorvastatin" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="gp-prescriptions-of-atorvastatin"><span class="header-section-number">7.2</span> GP prescriptions of atorvastatin</h2>
+<p>Here I will assume you have a file in your working directory called <code>ukb_gp_scripts.atorvastatin.tsv</code> that is the subset of the full UK Biobank GP prescriptions data corresponding to prescriptions containing the chemical substance “atorvastatin”.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.atorvastatin.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Check your file has a similar number of rows and structure to this one. If not, you may have missed some clinical codes, or included some non-atorvastatin codes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 280692      4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  eid     date       bnf               sct
+  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;
+1 x100001 2010-12-16 0212000B0AAANAN    NA
+2 x100001 2012-12-27 0212000B0AAAQAQ    NA
+3 x100001 2014-08-26 0212000B0AAAMAM    NA
+4 x100001 2015-03-04 0212000B0AAALAL    NA
+5 x100020 2014-01-15 0212000B0AAASAS    NA
+6 x100037 2000-06-30 0212000B0AAAQAQ    NA</code></pre>
+</div>
+</div>
+<p>How many unique participants are there?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44612</code></pre>
+</div>
+</div>
+<p>Does the data look sensible?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+"1997-10-17" "2002-11-21" "2008-05-24" "2007-11-22" "2012-09-30" "2019-03-09" </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="investigate-participants-prescribed-atorvastatin" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Investigate participants prescribed atorvastatin</h1>
+<p>For some types of analysis such as longitudinal analysis, it is useful to keep the data in this “long” format (where participants have multiple rows). However for today, we just want to find the participants who have prescriptions before or after assessment, and do some simple analysis with LDL levels.</p>
+<section id="identify-prevalent-prescriptions" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="identify-prevalent-prescriptions"><span class="header-section-number">8.1</span> Identify prevalent prescriptions</h2>
+<p>Next let’s work out which participants were prescribed atorvastatin before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).</p>
+<p>We can “join” the assessment date with the prescription date using functions from the {dplyr} package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Create two new binary (0/1) variables <code>statin_prevalent</code> and <code>statin_incident</code> in the <code>ukb_scripts</code> object indicating whether the prescription was before or after assessment.</p>
+<p>We can use this to create corresponding variables in the main <code>ukb</code> data object.</p>
+<p>Hopefully you have numbers similar to these (note that some people have both prevalent and incident prescriptions!):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1 
+201967  23050 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1 
+191951  33066 </code></pre>
+</div>
+</div>
+</section>
+<section id="hypothesis-1-statins-affect-ldl-levels" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="hypothesis-1-statins-affect-ldl-levels"><span class="header-section-number">8.2</span> Hypothesis 1: statins affect LDL levels</h2>
+<p>Statins are prescribed to reduce risk of coronary heart disease by lowering cholesterol levels.</p>
+<p>Do you hypothesise that participants prescribed a statin prior to their LDL measurement have higher or lower LDL cholesterol than participants not previously prescribed a statin?</p>
+<p>Test the hypothesis using a linear regression model. Adjust for age and sex.</p>
+<p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
+</section>
+<section id="hypothesis-2-current-ldl-predicts-future-statin-likelihood" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="hypothesis-2-current-ldl-predicts-future-statin-likelihood"><span class="header-section-number">8.3</span> Hypothesis 2: current LDL predicts future statin likelihood</h2>
+<p>Do you hypothesise that LDL predicts future statin prescription?</p>
+<p>Test the hypothesis using a logistic regression model. Adjust for age and sex.</p>
+<p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr Luke C Pilling">
-<meta name="dcterms.date" content="2026-01-12">
+<meta name="dcterms.date" content="2026-01-15">
 
 <title>HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1</title>
 <style>
@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2026-01-12</p>
+        <p class="date">2026-01-15</p>
       </div>
     </div>
     
@@ -120,11 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory"><span class="header-section-number">2.2</span> Working directory</a></li>
   </ul></li>
   <li><a href="#uk-biobank-gp-prescribing-data" id="toc-uk-biobank-gp-prescribing-data" class="nav-link" data-scroll-target="#uk-biobank-gp-prescribing-data"><span class="header-section-number">3</span> UK Biobank GP prescribing data</a></li>
-  <li><a href="#identify-clinical-codes-for-atorvastatin" id="toc-identify-clinical-codes-for-atorvastatin" class="nav-link" data-scroll-target="#identify-clinical-codes-for-atorvastatin"><span class="header-section-number">4</span> Identify clinical codes for atorvastatin</a>
-  <ul class="collapse">
-  <li><a href="#bnf" id="toc-bnf" class="nav-link" data-scroll-target="#bnf"><span class="header-section-number">4.1</span> BNF</a></li>
-  <li><a href="#snomed-ct" id="toc-snomed-ct" class="nav-link" data-scroll-target="#snomed-ct"><span class="header-section-number">4.2</span> SNOMED CT</a></li>
-  </ul></li>
+  <li><a href="#identify-bnf-clinical-codes-for-atorvastatin" id="toc-identify-bnf-clinical-codes-for-atorvastatin" class="nav-link" data-scroll-target="#identify-bnf-clinical-codes-for-atorvastatin"><span class="header-section-number">4</span> Identify BNF clinical codes for atorvastatin</a></li>
   <li><a href="#subset-prescription-records" id="toc-subset-prescription-records" class="nav-link" data-scroll-target="#subset-prescription-records"><span class="header-section-number">5</span> Subset prescription records</a></li>
   <li><a href="#launch-r-and-tidyverse" id="toc-launch-r-and-tidyverse" class="nav-link" data-scroll-target="#launch-r-and-tidyverse"><span class="header-section-number">6</span> Launch R and tidyverse</a></li>
   <li><a href="#load-uk-biobank-data" id="toc-load-uk-biobank-data" class="nav-link" data-scroll-target="#load-uk-biobank-data"><span class="header-section-number">7</span> Load UK Biobank data</a>
@@ -138,6 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#hypothesis-1-statins-affect-ldl-levels" id="toc-hypothesis-1-statins-affect-ldl-levels" class="nav-link" data-scroll-target="#hypothesis-1-statins-affect-ldl-levels"><span class="header-section-number">8.2</span> Hypothesis 1: statins affect LDL levels</a></li>
   <li><a href="#hypothesis-2-current-ldl-predicts-future-statin-likelihood" id="toc-hypothesis-2-current-ldl-predicts-future-statin-likelihood" class="nav-link" data-scroll-target="#hypothesis-2-current-ldl-predicts-future-statin-likelihood"><span class="header-section-number">8.3</span> Hypothesis 2: current LDL predicts future statin likelihood</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9</span> Summary</a></li>
   </ul>
 </nav>
 </div>
@@ -149,7 +146,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>In this workshop you will learn how to identify clinical codes for a specific medication (atorvastatin), extract prescriptions that contain this chemical substance, and perform epidemiological analysis with the derived data. This builds on skills from previous modules, and the workshops you have already undertaken.</p>
+<p>In this workshop you will learn how to identify clinical codes for a specific medication (atorvastatin), extract prescriptions that contain this chemical substance, and perform epidemiological analysis with the derived data.</p>
+<p>This builds on skills from previous modules, and the workshops you have already undertaken. Refer to previous workshops for Linux and R code to complete this workshop.</p>
+<p>We will ascertain prescriptions using codes from the British National Formulary (BNF). The BNF is the “go to” guide for prescribing professionals in the UK (<a href="https://bnf.nice.org.uk/">bnf.nice.org.uk</a>).</p>
 <p>We’ll use data similar to the UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years (<a href="https://www.ukbiobank.ac.uk/">www.ukbiobank.ac.uk</a>). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.</p>
 </section>
 <section id="setup" class="level1" data-number="2">
@@ -182,36 +181,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> ukb_gp_scripts.tsv.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>eid date    bnf sct
-x100001 2010-12-16  0212000B0AAANAN 
-x100001 2011-08-07  0206020A0BBABAB 
-x100001 2012-09-24  0206020A0BBAAAA 
-x100001 2012-12-27  0212000B0AAAQAQ 
-x100001 2013-03-27  0206020A0AAAVAV 
-x100001 2013-10-03  0206020A0AAABAB 
-x100001 2014-08-26  0212000B0AAAMAM 
-x100001 2015-03-04  0212000B0AAALAL 
-x100006 2000-08-19      3760211000001100
-x100006 2001-03-08      5296611000001102
-x100006 2005-07-19      6001811000001102
-x100006 2015-01-18      9305301000001100
-x100007 2003-04-15  1106000AKBBAAAA 
-x100007 2003-11-01  23604106523 </code></pre>
+<pre><code>eid date    bnf
+x100001 2011-02-09  0206020A0AAATAT
+x100001 2011-03-04  0206020A0AAATAT
+x100001 2011-10-04  0212000B0AAASAS
+x100001 2012-04-02  21300000962
+x100001 2013-01-15  0212000B0BBACAC
+x100001 2013-02-01  0206020A0AAAJAJ
+x100001 2013-04-01  0212000B0AAAAAA
+x100001 2013-08-20  0206020A0AAAUAU
+x100001 2013-09-23  0206020A0AAATAT
+x100001 2014-05-30  0212000B0BBAEAL
+x100001 2014-12-12  0212000B0AAANAN
+x100001 2016-03-17  0212000B0AAAQAQ
+x100001 2016-07-29  0212000B0AAAFAF
+x100001 2017-03-14  0206020A0AAABAB</code></pre>
 </div>
 </div>
 <p>It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data.</p>
-<p>Depending on the computer system the GP used, a prescription may be coded with British National Formulary (<code>bnf</code>) codes or with SNOMED CT (<code>sct</code>) codes.</p>
+<p>It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data. In this synthetic dataset all prescriptions are coded with British National Formulary (<code>bnf</code>) codes. Real data may include other code types, such as SNOMED CT.</p>
 </section>
-<section id="identify-clinical-codes-for-atorvastatin" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Identify clinical codes for atorvastatin</h1>
-<section id="bnf" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="bnf"><span class="header-section-number">4.1</span> BNF</h2>
-<p>The BNF is the “go to” guide for prescribing professionals in the UK (<a href="https://bnf.nice.org.uk/">bnf.nice.org.uk</a>).</p>
+<section id="identify-bnf-clinical-codes-for-atorvastatin" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Identify BNF clinical codes for atorvastatin</h1>
 <p>The NHS Business Services Authority (BSA) host the current and past releases of the BNF look up files <a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic">here</a>.</p>
 <p>You will find “<a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic/resource/2ddc9855-8b46-44d1-bac4-3cf475a2bcea">Historic 2024 Version 86</a>” in a file named:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bnf_code_historic_2024_version_86.tsv.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>(Note I already converted it from a CSV to a TSV when downloading)</p>
 <p>Find the BNF Chemical Substance code for “Atorvastatin”.</p>
 <p>Because BNF codes are hierarchical, all the BNF Product Codes that include this chemical substance should start with the chemical substance code. Save the chemical substance code to a text file for use later. In some situations you may want to search for multiple chemical substance codes, which is why we will still save to a file rather than typing manually later.</p>
 <p>You can use Linux command line tools (such as <code>grep</code>) or you can use R or Python to achieve this.</p>
@@ -222,42 +219,18 @@ x100007 2003-11-01  23604106523 </code></pre>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> bnf_code_historic_2024_version_86.tsv.gz <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">"atorvastatin"</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f10</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="op">&gt;</span> bnf_atorvastatin.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="snomed-ct" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="snomed-ct"><span class="header-section-number">4.2</span> SNOMED CT</h2>
-<p>SNOMED CT (Systemized Nomenclature of Medicine – Clinical Terms) is an international standard covering all aspects of healthcare. The NHS dm+d (Dictionary of Medicines and Devices) provides unique identifiers for medical products, all of which are linked to SNOMED CT codes.</p>
-<p>The NHS provides a “SNOMED CT browser” (https://termbrowser.nhs.uk/). You can use this to find the “substance” code for atorvastatin.</p>
-<p>We will use the SNOMED CT UK Drug Extension v41.3.0 from NHS Digital to find the relevant product codes. You will find an extract of this (download from <a href="https://isd.digital.nhs.uk/trud/users/authenticated/filters/0/categories/26/items/105/releases">here</a>) on your OpenStack instance named:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sct2_chemical_product_map.tsv.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>This maps substance codes (<code>destinationId</code>) to product codes (<code>sourceId</code>). Find all the SNOMED CT product codes that include atorvastatin and save these to a text file.</p>
-<p>You can use Linux command line tools (such as <code>grep</code>) or you can use R or Python to achieve this.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get rows with exact matches to SNOMED CT code 373444002</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique chemical substance codes</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> sct2_chemical_product_map.tsv.gz <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-w</span> <span class="st">"373444002"</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f2</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="op">&gt;</span> sct_atorvastatin.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-</section>
 <section id="subset-prescription-records" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Subset prescription records</h1>
-<p>You should now have two text files containing BNF Chemical Substance and SNOMED CT product codes for atorvastatin for the two systems.</p>
-<p>Extract the rows in <code>ukb_gp_scripts.tsv.gz</code> that correspond to prescriptions of atorvastatin. Also include the file header, so that columns are labelled.</p>
+<p>Extract the rows in <code>ukb_gp_scripts.tsv.gz</code> that correspond to prescriptions containing the atorvastatin chemical substance. Also include the file header, so that columns are labelled.</p>
 <p>Use Linux command line tools (such as <code>grep</code>) to achieve this. Whilst it is possible to load this file into R, it is good practice to subset prior to loading. A real medical records dataset may be many Gb in size.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can search the GP scripts file for codes contained in a reference file in several ways</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we can use grep directly (as in the example below), or use tools such as `awk`</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for BNF we do not want exact matches: we want to match any rows with the prefix</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">zgrep</span> <span class="at">--fixed-strings</span> <span class="at">--file</span> bnf_atorvastatin.tsv ukb_gp_scripts.tsv.gz <span class="op">&gt;</span> ukb_gp_scripts.bnf_atorvastatin.tsv</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for SNOMED CT we want exact matches (so we will use the "whole words" flag)</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">zgrep</span> <span class="at">-w</span> <span class="at">--fixed-strings</span> <span class="at">--file</span> sct_atorvastatin.tsv ukb_gp_scripts.tsv.gz <span class="op">&gt;</span> ukb_gp_scripts.sct_atorvastatin.tsv</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># we will now combine these, making sure to include the header</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> ukb_gp_scripts.tsv.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1 <span class="op">&gt;</span> ukb_gp_scripts.atorvastatin.tsv</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ukb_gp_scripts.bnf_atorvastatin.tsv <span class="op">&gt;&gt;</span> ukb_gp_scripts.atorvastatin.tsv</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ukb_gp_scripts.sct_atorvastatin.tsv <span class="op">&gt;&gt;</span> ukb_gp_scripts.atorvastatin.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first get the header row</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> ukb_gp_scripts.tsv.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1 <span class="op">&gt;</span> ukb_gp_scripts.atorvastatin.tsv</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># next search the GP scripts file for codes contained in a reference file</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># we can do this in several ways. We can use grep directly, or use tools such as `awk`</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># for BNF we do not want exact matches: we want to match any rows with the prefix</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">zgrep</span> <span class="at">--fixed-strings</span> <span class="at">--file</span> bnf_atorvastatin.tsv ukb_gp_scripts.tsv.gz <span class="op">&gt;&gt;</span> ukb_gp_scripts.atorvastatin.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted atorvastatin GP prescriptions, and undertake some epidemiological analysis.</p>
 </section>
@@ -266,7 +239,7 @@ x100007 2003-11-01  23604106523 </code></pre>
 <p>To launch R on the Linux command line just type <code>R</code>. The following commands in this workshop are designed to be run in R itself.</p>
 <p>Load the {tidyverse} library.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-uk-biobank-data" class="level1" data-number="7">
@@ -276,11 +249,11 @@ x100007 2003-11-01  23604106523 </code></pre>
 <h2 data-number="7.1" class="anchored" data-anchor-id="baseline-assessment-data"><span class="header-section-number">7.1</span> Baseline assessment data</h2>
 <p>This is a simulated dataset designed to look like the real UK Biobank data (data types, ranges, and approximate correlation structure), but is synthetic to preserve participant anonymity.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Inspect the data by previewing the first few rows, check the variable types, etc. to make sure the data looks sensible.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 14
   eid     assessment_date   age   sex   bmi current_smoker   ldl hba1c systolic_bp chd_prevalent chd_incident
@@ -303,12 +276,12 @@ x100007 2003-11-01  23604106523 </code></pre>
 </div>
 <p>Only a subset of UK Biobank participants currently have linked GP data. Let’s subset our dataset to these participants only:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 500000     14</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(in_gp<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(in_gp<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 225017     14</code></pre>
 </div>
@@ -318,40 +291,40 @@ x100007 2003-11-01  23604106523 </code></pre>
 <h2 data-number="7.2" class="anchored" data-anchor-id="gp-prescriptions-of-atorvastatin"><span class="header-section-number">7.2</span> GP prescriptions of atorvastatin</h2>
 <p>Here I will assume you have a file in your working directory called <code>ukb_gp_scripts.atorvastatin.tsv</code> that is the subset of the full UK Biobank GP prescriptions data corresponding to prescriptions containing the chemical substance “atorvastatin”.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.atorvastatin.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.atorvastatin.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Check your file has a similar number of rows and structure to this one. If not, you may have missed some clinical codes, or included some non-atorvastatin codes.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 280692      4</code></pre>
+<pre><code>[1] 279972      3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  eid     date       bnf               sct
-  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;
-1 x100001 2010-12-16 0212000B0AAANAN    NA
-2 x100001 2012-12-27 0212000B0AAAQAQ    NA
-3 x100001 2014-08-26 0212000B0AAAMAM    NA
-4 x100001 2015-03-04 0212000B0AAALAL    NA
-5 x100020 2014-01-15 0212000B0AAASAS    NA
-6 x100037 2000-06-30 0212000B0AAAQAQ    NA</code></pre>
+<pre><code># A tibble: 6 × 3
+  eid     date       bnf            
+  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;          
+1 x100001 2011-10-04 0212000B0AAASAS
+2 x100001 2013-01-15 0212000B0BBACAC
+3 x100001 2013-04-01 0212000B0AAAAAA
+4 x100001 2014-05-30 0212000B0BBAEAL
+5 x100001 2014-12-12 0212000B0AAANAN
+6 x100001 2016-03-17 0212000B0AAAQAQ</code></pre>
 </div>
 </div>
 <p>How many unique participants are there?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 44612</code></pre>
 </div>
 </div>
 <p>Does the data look sensible?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-"1997-10-17" "2002-11-21" "2008-05-24" "2007-11-22" "2012-09-30" "2019-03-09" </code></pre>
+"1997-10-19" "2002-11-21" "2008-05-28" "2007-11-25" "2012-10-03" "2019-03-14" </code></pre>
 </div>
 </div>
 </section>
@@ -364,41 +337,41 @@ x100007 2003-11-01  23604106523 </code></pre>
 <p>Next let’s work out which participants were prescribed atorvastatin before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).</p>
 <p>We can “join” the assessment date with the prescription date using functions from the {dplyr} package:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Create two new binary (0/1) variables <code>statin_prevalent</code> and <code>statin_incident</code> in the <code>ukb_scripts</code> object indicating whether the prescription was before or after assessment.</p>
+<p>Create two new binary (0/1) variables <code>statin_prevalent</code> and <code>statin_incident</code> in the <code>ukb_scripts</code> object indicating whether the prescription was before or after assessment. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> ukb_scripts <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_prevalent =</span> <span class="fu">if_else</span>(date <span class="sc">&lt;=</span> assessment_date, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_incident  =</span> <span class="fu">if_else</span>(date <span class="sc">&gt;</span>  assessment_date, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb_scripts<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> ukb_scripts <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_prevalent =</span> <span class="fu">if_else</span>(date <span class="sc">&lt;=</span> assessment_date, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_incident  =</span> <span class="fu">if_else</span>(date <span class="sc">&gt;</span>  assessment_date, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb_scripts<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-153462 127230 </code></pre>
+153195 126777 </code></pre>
 </div>
 </div>
-<p>We can use this to create corresponding variables in the main <code>ukb</code> data object. Have a go before looking at my solution.</p>
+<p>We can use this to create corresponding binary variables in the main <code>ukb</code> data object, indicating whether a participant has a prevalent or incident prescription for atorvastatin. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
 <div class="cell" data-output-fold="true" data-output-summary="View output">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_prevalent =</span> <span class="fu">if_else</span>(eid <span class="sc">%in%</span> ukb_scripts<span class="sc">$</span>eid[ukb_scripts<span class="sc">$</span>statin_prevalent<span class="sc">==</span><span class="dv">1</span>], <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_incident  =</span> <span class="fu">if_else</span>(eid <span class="sc">%in%</span> ukb_scripts<span class="sc">$</span>eid[ukb_scripts<span class="sc">$</span>statin_incident<span class="sc">==</span><span class="dv">1</span>], <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_prevalent =</span> <span class="fu">if_else</span>(eid <span class="sc">%in%</span> ukb_scripts<span class="sc">$</span>eid[ukb_scripts<span class="sc">$</span>statin_prevalent<span class="sc">==</span><span class="dv">1</span>], <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">statin_incident  =</span> <span class="fu">if_else</span>(eid <span class="sc">%in%</span> ukb_scripts<span class="sc">$</span>eid[ukb_scripts<span class="sc">$</span>statin_incident<span class="sc">==</span><span class="dv">1</span>], <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Hopefully you have numbers similar to these (note that some people have both prevalent and incident prescriptions!):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
 201967  23050 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-191951  33066 </code></pre>
+191998  33019 </code></pre>
 </div>
 </div>
 </section>
@@ -408,15 +381,15 @@ x100007 2003-11-01  23604106523 </code></pre>
 <p>Do you hypothesise that participants prescribed a statin prior to their LDL measurement have higher or lower LDL cholesterol than participants not previously prescribed a statin?</p>
 <p>Test the hypothesis using a linear regression model. Adjust for age and sex.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> statin_prevalent, <span class="at">data =</span> ukb)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the model estimates into a data frame</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> model1 <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add variables for the confidence intervals</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>result1<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> result1<span class="sc">$</span>Estimate <span class="sc">-</span> (result1<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>result1<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> result1<span class="sc">$</span>Estimate <span class="sc">+</span> (result1<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>result1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> statin_prevalent, <span class="at">data =</span> ukb)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the model estimates into a data frame</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> model1 <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add variables for the confidence intervals</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>result1<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> result1<span class="sc">$</span>Estimate <span class="sc">-</span> (result1<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>result1<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> result1<span class="sc">$</span>Estimate <span class="sc">+</span> (result1<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>result1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Estimate   Std. Error   t value Pr(&gt;|t|)     CI_lower    CI_upper
 (Intercept)       3.102414484 0.0120108606 258.30076        0  3.078873197  3.12595577
@@ -427,24 +400,24 @@ statin_prevalent -0.531357845 0.0057835766 -91.87357        0 -0.542693655 -0.52
 </div>
 <p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop if missing key data</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(statin_prevalent) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ldl)) <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure statins is labelled clearly on the plot</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statin_group =</span> <span class="fu">factor</span>(statin_prevalent, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No prior statin"</span>, <span class="st">"Previous statin"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use ggplot to create the boxplot</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> statin_group, <span class="at">y =</span> ldl, <span class="at">fill =</span> statin_group)) <span class="sc">+</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL cholesterol by Atorvastatin status"</span>,</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Atorvastatin"</span>,</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"LDL cholesterol (mmol/L)"</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop if missing key data</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(statin_prevalent) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ldl)) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure statins is labelled clearly on the plot</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statin_group =</span> <span class="fu">factor</span>(statin_prevalent, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No prior statin"</span>, <span class="st">"Previous statin"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use ggplot to create the boxplot</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> statin_group, <span class="at">y =</span> ldl, <span class="at">fill =</span> statin_group)) <span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL cholesterol by Atorvastatin status"</span>,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Atorvastatin"</span>,</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"LDL cholesterol (mmol/L)"</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workshop_04-1_solutions_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workshop_04-1_solutions_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -455,18 +428,18 @@ statin_prevalent -0.531357845 0.0057835766 -91.87357        0 -0.542693655 -0.52
 <p>Do you hypothesise that LDL predicts future statin prescription?</p>
 <p>Test the hypothesis using a logistic regression model. Adjust for age and sex.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(statin_incident <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> ldl, </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(statin_prevalent<span class="sc">==</span><span class="dv">0</span>)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>              )</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># extract model estimates and calculate CIs</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert estimates to Odds Ratios</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> model2 <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>OR <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2[,<span class="st">"Estimate"</span>])</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2<span class="sc">$</span>Estimate <span class="sc">-</span> (result2<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2<span class="sc">$</span>Estimate <span class="sc">+</span> (result2<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>result2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(statin_incident <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> ldl, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">family =</span> binomial,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(statin_prevalent<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># extract model estimates and calculate CIs</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert estimates to Odds Ratios</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> model2 <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>OR <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2[,<span class="st">"Estimate"</span>])</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2<span class="sc">$</span>Estimate <span class="sc">-</span> (result2<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>result2<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(result2<span class="sc">$</span>Estimate <span class="sc">+</span> (result2<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>result2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate  Std. Error    z value      Pr(&gt;|z|)           OR     CI_lower     CI_upper
 (Intercept) -12.8813725 0.083900975 -153.53067  0.000000e+00 2.545019e-06 2.159101e-06 2.999915e-06
@@ -477,29 +450,33 @@ ldl           0.9611231 0.009690222   99.18485  0.000000e+00 2.614631e+00 2.5654
 </div>
 <p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop if missing key data</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(statin_prevalent<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(statin_incident) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ldl)) <span class="sc">|&gt;</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure statins is labelled clearly on the plot</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statin_group =</span> <span class="fu">factor</span>(statin_incident, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No prior statin"</span>, <span class="st">"Future statin"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use ggplot to create the boxplot</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> statin_group, <span class="at">y =</span> ldl, <span class="at">fill =</span> statin_group)) <span class="sc">+</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL cholesterol by Atorvastatin status"</span>,</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Atorvastatin"</span>,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"LDL cholesterol (mmol/L)"</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop if missing key data</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(statin_prevalent<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(statin_incident) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ldl)) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure statins is labelled clearly on the plot</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statin_group =</span> <span class="fu">factor</span>(statin_incident, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No prior statin"</span>, <span class="st">"Future statin"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use ggplot to create the boxplot</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> statin_group, <span class="at">y =</span> ldl, <span class="at">fill =</span> statin_group)) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL cholesterol by Atorvastatin status"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Atorvastatin"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"LDL cholesterol (mmol/L)"</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workshop_04-1_solutions_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workshop_04-1_solutions_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
+</section>
+<section id="summary" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Summary</h1>
+<p>Congratulations, you have successfully extracted medical prescribing data using real BNF clinical codes and performed statistical analysis. This is Health Data Science in action, and allows us to move towards investigating examples of Stratified Medicine using this and other data in future workshops.</p>
 </section>
 
 </main>

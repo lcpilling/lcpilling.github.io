@@ -1,0 +1,423 @@
+---
+title: "HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 2"
+subtitle: "MSc Health Data Science, University of Exeter"
+author: 
+ - name: "Dr Luke C Pilling"
+   email: "L.Pilling@exeter.ac.uk"
+date: "2026-01-15"
+date-format: iso
+title-block-banner: true
+format: html
+number-sections: true
+toc: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 120
+
+# Extension configuration https://github.com/mcanouil/quarto-collapse-output
+filters:
+  - collapse-output
+---
+
+```{r, include=FALSE}
+options(tibble.width = 200)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
+```
+
+
+# Introduction
+
+In this workshop you will extract prescriptions that contain two common antihypertensive medications: amlodipine (a calcium channel blocker [CCB]) and ramipril (an ACE inhibitor [ACEi]). You will perform epidemiological analysis with the derived data, identifying patient characteristics associated with being prescribed one or the other. 
+
+This builds on skills from previous modules, and the workshops you have already undertaken. Refer to previous workshops for Linux and R code to complete this workshop.
+
+We'll use the same synthetic version of UK Biobank used is Part 1. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.
+
+
+# Setup
+
+## OpenStack
+
+Log in to your OpenStack instance as usual. Activate the `conda` environment by typing the below into your Linux terminal.
+
+```{bash, eval=FALSE}
+conda activate hpdm208z
+```
+
+We will use some linux command line tools you have met before for file manipulation, and then R for statistical analysis.
+
+We'll use functions from the {[tidyverse](https://tidyverse.org/)} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.
+
+If not already installed in your `conda` environment, type the below into your Linux terminal.
+
+```{bash, eval=FALSE}
+conda install -c r r-tidyverse -y
+```
+
+You can complete this workshop directly in the linux terminal, or create a JupyterLab notebook if you prefer. If the former make sure to save your commands in a text file.
+
+## Working directory
+
+All data for this workshop are on your OpenStack instance at the below location. Code examples assume this is your working directory:
+
+```{bash, eval=FALSE}
+~/hpdm208z/workshops/medications_data/
+```
+
+
+# UK Biobank GP prescribing data
+
+This synthetic version of primary care (GP) prescribing data linked to UK Biobank can be viewed as below:
+
+```{bash}
+zcat ukb_gp_scripts.tsv.gz | head -n15
+```
+
+It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data. In this synthetic dataset all prescriptions are coded with British National Formulary (`bnf`) codes. Real data may include other code types, such as SNOMED CT.
+
+
+# Identify BNF clinical codes for amlodipine and ramipril
+
+Identify the BNF Chemical Substance code for each medication. 
+
+When considering atorvastatin previously we knew that the products only contained the single chemical substance. Products for conditions such as hypertension can include multiple chemical substances in the same tablet. 
+
+Search for amlodipine in the BNF file and inspect the matched rows. Amlodipine (a calcium channel blocker [CCB]) can be prescribed alongside Olmesartan medoxomil (an angiotension receptor blocker [ARB]), so we need to identify the Chemical Substance code that refers to procuts containing amlodipine only.
+
+```{bash, include=FALSE}
+# get rows with amlodipine (note the -i 'ignore case' flag)
+# keep all columns to inspect file output
+zcat bnf_code_historic_2024_version_86.tsv.gz | grep -i "amlodipine" > bnf_amlodipine.tsv
+cut -f10-13 bnf_amlodipine.tsv
+```
+
+Looks like it is just one code that is specific for products containing only amlodipine. Save that to a file to use when extracting the GP prescriptions. (Note you can also see brand names for amlodipine here such as "Istin" but it is the same chemical substance). 
+
+```{bash, include=FALSE}
+echo "0206020A0" > bnf_amlodipine.tsv
+```
+
+Now repeat and find the BNF rows that include ramipril. Inspect the file and find the Chemical Substance code that refers to products containing only ramipril.
+
+```{bash, include=FALSE}
+# get rows with ramipril (note the -i 'ignore case' flag)
+# keep all columns to inspect file output
+zcat bnf_code_historic_2024_version_86.tsv.gz | grep -i "ramipril" > bnf_ramipril.tsv
+cut -f10-13 bnf_ramipril.tsv
+```
+
+Looks like it is just one code that is specific for ramipril as well. Save that to a file to use when extracting the GP prescriptions.
+
+```{bash, include=FALSE}
+echo "0205051R0" > bnf_ramipril.tsv
+```
+
+
+# Subset prescription records
+
+Extract the rows in `ukb_gp_scripts.tsv.gz` that correspond to prescriptions containing the amlodipine or ramipril chemical substance only. Also include the file header, so that columns are labelled.
+
+Use Linux command line tools (such as `grep`) to achieve this. 
+
+```{bash, include=FALSE}
+# first get the header row
+zcat ukb_gp_scripts.tsv.gz | head -n 1 > ukb_gp_scripts.amlodipine.tsv
+zcat ukb_gp_scripts.tsv.gz | head -n 1 > ukb_gp_scripts.ramipril.tsv
+
+# next search the GP scripts file for codes contained in a reference file
+# we can do this in several ways. We can use grep directly, or use tools such as `awk`
+# for BNF we do not want exact matches: we want to match any rows with the prefix
+zgrep --fixed-strings --file bnf_amlodipine.tsv ukb_gp_scripts.tsv.gz >> ukb_gp_scripts.amlodipine.tsv
+zgrep --fixed-strings --file bnf_ramipril.tsv ukb_gp_scripts.tsv.gz >> ukb_gp_scripts.ramipril.tsv
+```
+
+We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted GP prescriptions, and undertake some epidemiological analysis.
+
+
+# Launch R and tidyverse
+
+To launch R on the Linux command line just type `R`. The following commands in this workshop are designed to be run in R itself.
+
+Load the {tidyverse} library.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Load UK Biobank data
+
+## Baseline assessment data
+
+Load and inspect the data. Subset to those with GP records available.
+
+```{r, message=FALSE, warning=FALSE}
+ukb <- read_tsv("ukb_baseline.tsv.gz")
+```
+
+```{r}
+head(ukb)
+ukb <- ukb |> filter(in_gp==1)
+dim(ukb)
+```
+
+## GP prescriptions of antihypertensives
+
+Load and inspect the extracted GP prescriptions data. Check it looks "OK".
+
+We have kept the amlodipine and ramipril prescriptions separately as the moment, so that it is easy to create the "binary" variables later (such as `amlodipine_prevalent`).
+
+Check your extracts have similar number of rows and structure to these.
+
+### Amlodipine
+
+```{r, message=FALSE, warning=FALSE}
+ukb_scripts_amlodipine <- read_tsv("ukb_gp_scripts.amlodipine.tsv")
+```
+
+```{r}
+dim(ukb_scripts_amlodipine)
+head(ukb_scripts_amlodipine)
+```
+
+How many unique participants are there?
+
+```{r}
+length(unique(ukb_scripts_amlodipine$eid))
+```
+
+Does the data look sensible?
+
+```{r}
+summary(ukb_scripts_amlodipine$date)
+```
+
+### Ramipril
+
+```{r, message=FALSE, warning=FALSE}
+ukb_scripts_ramipril <- read_tsv("ukb_gp_scripts.ramipril.tsv")
+```
+
+```{r}
+dim(ukb_scripts_ramipril)
+head(ukb_scripts_ramipril)
+```
+
+How many unique participants are there?
+
+```{r}
+length(unique(ukb_scripts_ramipril$eid))
+```
+
+Does the data look sensible?
+
+```{r}
+summary(ukb_scripts_ramipril$date)
+```
+
+
+# Investigate participants prescribed antihypertensives
+
+For some types of analysis such as longitudinal analysis, it is useful to keep the data in this "long" format (where participants have multiple rows). 
+
+Today we just need to find the participants who have prescriptions before or after assessment, and investigate the participant characteristics associated with drug choice (CCB vs. ACEi).
+
+## Identify prevalent prescriptions
+
+Next let's work out which participants were prescribed amlodipine or ramipril before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).
+
+Join the assessment date with the prescription data.
+
+```{r, message=FALSE, warning=FALSE}
+ukb_scripts_amlodipine <- left_join(ukb_scripts_amlodipine, ukb[,c("eid","assessment_date")], by="eid")
+ukb_scripts_ramipril   <- left_join(ukb_scripts_ramipril, ukb[,c("eid","assessment_date")], by="eid")
+```
+
+Create binary (0/1) variables indicating whether each prescription was before or after the UK Biobank assessment. **Hint**: use "if else" to assign [1] if a condition is met, otherwise assign [0] to the participants.
+
+```{r, include=FALSE}
+ukb_scripts_amlodipine <- ukb_scripts_amlodipine |> mutate(
+  amlodipine_prevalent = if_else(date <= assessment_date, 1, 0),
+  amlodipine_incident  = if_else(date >  assessment_date, 1, 0)
+)
+table(ukb_scripts_amlodipine$amlodipine_prevalent)
+```
+
+```{r, include=FALSE}
+ukb_scripts_ramipril <- ukb_scripts_ramipril |> mutate(
+  ramipril_prevalent = if_else(date <= assessment_date, 1, 0),
+  ramipril_incident  = if_else(date >  assessment_date, 1, 0)
+)
+table(ukb_scripts_ramipril$ramipril_prevalent)
+```
+
+Now create corresponding binary variables in the main `ukb` data object, indicating whether a participant has a prevalent or incident prescription for each medication. **Hint**: use "if else" to assign [1] if a condition is met, otherwise assign [0] to the participants.
+
+```{r, include=FALSE}
+ukb <- ukb |> dplyr::mutate(
+  amlodipine_prevalent = if_else(eid %in% ukb_scripts_amlodipine$eid[ukb_scripts_amlodipine$amlodipine_prevalent==1], 1, 0),
+  amlodipine_incident  = if_else(eid %in% ukb_scripts_amlodipine$eid[ukb_scripts_amlodipine$amlodipine_incident==1], 1, 0),
+  ramipril_prevalent   = if_else(eid %in% ukb_scripts_ramipril$eid[ukb_scripts_ramipril$ramipril_prevalent==1], 1, 0),
+  ramipril_incident    = if_else(eid %in% ukb_scripts_ramipril$eid[ukb_scripts_ramipril$ramipril_incident==1], 1, 0)
+)
+```
+
+You should have numbers similar to these (note that some people have both prevalent and incident prescriptions!):
+
+```{r}
+table(ukb$amlodipine_prevalent)
+table(ukb$amlodipine_incident)
+table(ukb$ramipril_prevalent)
+table(ukb$ramipril_incident)
+```
+
+
+## Create a binary variable `amlodipine_or_ramipril` 
+
+This new variable will be useful for comparing predictors of drug choice. 
+
+Create a new categorical variable called `amlodipine_or_ramipril`.  Set participants who were prescribed ramipril prior to baseline to `0` and amlodipine to `1`. If a participants received both prior to baseline set them to `2`. Other participants should be missing (i.e., set to `NA`). **Hint**: use "if else".
+
+```{r, include=FALSE}
+ukb$amlodipine_or_ramipril <- if_else(ukb$ramipril_prevalent == 1 & ukb$amlodipine_prevalent == 0, 0, NA)
+ukb$amlodipine_or_ramipril <- if_else(ukb$ramipril_prevalent == 0 & ukb$amlodipine_prevalent == 1, 1, ukb$amlodipine_or_ramipril)
+ukb$amlodipine_or_ramipril <- if_else(ukb$ramipril_prevalent == 1 & ukb$amlodipine_prevalent == 1, 2, ukb$amlodipine_or_ramipril)
+```
+
+You should get numbers similar to this:
+
+```{r}
+table(ukb$amlodipine_or_ramipril)
+```
+
+
+## Hypothesis 1: antihypertensives affect blood pressure
+
+Antihypertensives are prescribed to reduce risk of cardiovascular disease and strokes by lowering blood pressure. Systolic (or "peak") blood pressure is most commonly used clinically to define hypertension.
+
+Test associations between each prevalent antihypertensive and systolic blood pressure separately using linear regression models. Adjust for age and sex.
+
+```{r, include=FALSE}
+# For example: the association between "previously prescribed amlodipine" and measured SBP
+model1 <- glm(systolic_bp ~ age + sex + amlodipine_prevalent, data = ukb)
+
+# extract the model estimates into a data frame
+# add variables for the confidence intervals
+result1 <- model1 |> summary() |> coef() |> as.data.frame()
+result1$CI_lower <- result1$Estimate - (result1$`Std. Error` * 1.96)
+result1$CI_upper <- result1$Estimate + (result1$`Std. Error` * 1.96)
+result1[-1,]
+```
+
+Remember that here, participants with amlodipine are compared to everyone else in the cohort.
+
+Next, test whether SBP is significantly different between patients prescribed amlodipine vs. ramipril. **Hint**: treat the new variable as factor.
+
+```{r, include=FALSE}
+# For example: the association between "previously prescribed amlodipine" and measured SBP
+model2 <- glm(systolic_bp ~ age + sex + as.factor(amlodipine_or_ramipril), data = ukb)
+
+# extract the model estimates into a data frame
+# add variables for the confidence intervals
+result2 <- model2 |> summary() |> coef() |> as.data.frame()
+result2$CI_lower <- result2$Estimate - (result2$`Std. Error` * 1.96)
+result2$CI_upper <- result2$Estimate + (result2$`Std. Error` * 1.96)
+result2[-1,]
+```
+
+Now we are comparing patients prescribed amlodipine (coded as `1`) to those prescribed ramipril (coded as `0`). In the same model we also compare those prescribed both (coded as `2`) to ramipril.
+
+
+## Hypothesis 2: GP choice of CCB or ACEi depends on patient characteristics
+
+We know from the NICE guidelines that GPs have a choice of medicines to prescribe to a patient following their diagnosis of hypertension.
+
+### Type-2 diabetes
+
+Which medicine do you hypothesise is more common in patients with diagnosed type-2 diabetes? See variables `t2d_prevalent` and `t2d_incident`.
+
+```{r, include=FALSE}
+# cross-tabulate
+table(ukb$t2d_prevalent, ukb$amlodipine_prevalent)
+table(ukb$t2d_prevalent, ukb$ramipril_prevalent)
+table(ukb$t2d_prevalent, ukb$amlodipine_or_ramipril)
+```
+
+Test the hypothesis using logistic regression models. 
+
+```{r, include=FALSE}
+# run logistic regression model - is ramipril prescription more likely than amlodipine
+# if the patient has type-2 diabetes?
+model3 <- glm(t2d_prevalent ~ age + sex + as.factor(amlodipine_or_ramipril), data = ukb, family = binomial)
+
+# extract model estimates and calculate CIs
+# convert estimates to Odds Ratios
+result3 <- model3 |> summary() |> coef() |> as.data.frame()
+result3$OR <- exp(result3[,"Estimate"])
+result3$CI_lower <- exp(result3$Estimate - (result3$`Std. Error` * 1.96))
+result3$CI_upper <- exp(result3$Estimate + (result3$`Std. Error` * 1.96))
+result3[-1,]
+```
+
+Do the results fit your expectations? Remember that an Odds Ratio (OR) < 1 would indicate that the coded group (e.g., amlodipine `1`) is less likely to have the outcome (in this case type-2 diabetes) compared to the reference group (i.e., ramipril `0`).
+
+
+### Age
+
+Which medicine do you hypothesise is more common in younger patients? 
+
+Summarize the age at baseline assessment in those with previous prescriptions of amlodipine and ramipril. 
+
+```{r, include=FALSE}
+summary(ukb$age[ukb$amlodipine_prevalent==1])
+summary(ukb$age[ukb$ramipril_prevalent==1])
+```
+
+Test the hypothesis that participants prescribed amlodipine are older at baseline assessment using a regression model. **Hint**: the model needs to treat `amlodipine_or_ramipril` as factor
+
+```{r, include=FALSE}
+# For example: the association between "previously prescribed amlodipine" and measured SBP
+model4 <- glm(age ~ sex + as.factor(amlodipine_or_ramipril), data = ukb)
+
+# extract the model estimates into a data frame
+# add variables for the confidence intervals
+result4 <- model4 |> summary() |> coef() |> as.data.frame()
+result4$CI_lower <- result4$Estimate - (result4$`Std. Error` * 1.96)
+result4$CI_upper <- result4$Estimate + (result4$`Std. Error` * 1.96)
+result4
+```
+
+The estimate shows the average difference in age (in units of years) between the groups. It the difference statistically significant?
+
+Use a boxplot to visualize the median age between the two groups.
+
+```{r, include=FALSE}
+ukb |>
+  # drop if missing key data
+  filter(!is.na(amlodipine_or_ramipril)) |>
+  # Provide "nice" labels
+  mutate(group = factor(amlodipine_or_ramipril, 
+                        levels = c(0, 1, 2), 
+                        labels = c("Ramipril", "Amlodipine", "Both"))
+         ) |>
+  # Use ggplot to create the boxplot
+  ggplot(aes(x = group, y = age, fill = group)) +
+  geom_boxplot() +
+  labs(
+    title = "Age at baseline by antihypertensive medication",
+    x = "Antihypertensive medication",
+    y = "Age at assessment (years)"
+  ) +
+  theme(legend.position = "none")
+```
+
+
+# Summary
+
+Congratulations, you've investigated an example of real-world stratified medicine, where patient treatment is tailored to their characteristics. 
+
+
+```{r, include=FALSE}
+## tidy up
+system("rm bnf_amlodipine.tsv bnf_ramipril.tsv ukb_gp_scripts.amlodipine.tsv ukb_gp_scripts.ramipril.tsv")
+```

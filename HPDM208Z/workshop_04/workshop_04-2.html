@@ -9,7 +9,7 @@
 <meta name="author" content="Dr Luke C Pilling">
 <meta name="dcterms.date" content="2026-01-15">
 
-<title>HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1</title>
+<title>HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,18 +60,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="workshop_04-1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="workshop_04-1_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="workshop_04-1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="workshop_04-1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="workshop_04-1_files/libs/quarto-html/popper.min.js"></script>
-<script src="workshop_04-1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="workshop_04-1_files/libs/quarto-html/anchor.min.js"></script>
-<link href="workshop_04-1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="workshop_04-1_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="workshop_04-1_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="workshop_04-1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="workshop_04-1_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="workshop_04-2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="workshop_04-2_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="workshop_04-2_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="workshop_04-2_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="workshop_04-2_files/libs/quarto-html/popper.min.js"></script>
+<script src="workshop_04-2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="workshop_04-2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="workshop_04-2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="workshop_04-2_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="workshop_04-2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="workshop_04-2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="workshop_04-2_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1</h1>
+      <h1 class="title">HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 2</h1>
             <p class="subtitle lead">MSc Health Data Science, University of Exeter</p>
                       </div>
   </div>
@@ -120,19 +120,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory"><span class="header-section-number">2.2</span> Working directory</a></li>
   </ul></li>
   <li><a href="#uk-biobank-gp-prescribing-data" id="toc-uk-biobank-gp-prescribing-data" class="nav-link" data-scroll-target="#uk-biobank-gp-prescribing-data"><span class="header-section-number">3</span> UK Biobank GP prescribing data</a></li>
-  <li><a href="#identify-bnf-clinical-codes-for-atorvastatin" id="toc-identify-bnf-clinical-codes-for-atorvastatin" class="nav-link" data-scroll-target="#identify-bnf-clinical-codes-for-atorvastatin"><span class="header-section-number">4</span> Identify BNF clinical codes for atorvastatin</a></li>
+  <li><a href="#identify-bnf-clinical-codes-for-amlodipine-and-ramipril" id="toc-identify-bnf-clinical-codes-for-amlodipine-and-ramipril" class="nav-link" data-scroll-target="#identify-bnf-clinical-codes-for-amlodipine-and-ramipril"><span class="header-section-number">4</span> Identify BNF clinical codes for amlodipine and ramipril</a></li>
   <li><a href="#subset-prescription-records" id="toc-subset-prescription-records" class="nav-link" data-scroll-target="#subset-prescription-records"><span class="header-section-number">5</span> Subset prescription records</a></li>
   <li><a href="#launch-r-and-tidyverse" id="toc-launch-r-and-tidyverse" class="nav-link" data-scroll-target="#launch-r-and-tidyverse"><span class="header-section-number">6</span> Launch R and tidyverse</a></li>
   <li><a href="#load-uk-biobank-data" id="toc-load-uk-biobank-data" class="nav-link" data-scroll-target="#load-uk-biobank-data"><span class="header-section-number">7</span> Load UK Biobank data</a>
   <ul class="collapse">
   <li><a href="#baseline-assessment-data" id="toc-baseline-assessment-data" class="nav-link" data-scroll-target="#baseline-assessment-data"><span class="header-section-number">7.1</span> Baseline assessment data</a></li>
-  <li><a href="#gp-prescriptions-of-atorvastatin" id="toc-gp-prescriptions-of-atorvastatin" class="nav-link" data-scroll-target="#gp-prescriptions-of-atorvastatin"><span class="header-section-number">7.2</span> GP prescriptions of atorvastatin</a></li>
+  <li><a href="#gp-prescriptions-of-antihypertensives" id="toc-gp-prescriptions-of-antihypertensives" class="nav-link" data-scroll-target="#gp-prescriptions-of-antihypertensives"><span class="header-section-number">7.2</span> GP prescriptions of antihypertensives</a>
+  <ul class="collapse">
+  <li><a href="#amlodipine" id="toc-amlodipine" class="nav-link" data-scroll-target="#amlodipine"><span class="header-section-number">7.2.1</span> Amlodipine</a></li>
+  <li><a href="#ramipril" id="toc-ramipril" class="nav-link" data-scroll-target="#ramipril"><span class="header-section-number">7.2.2</span> Ramipril</a></li>
   </ul></li>
-  <li><a href="#investigate-participants-prescribed-atorvastatin" id="toc-investigate-participants-prescribed-atorvastatin" class="nav-link" data-scroll-target="#investigate-participants-prescribed-atorvastatin"><span class="header-section-number">8</span> Investigate participants prescribed atorvastatin</a>
+  </ul></li>
+  <li><a href="#investigate-participants-prescribed-antihypertensives" id="toc-investigate-participants-prescribed-antihypertensives" class="nav-link" data-scroll-target="#investigate-participants-prescribed-antihypertensives"><span class="header-section-number">8</span> Investigate participants prescribed antihypertensives</a>
   <ul class="collapse">
   <li><a href="#identify-prevalent-prescriptions" id="toc-identify-prevalent-prescriptions" class="nav-link" data-scroll-target="#identify-prevalent-prescriptions"><span class="header-section-number">8.1</span> Identify prevalent prescriptions</a></li>
-  <li><a href="#hypothesis-1-statins-affect-ldl-levels" id="toc-hypothesis-1-statins-affect-ldl-levels" class="nav-link" data-scroll-target="#hypothesis-1-statins-affect-ldl-levels"><span class="header-section-number">8.2</span> Hypothesis 1: statins affect LDL levels</a></li>
-  <li><a href="#hypothesis-2-current-ldl-predicts-future-statin-likelihood" id="toc-hypothesis-2-current-ldl-predicts-future-statin-likelihood" class="nav-link" data-scroll-target="#hypothesis-2-current-ldl-predicts-future-statin-likelihood"><span class="header-section-number">8.3</span> Hypothesis 2: current LDL predicts future statin likelihood</a></li>
+  <li><a href="#create-a-binary-variable-amlodipine_or_ramipril" id="toc-create-a-binary-variable-amlodipine_or_ramipril" class="nav-link" data-scroll-target="#create-a-binary-variable-amlodipine_or_ramipril"><span class="header-section-number">8.2</span> Create a binary variable <code>amlodipine_or_ramipril</code></a></li>
+  <li><a href="#hypothesis-1-antihypertensives-affect-blood-pressure" id="toc-hypothesis-1-antihypertensives-affect-blood-pressure" class="nav-link" data-scroll-target="#hypothesis-1-antihypertensives-affect-blood-pressure"><span class="header-section-number">8.3</span> Hypothesis 1: antihypertensives affect blood pressure</a></li>
+  <li><a href="#hypothesis-2-gp-choice-of-ccb-or-acei-depends-on-patient-characteristics" id="toc-hypothesis-2-gp-choice-of-ccb-or-acei-depends-on-patient-characteristics" class="nav-link" data-scroll-target="#hypothesis-2-gp-choice-of-ccb-or-acei-depends-on-patient-characteristics"><span class="header-section-number">8.4</span> Hypothesis 2: GP choice of CCB or ACEi depends on patient characteristics</a>
+  <ul class="collapse">
+  <li><a href="#type-2-diabetes" id="toc-type-2-diabetes" class="nav-link" data-scroll-target="#type-2-diabetes"><span class="header-section-number">8.4.1</span> Type-2 diabetes</a></li>
+  <li><a href="#age" id="toc-age" class="nav-link" data-scroll-target="#age"><span class="header-section-number">8.4.2</span> Age</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9</span> Summary</a></li>
   </ul>
@@ -146,10 +155,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>In this workshop you will learn how to identify clinical codes for a specific medication (atorvastatin), extract prescriptions that contain this chemical substance, and perform epidemiological analysis with the derived data.</p>
+<p>In this workshop you will extract prescriptions that contain two common antihypertensive medications: amlodipine (a calcium channel blocker [CCB]) and ramipril (an ACE inhibitor [ACEi]). You will perform epidemiological analysis with the derived data, identifying patient characteristics associated with being prescribed one or the other.</p>
 <p>This builds on skills from previous modules, and the workshops you have already undertaken. Refer to previous workshops for Linux and R code to complete this workshop.</p>
-<p>We will ascertain prescriptions using codes from the British National Formulary (BNF). The BNF is the “go to” guide for prescribing professionals in the UK (<a href="https://bnf.nice.org.uk/">bnf.nice.org.uk</a>).</p>
-<p>We’ll use data similar to the UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years (<a href="https://www.ukbiobank.ac.uk/">www.ukbiobank.ac.uk</a>). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.</p>
+<p>We’ll use the same synthetic version of UK Biobank used is Part 1. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.</p>
 </section>
 <section id="setup" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
@@ -198,145 +206,238 @@ x100001 2016-07-29  0212000B0AAAFAF
 x100001 2017-03-14  0206020A0AAABAB</code></pre>
 </div>
 </div>
-<p>It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data.</p>
 <p>It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data. In this synthetic dataset all prescriptions are coded with British National Formulary (<code>bnf</code>) codes. Real data may include other code types, such as SNOMED CT.</p>
 </section>
-<section id="identify-bnf-clinical-codes-for-atorvastatin" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Identify BNF clinical codes for atorvastatin</h1>
-<p>The NHS Business Services Authority (BSA) host the current and past releases of the BNF look up files <a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic">here</a>.</p>
-<p>You will find “<a href="https://opendata.nhsbsa.net/dataset/bnf-code-information-historic/resource/2ddc9855-8b46-44d1-bac4-3cf475a2bcea">Historic 2024 Version 86</a>” in a file named:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bnf_code_historic_2024_version_86.tsv.gz</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>(Note I already converted it from a CSV to a TSV when downloading)</p>
-<p>Find the BNF Chemical Substance code for “Atorvastatin”.</p>
-<p>Because BNF codes are hierarchical, all the BNF Product Codes that include this chemical substance should start with the chemical substance code. Save the chemical substance code to a text file for use later. In some situations you may want to search for multiple chemical substance codes, which is why we will still save to a file rather than typing manually later.</p>
-<p>You can use Linux command line tools (such as <code>grep</code>) or you can use R or Python to achieve this.</p>
+<section id="identify-bnf-clinical-codes-for-amlodipine-and-ramipril" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Identify BNF clinical codes for amlodipine and ramipril</h1>
+<p>Identify the BNF Chemical Substance code for each medication.</p>
+<p>When considering atorvastatin previously we knew that the products only contained the single chemical substance. Products for conditions such as hypertension can include multiple chemical substances in the same tablet.</p>
+<p>Search for amlodipine in the BNF file and inspect the matched rows. Amlodipine (a calcium channel blocker [CCB]) can be prescribed alongside Olmesartan medoxomil (an angiotension receptor blocker [ARB]), so we need to identify the Chemical Substance code that refers to procuts containing amlodipine only.</p>
+<p>Looks like it is just one code that is specific for products containing only amlodipine. Save that to a file to use when extracting the GP prescriptions. (Note you can also see brand names for amlodipine here such as “Istin” but it is the same chemical substance).</p>
+<p>Now repeat and find the BNF rows that include ramipril. Inspect the file and find the Chemical Substance code that refers to products containing only ramipril.</p>
+<p>Looks like it is just one code that is specific for ramipril as well. Save that to a file to use when extracting the GP prescriptions.</p>
 </section>
 <section id="subset-prescription-records" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Subset prescription records</h1>
-<p>Extract the rows in <code>ukb_gp_scripts.tsv.gz</code> that correspond to prescriptions containing the atorvastatin chemical substance. Also include the file header, so that columns are labelled.</p>
-<p>Use Linux command line tools (such as <code>grep</code>) to achieve this. Whilst it is possible to load this file into R, it is good practice to subset prior to loading. A real medical records dataset may be many Gb in size.</p>
-<p>We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted atorvastatin GP prescriptions, and undertake some epidemiological analysis.</p>
+<p>Extract the rows in <code>ukb_gp_scripts.tsv.gz</code> that correspond to prescriptions containing the amlodipine or ramipril chemical substance only. Also include the file header, so that columns are labelled.</p>
+<p>Use Linux command line tools (such as <code>grep</code>) to achieve this.</p>
+<p>We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted GP prescriptions, and undertake some epidemiological analysis.</p>
 </section>
 <section id="launch-r-and-tidyverse" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Launch R and tidyverse</h1>
 <p>To launch R on the Linux command line just type <code>R</code>. The following commands in this workshop are designed to be run in R itself.</p>
 <p>Load the {tidyverse} library.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-uk-biobank-data" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Load UK Biobank data</h1>
-<p>This initial step is crucial to ensure the data is imported correctly and that we understand its structure.</p>
 <section id="baseline-assessment-data" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="baseline-assessment-data"><span class="header-section-number">7.1</span> Baseline assessment data</h2>
-<p>This is a simulated dataset designed to look like the real UK Biobank data (data types, ranges, and approximate correlation structure), but is synthetic to preserve participant anonymity.</p>
+<p>Load and inspect the data. Subset to those with GP records available.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Inspect the data by previewing the first few rows, check the variable types, etc. to make sure the data looks sensible.</p>
-<p>Only a subset of UK Biobank participants currently have linked GP data. Let’s subset our dataset to these participants only:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 500000     14</code></pre>
+<pre><code># A tibble: 6 × 14
+  eid     assessment_date   age   sex   bmi current_smoker   ldl hba1c systolic_bp chd_prevalent chd_incident
+  &lt;chr&gt;   &lt;date&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 x100001 2010-07-28         61     1  28.4              0  3.55  43.3        192.             0            1
+2 x100002 2010-09-07         51     0  28.0              0  3.05  33.4        143.             0            0
+3 x100003 2007-06-07         49     1  29.3              0  3.72  35.6        128.             0            0
+4 x100004 2010-02-24         51     1  24.8              0  2.72  34.8        152.             0            0
+5 x100005 2009-03-17         57     1  31.3              0  3.34  37.3        162.             0            0
+6 x100006 2008-08-05         42     0  33.9              0  3.85  30.1        156.             0            0
+  t2d_prevalent t2d_incident in_gp
+          &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1             0            0     1
+2             0            0     0
+3             0            0     1
+4             0            0     0
+5             0            1     0
+6             0            0     1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(in_gp<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(in_gp<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 225017     14</code></pre>
 </div>
 </div>
 </section>
-<section id="gp-prescriptions-of-atorvastatin" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="gp-prescriptions-of-atorvastatin"><span class="header-section-number">7.2</span> GP prescriptions of atorvastatin</h2>
-<p>Here I will assume you have a file in your working directory called <code>ukb_gp_scripts.atorvastatin.tsv</code> that is the subset of the full UK Biobank GP prescriptions data corresponding to prescriptions containing the chemical substance “atorvastatin”.</p>
+<section id="gp-prescriptions-of-antihypertensives" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="gp-prescriptions-of-antihypertensives"><span class="header-section-number">7.2</span> GP prescriptions of antihypertensives</h2>
+<p>Load and inspect the extracted GP prescriptions data. Check it looks “OK”.</p>
+<p>We have kept the amlodipine and ramipril prescriptions separately as the moment, so that it is easy to create the “binary” variables later (such as <code>amlodipine_prevalent</code>).</p>
+<p>Check your extracts have similar number of rows and structure to these.</p>
+<section id="amlodipine" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="amlodipine"><span class="header-section-number">7.2.1</span> Amlodipine</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.atorvastatin.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts_amlodipine <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.amlodipine.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Check your file has a similar number of rows and structure to this one. If not, you may have missed some clinical codes, or included some non-atorvastatin codes.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts_amlodipine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 279972      3</code></pre>
+<pre><code>[1] 171313      3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts_amlodipine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   eid     date       bnf            
   &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;          
-1 x100001 2011-10-04 0212000B0AAASAS
-2 x100001 2013-01-15 0212000B0BBACAC
-3 x100001 2013-04-01 0212000B0AAAAAA
-4 x100001 2014-05-30 0212000B0BBAEAL
-5 x100001 2014-12-12 0212000B0AAANAN
-6 x100001 2016-03-17 0212000B0AAAQAQ</code></pre>
+1 x100001 2011-02-09 0206020A0AAATAT
+2 x100001 2011-03-04 0206020A0AAATAT
+3 x100001 2013-02-01 0206020A0AAAJAJ
+4 x100001 2013-08-20 0206020A0AAAUAU
+5 x100001 2013-09-23 0206020A0AAATAT
+6 x100001 2017-03-14 0206020A0AAABAB</code></pre>
 </div>
 </div>
 <p>How many unique participants are there?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts_amlodipine<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 44612</code></pre>
+<pre><code>[1] 27571</code></pre>
 </div>
 </div>
 <p>Does the data look sensible?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts_amlodipine<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-"1997-10-19" "2002-11-21" "2008-05-28" "2007-11-25" "2012-10-03" "2019-03-14" </code></pre>
+"1997-10-20" "2004-12-18" "2009-07-07" "2009-01-20" "2013-02-21" "2019-03-13" </code></pre>
+</div>
+</div>
+</section>
+<section id="ramipril" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="ramipril"><span class="header-section-number">7.2.2</span> Ramipril</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts_ramipril <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_gp_scripts.ramipril.tsv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ukb_scripts_ramipril)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48291     3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb_scripts_ramipril)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  eid     date       bnf            
+  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;          
+1 x100060 2000-07-21 0205051R0BBAHAM
+2 x100060 2003-10-26 0205051R0BCAAAB
+3 x100060 2005-03-15 0205051R0AAAHAH
+4 x100060 2005-07-07 0205051R0BBACAC
+5 x100060 2005-07-09 0205051R0AAAIAI
+6 x100060 2006-12-06 0205051R0AAAWAW</code></pre>
+</div>
+</div>
+<p>How many unique participants are there?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(ukb_scripts_ramipril<span class="sc">$</span>eid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7571</code></pre>
+</div>
+</div>
+<p>Does the data look sensible?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ukb_scripts_ramipril<span class="sc">$</span>date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+"1997-11-01" "2004-05-22" "2008-07-15" "2008-07-07" "2012-09-05" "2019-03-05" </code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="investigate-participants-prescribed-atorvastatin" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Investigate participants prescribed atorvastatin</h1>
-<p>For some types of analysis such as longitudinal analysis, it is useful to keep the data in this “long” format (where participants have multiple rows). However for today, we just want to find the participants who have prescriptions before or after assessment, and do some simple analysis with LDL levels.</p>
+</section>
+<section id="investigate-participants-prescribed-antihypertensives" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Investigate participants prescribed antihypertensives</h1>
+<p>For some types of analysis such as longitudinal analysis, it is useful to keep the data in this “long” format (where participants have multiple rows).</p>
+<p>Today we just need to find the participants who have prescriptions before or after assessment, and investigate the participant characteristics associated with drug choice (CCB vs.&nbsp;ACEi).</p>
 <section id="identify-prevalent-prescriptions" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="identify-prevalent-prescriptions"><span class="header-section-number">8.1</span> Identify prevalent prescriptions</h2>
-<p>Next let’s work out which participants were prescribed atorvastatin before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).</p>
-<p>We can “join” the assessment date with the prescription date using functions from the {dplyr} package:</p>
+<p>Next let’s work out which participants were prescribed amlodipine or ramipril before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).</p>
+<p>Join the assessment date with the prescription data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ukb_scripts_amlodipine <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts_amlodipine, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ukb_scripts_ramipril   <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb_scripts_ramipril, ukb[,<span class="fu">c</span>(<span class="st">"eid"</span>,<span class="st">"assessment_date"</span>)], <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Create two new binary (0/1) variables <code>statin_prevalent</code> and <code>statin_incident</code> in the <code>ukb_scripts</code> object indicating whether the prescription was before or after assessment. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
-<p>We can use this to create corresponding binary variables in the main <code>ukb</code> data object, indicating whether a participant has a prevalent or incident prescription for atorvastatin. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
-<p>Hopefully you have numbers similar to these (note that some people have both prevalent and incident prescriptions!):</p>
+<p>Create binary (0/1) variables indicating whether each prescription was before or after the UK Biobank assessment. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
+<p>Now create corresponding binary variables in the main <code>ukb</code> data object, indicating whether a participant has a prevalent or incident prescription for each medication. <strong>Hint</strong>: use “if else” to assign [1] if a condition is met, otherwise assign [0] to the participants.</p>
+<p>You should have numbers similar to these (note that some people have both prevalent and incident prescriptions!):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>amlodipine_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-201967  23050 </code></pre>
+211758  13259 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>statin_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>amlodipine_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
      0      1 
-191998  33019 </code></pre>
+204105  20912 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>ramipril_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1 
+220697   4320 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>ramipril_incident)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1 
+219553   5464 </code></pre>
 </div>
 </div>
 </section>
-<section id="hypothesis-1-statins-affect-ldl-levels" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="hypothesis-1-statins-affect-ldl-levels"><span class="header-section-number">8.2</span> Hypothesis 1: statins affect LDL levels</h2>
-<p>Statins are prescribed to reduce risk of coronary heart disease by lowering cholesterol levels.</p>
-<p>Do you hypothesise that participants prescribed a statin prior to their LDL measurement have higher or lower LDL cholesterol than participants not previously prescribed a statin?</p>
-<p>Test the hypothesis using a linear regression model. Adjust for age and sex.</p>
-<p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
+<section id="create-a-binary-variable-amlodipine_or_ramipril" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="create-a-binary-variable-amlodipine_or_ramipril"><span class="header-section-number">8.2</span> Create a binary variable <code>amlodipine_or_ramipril</code></h2>
+<p>This new variable will be useful for comparing predictors of drug choice.</p>
+<p>Create a new categorical variable called <code>amlodipine_or_ramipril</code>. Set participants who were prescribed ramipril prior to baseline to <code>0</code> and amlodipine to <code>1</code>. If a participants received both prior to baseline set them to <code>2</code>. Other participants should be missing (i.e., set to <code>NA</code>). <strong>Hint</strong>: use “if else”.</p>
+<p>You should get numbers similar to this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>amlodipine_or_ramipril)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    0     1     2 
+ 4180 13119   140 </code></pre>
+</div>
+</div>
 </section>
-<section id="hypothesis-2-current-ldl-predicts-future-statin-likelihood" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="hypothesis-2-current-ldl-predicts-future-statin-likelihood"><span class="header-section-number">8.3</span> Hypothesis 2: current LDL predicts future statin likelihood</h2>
-<p>Do you hypothesise that LDL predicts future statin prescription?</p>
-<p>Test the hypothesis using a logistic regression model. Adjust for age and sex.</p>
-<p>Visualise the difference in median LDL levels between the groups using a boxplot.</p>
+<section id="hypothesis-1-antihypertensives-affect-blood-pressure" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="hypothesis-1-antihypertensives-affect-blood-pressure"><span class="header-section-number">8.3</span> Hypothesis 1: antihypertensives affect blood pressure</h2>
+<p>Antihypertensives are prescribed to reduce risk of cardiovascular disease and strokes by lowering blood pressure. Systolic (or “peak”) blood pressure is most commonly used clinically to define hypertension.</p>
+<p>Test associations between each prevalent antihypertensive and systolic blood pressure separately using linear regression models. Adjust for age and sex.</p>
+<p>Remember that here, participants with amlodipine are compared to everyone else in the cohort.</p>
+<p>Next, test whether SBP is significantly different between patients prescribed amlodipine vs.&nbsp;ramipril. <strong>Hint</strong>: treat the new variable as factor.</p>
+<p>Now we are comparing patients prescribed amlodipine (coded as <code>1</code>) to those prescribed ramipril (coded as <code>0</code>). In the same model we also compare those prescribed both (coded as <code>2</code>) to ramipril.</p>
+</section>
+<section id="hypothesis-2-gp-choice-of-ccb-or-acei-depends-on-patient-characteristics" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="hypothesis-2-gp-choice-of-ccb-or-acei-depends-on-patient-characteristics"><span class="header-section-number">8.4</span> Hypothesis 2: GP choice of CCB or ACEi depends on patient characteristics</h2>
+<p>We know from the NICE guidelines that GPs have a choice of medicines to prescribe to a patient following their diagnosis of hypertension.</p>
+<section id="type-2-diabetes" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="type-2-diabetes"><span class="header-section-number">8.4.1</span> Type-2 diabetes</h3>
+<p>Which medicine do you hypothesise is more common in patients with diagnosed type-2 diabetes? See variables <code>t2d_prevalent</code> and <code>t2d_incident</code>.</p>
+<p>Test the hypothesis using logistic regression models.</p>
+<p>Do the results fit your expectations? Remember that an Odds Ratio (OR) &lt; 1 would indicate that the coded group (e.g., amlodipine <code>1</code>) is less likely to have the outcome (in this case type-2 diabetes) compared to the reference group (i.e., ramipril <code>0</code>).</p>
+</section>
+<section id="age" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="age"><span class="header-section-number">8.4.2</span> Age</h3>
+<p>Which medicine do you hypothesise is more common in younger patients?</p>
+<p>Summarize the age at baseline assessment in those with previous prescriptions of amlodipine and ramipril.</p>
+<p>Test the hypothesis that participants prescribed amlodipine are older at baseline assessment using a regression model. <strong>Hint</strong>: the model needs to treat <code>amlodipine_or_ramipril</code> as factor</p>
+<p>The estimate shows the average difference in age (in units of years) between the groups. It the difference statistically significant?</p>
+<p>Use a boxplot to visualize the median age between the two groups.</p>
+</section>
 </section>
 </section>
 <section id="summary" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Summary</h1>
-<p>Congratulations, you have successfully extracted medical prescribing data using real BNF clinical codes and performed statistical analysis. This is Health Data Science in action, and allows us to move towards investigating examples of Stratified Medicine using this and other data in future workshops.</p>
+<p>Congratulations, you’ve investigated an example of real-world stratified medicine, where patient treatment is tailored to their characteristics.</p>
 </section>
 
 </main>

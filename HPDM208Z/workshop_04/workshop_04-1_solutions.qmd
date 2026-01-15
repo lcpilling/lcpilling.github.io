@@ -1,0 +1,324 @@
+---
+title: "HPDM208Z Stratified Medicine Week 4 Workshop: Medications Part 1"
+subtitle: "MSc Health Data Science, University of Exeter"
+author: 
+ - name: "Dr Luke C Pilling"
+   email: "L.Pilling@exeter.ac.uk"
+date: "2026-01-15"
+date-format: iso
+title-block-banner: true
+format: html
+number-sections: true
+toc: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 120
+
+# Extension configuration https://github.com/mcanouil/quarto-collapse-output
+filters:
+  - collapse-output
+---
+
+```{r, include=FALSE}
+options(tibble.width = 200)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
+```
+
+
+# Introduction
+
+In this workshop you will learn how to identify clinical codes for a specific medication (atorvastatin), extract prescriptions that contain this chemical substance, and perform epidemiological analysis with the derived data. 
+
+This builds on skills from previous modules, and the workshops you have already undertaken. Refer to previous workshops for Linux and R code to complete this workshop.
+
+We will ascertain prescriptions using codes from the British National Formulary (BNF). The BNF is the "go to" guide for prescribing professionals in the UK ([bnf.nice.org.uk](https://bnf.nice.org.uk/)).
+
+We'll use data similar to the UK Biobank, a large 500,000-person cohort that has transformed health data science in recent years ([www.ukbiobank.ac.uk](https://www.ukbiobank.ac.uk/)). The scale and depth of the data—including genetics, health records, and deep phenotyping—having provided many insights into mechanisms and predictors of health outcomes. The data is synthetic to protect participant anonymity, though it is designed to resemble real UK Biobank data.
+
+
+# Setup
+
+## OpenStack
+
+Log in to your OpenStack instance as usual. Activate the `conda` environment by typing the below into your Linux terminal.
+
+```{bash, eval=FALSE}
+conda activate hpdm208z
+```
+
+We will use some linux command line tools you have met before for file manipulation, and then R for statistical analysis.
+
+We'll use functions from the {[tidyverse](https://tidyverse.org/)} suite of packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures, providing a comprehensive set of tools for data manipulation, analysis, and visualisation.
+
+If not already installed in your `conda` environment, type the below into your Linux terminal.
+
+```{bash, eval=FALSE}
+conda install -c r r-tidyverse -y
+```
+
+You can complete this workshop directly in the linux terminal, or create a JupyterLab notebook if you prefer. If the former make sure to save your commands in a text file.
+
+## Working directory
+
+All data for this workshop are on your OpenStack instance at the below location. Code examples assume this is your working directory:
+
+```{bash, eval=FALSE}
+~/hpdm208z/workshops/medications_data/
+```
+
+
+# UK Biobank GP prescribing data
+
+This synthetic version of primary care (GP) prescribing data linked to UK Biobank can be viewed as below:
+
+```{bash}
+zcat ukb_gp_scripts.tsv.gz | head -n15
+```
+
+It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data.
+
+It is a tab-separated file, where each row is a prescribing event. Each person can have multiple rows, like with the clinical events data. In this synthetic dataset all prescriptions are coded with British National Formulary (`bnf`) codes. Real data may include other code types, such as SNOMED CT.
+
+
+# Identify BNF clinical codes for atorvastatin
+
+The NHS Business Services Authority (BSA) host the current and past releases of the BNF look up files [here](https://opendata.nhsbsa.net/dataset/bnf-code-information-historic). 
+
+You will find “[Historic 2024 Version 86](https://opendata.nhsbsa.net/dataset/bnf-code-information-historic/resource/2ddc9855-8b46-44d1-bac4-3cf475a2bcea)" in a file named:
+
+```{bash, eval=FALSE}
+bnf_code_historic_2024_version_86.tsv.gz
+```
+
+(Note I already converted it from a CSV to a TSV when downloading)
+
+Find the BNF Chemical Substance code for "Atorvastatin". 
+
+Because BNF codes are hierarchical, all the BNF Product Codes that include this chemical substance should start with the chemical substance code. Save the chemical substance code to a text file for use later. In some situations you may want to search for multiple chemical substance codes, which is why we will still save to a file rather than typing manually later.
+
+You can use Linux command line tools (such as `grep`) or you can use R or Python to achieve this.
+
+```{bash}
+# get rows with atorvastatin (note the -i 'ignore case' flag)
+# select column 10 (chemical substance)
+# filter to unique codes
+zcat bnf_code_historic_2024_version_86.tsv.gz | grep -i "atorvastatin" | cut -f10 | uniq > bnf_atorvastatin.tsv
+```
+
+
+# Subset prescription records
+
+Extract the rows in `ukb_gp_scripts.tsv.gz` that correspond to prescriptions containing the atorvastatin chemical substance. Also include the file header, so that columns are labelled.
+
+Use Linux command line tools (such as `grep`) to achieve this. Whilst it is possible to load this file into R, it is good practice to subset prior to loading. A real medical records dataset may be many Gb in size.
+
+```{bash}
+# first get the header row
+zcat ukb_gp_scripts.tsv.gz | head -n 1 > ukb_gp_scripts.atorvastatin.tsv
+
+# next search the GP scripts file for codes contained in a reference file
+# we can do this in several ways. We can use grep directly, or use tools such as `awk`
+# for BNF we do not want exact matches: we want to match any rows with the prefix
+zgrep --fixed-strings --file bnf_atorvastatin.tsv ukb_gp_scripts.tsv.gz >> ukb_gp_scripts.atorvastatin.tsv
+```
+
+We are now ready to use R to load the (synthetic) UK Biobank baseline data, extracted atorvastatin GP prescriptions, and undertake some epidemiological analysis.
+
+
+# Launch R and tidyverse
+
+To launch R on the Linux command line just type `R`. The following commands in this workshop are designed to be run in R itself.
+
+Load the {tidyverse} library.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+# Load UK Biobank data
+
+This initial step is crucial to ensure the data is imported correctly and that we understand its structure.
+
+## Baseline assessment data
+
+This is a simulated dataset designed to look like the real UK Biobank data (data types, ranges, and approximate correlation structure), but is synthetic to preserve participant anonymity.
+
+```{r, message=FALSE, warning=FALSE}
+ukb <- read_tsv("ukb_baseline.tsv.gz")
+```
+
+Inspect the data by previewing the first few rows, check the variable types, etc. to make sure the data looks sensible.
+
+```{r}
+head(ukb)
+```
+
+Only a subset of UK Biobank participants currently have linked GP data. Let's subset our dataset to these participants only:
+
+```{r}
+dim(ukb)
+ukb <- ukb |> filter(in_gp==1)
+dim(ukb)
+```
+
+
+## GP prescriptions of atorvastatin
+
+Here I will assume you have a file in your working directory called `ukb_gp_scripts.atorvastatin.tsv` that is the subset of the full UK Biobank GP prescriptions data corresponding to prescriptions containing the chemical substance "atorvastatin".
+
+```{r, message=FALSE, warning=FALSE}
+ukb_scripts <- read_tsv("ukb_gp_scripts.atorvastatin.tsv")
+```
+
+Check your file has a similar number of rows and structure to this one. If not, you may have missed some clinical codes, or included some non-atorvastatin codes.
+
+```{r}
+dim(ukb_scripts)
+head(ukb_scripts)
+```
+
+How many unique participants are there?
+
+```{r}
+length(unique(ukb_scripts$eid))
+```
+
+Does the data look sensible?
+
+```{r}
+summary(ukb_scripts$date)
+```
+
+
+# Investigate participants prescribed atorvastatin
+
+For some types of analysis such as longitudinal analysis, it is useful to keep the data in this "long" format (where participants have multiple rows). However for today, we just want to find the participants who have prescriptions before or after assessment, and do some simple analysis with LDL levels.
+
+## Identify prevalent prescriptions
+
+Next let's work out which participants were prescribed atorvastatin before the baseline assessment (i.e., prevalent prescriptions), and which were prescribed after (incident prescriptions).
+
+We can "join" the assessment date with the prescription date using functions from the {dplyr} package:
+
+```{r, message=FALSE, warning=FALSE}
+ukb_scripts <- left_join(ukb_scripts, ukb[,c("eid","assessment_date")], by="eid")
+```
+
+Create two new binary (0/1) variables `statin_prevalent` and `statin_incident` in the `ukb_scripts` object indicating whether the prescription was before or after assessment. **Hint**: use "if else" to assign [1] if a condition is met, otherwise assign [0] to the participants.
+
+```{r}
+ukb_scripts <- ukb_scripts |> mutate(
+  statin_prevalent = if_else(date <= assessment_date, 1, 0),
+  statin_incident  = if_else(date >  assessment_date, 1, 0)
+)
+table(ukb_scripts$statin_prevalent)
+```
+
+We can use this to create corresponding binary variables in the main `ukb` data object, indicating whether a participant has a prevalent or incident prescription for atorvastatin. **Hint**: use "if else" to assign [1] if a condition is met, otherwise assign [0] to the participants.
+
+```{r}
+#| output-fold: true
+#| output-summary: "View output"
+ukb <- ukb |> dplyr::mutate(
+  statin_prevalent = if_else(eid %in% ukb_scripts$eid[ukb_scripts$statin_prevalent==1], 1, 0),
+  statin_incident  = if_else(eid %in% ukb_scripts$eid[ukb_scripts$statin_incident==1], 1, 0)
+)
+```
+
+Hopefully you have numbers similar to these (note that some people have both prevalent and incident prescriptions!):
+
+```{r}
+table(ukb$statin_prevalent)
+table(ukb$statin_incident)
+```
+
+
+## Hypothesis 1: statins affect LDL levels
+
+Statins are prescribed to reduce risk of coronary heart disease by lowering cholesterol levels.
+
+Do you hypothesise that participants prescribed a statin prior to their LDL measurement have higher or lower LDL cholesterol than participants not previously prescribed a statin?
+
+Test the hypothesis using a linear regression model. Adjust for age and sex.
+
+```{r}
+model1 <- glm(ldl ~ age + sex + statin_prevalent, data = ukb)
+
+# extract the model estimates into a data frame
+result1 <- model1 |> summary() |> coef() |> as.data.frame()
+
+# add variables for the confidence intervals
+result1$CI_lower <- result1$Estimate - (result1$`Std. Error` * 1.96)
+result1$CI_upper <- result1$Estimate + (result1$`Std. Error` * 1.96)
+result1
+```
+
+Visualise the difference in median LDL levels between the groups using a boxplot.
+
+```{r}
+ukb |>
+  # drop if missing key data
+  filter(!is.na(statin_prevalent) & !is.na(ldl)) |>
+  # Ensure statins is labelled clearly on the plot
+  mutate(statin_group = factor(statin_prevalent, levels = c(0, 1), labels = c("No prior statin", "Previous statin"))) |>
+  # Use ggplot to create the boxplot
+  ggplot(aes(x = statin_group, y = ldl, fill = statin_group)) +
+  geom_boxplot() +
+  labs(
+    title = "LDL cholesterol by Atorvastatin status",
+    x = "Atorvastatin",
+    y = "LDL cholesterol (mmol/L)"
+  ) +
+  theme(legend.position = "none")
+```
+
+
+## Hypothesis 2: current LDL predicts future statin likelihood
+
+Do you hypothesise that LDL predicts future statin prescription?
+
+Test the hypothesis using a logistic regression model. Adjust for age and sex.
+
+```{r}
+model2 <- glm(statin_incident ~ age + sex + ldl, 
+              family = binomial,
+              data = ukb |> filter(statin_prevalent==0)
+              )
+
+# extract model estimates and calculate CIs
+# convert estimates to Odds Ratios
+result2 <- model2 |> summary() |> coef() |> as.data.frame()
+result2$OR <- exp(result2[,"Estimate"])
+result2$CI_lower <- exp(result2$Estimate - (result2$`Std. Error` * 1.96))
+result2$CI_upper <- exp(result2$Estimate + (result2$`Std. Error` * 1.96))
+result2
+```
+
+Visualise the difference in median LDL levels between the groups using a boxplot.
+
+```{r}
+ukb |>
+  # drop if missing key data
+  filter(statin_prevalent==0 & !is.na(statin_incident) & !is.na(ldl)) |>
+  # Ensure statins is labelled clearly on the plot
+  mutate(statin_group = factor(statin_incident, levels = c(0, 1), labels = c("No prior statin", "Future statin"))) |>
+  # Use ggplot to create the boxplot
+  ggplot(aes(x = statin_group, y = ldl, fill = statin_group)) +
+  geom_boxplot() +
+  labs(
+    title = "LDL cholesterol by Atorvastatin status",
+    x = "Atorvastatin",
+    y = "LDL cholesterol (mmol/L)"
+  ) +
+  theme(legend.position = "none")
+```
+
+# Summary
+
+Congratulations, you have successfully extracted medical prescribing data using real BNF clinical codes and performed statistical analysis. This is Health Data Science in action, and allows us to move towards investigating examples of Stratified Medicine using this and other data in future workshops.
+
+```{r, include=FALSE}
+## tidy up
+system("rm bnf_atorvastatin.tsv ukb_gp_scripts.atorvastatin.tsv")
+```

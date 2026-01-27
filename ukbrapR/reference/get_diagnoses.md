@@ -1,0 +1,78 @@
+# Get UK Biobank participant diagnosis data
+
+For a list of diagnostic codes get the HES, GP, cancer registry,
+operations, and self-reported illness data, matching the provided codes.
+
+Valid code vocabularies are:
+
+\- ICD10 (for \`hesin\`, \`death_cause\` and \`cancer_registry\`
+searches) - fuzzy matching
+
+\- ICD9 (for \`hesin\` searches) - fuzzy matching
+
+\- Read2 / CTV3 (for \`gp_clinical\`) - exact matches on first 5
+characters
+
+\- OPCS3 / OPCS4 (for \`hesin_oper\`) - fuzzy matching
+
+\- ukb_cancer / ukb_noncancer (for self-reported illness at UK Biobank
+assessments - all available will be searched) - exact matches
+
+This function relies on exported raw data files and thus does not need
+to be run in a Spark cluster. If the files are not in the default
+locations for the package you will need to specify the \`file_paths\` to
+exported tables. Recommend to run \`export_tables()\` once in your
+project to export the tables to the default paths for the package.
+
+## Usage
+
+``` r
+get_diagnoses(codes_df, file_paths = NULL, verbose = FALSE)
+```
+
+## Arguments
+
+- codes_df:
+
+  A data frame. Contains two columns: \`code\` and \`vocab_id\` i.e., a
+  list of diagnostic codes, and an indicator of the vocabulary (ICD10,
+  Read2, CTV3, OPCS3, OPCS4, ukb_cancer, and ukb_noncancer are
+  recognised). Other columns are ignored.
+
+- file_paths:
+
+  A data frame. Columns must be \`object\` and \`path\` containing paths
+  to required files. Default assumes you have the tables exported in the
+  RAP environment from ukbrapR::export_tables()
+  `default=ukbrapR:::ukbrapr_paths`
+
+- verbose:
+
+  Logical. Be verbose, `default=FALSE`
+
+## Value
+
+Returns a list of data frames (the participant data for the requested
+diagnosis codes: \`death_cause\`, \`hesin_diag\`, \`hesin_oper\`,
+\`gp_clinical\`, \`cancer_registry\` and \`selfrep_illness\`. Also
+includes the original codes list)
+
+## Author
+
+Luke Pilling
+
+## Examples
+
+``` r
+# example diagnostic codes for CKD from GEMINI multimorbidity project
+codes_df_ckd <- ukbrapR:::codes_df_ckd
+head(codes_df_ckd)
+
+# Get diagnosis data - returns list of data frames (one per source)
+# -- Requires exported tables - see `export_tables()` 
+diagnosis_list <- get_diagnoses(codes_df_ckd)
+
+# don't forget to save and upload data to RAP persistent storage!
+save(diagnosis_list, "ukbrap.CKD.emr.20231114.RDat")
+upload_to_rap(file="ukbrap.CKD.*", dir="")
+```

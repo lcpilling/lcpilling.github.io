@@ -1,0 +1,109 @@
+# Create a polygenic score
+
+Use user-provided list of genetic variants with weights for a trait to
+create a polygenic score. Uses the imputed BGEN files (field 22828) or
+WGS DRAGEN BGEN files (field 24309) data and load as data.frame
+
+If selecting the DRAGEN data as the source, this assumes your project
+has access to the WGS BGEN files released April 2025. If not, run
+\`ukbrapR:::make_dragen_bed_from_pvcfs()\` to use \[tabix\] and
+\[plink\] to subset the \[DRAGEN WGS pVCF files\].
+
+## Usage
+
+``` r
+create_pgs(
+  in_file,
+  out_file = "tmp",
+  pgs_name = "pgs",
+  source = "imputed",
+  use_imp_pos = FALSE,
+  is_bed = FALSE,
+  overwrite = FALSE,
+  progress = FALSE,
+  verbose = FALSE,
+  very_verbose = FALSE
+)
+```
+
+## Arguments
+
+- in_file:
+
+  A data frame or file path. Must contain rsid, chr, pos, effect_allele,
+  other_allele, beta. For imputed genos pos is build 37. For DRAGEN pos
+  is build 38. Other columns are ignored.
+
+- out_file:
+
+  A string. Prefix for output files (optional) `default="tmp"`
+
+- pgs_name:
+
+  A string. Variable name for created PGS (optional) `default="pgs"`
+
+- source:
+
+  A string. Either "imputed" or "dragen" - indicating whether the
+  variants should be from "UKB imputation from genotype" (field 22828)
+  or "DRAGEN population level WGS variants, PLINK format \[500k
+  release\]" (field 24308). Can instead be a path to a local BED file,
+  if \`is_bed=TRUE\`. `default="imputed"`
+
+- use_imp_pos:
+
+  Logical. If source imputed, use position instead of rsID to extract
+  variants?, `default=FALSE`
+
+- is_bed:
+
+  Logical. If you already have a BED file containing the required
+  variants set this to TRUE and provide a path to the BED file in the
+  \`source\` option, `default=FALSE`
+
+- overwrite:
+
+  Logical. Overwrite output BED files? (If out_file is left as 'tmp'
+  overwrite is set to TRUE), `default=FALSE`
+
+- progress:
+
+  Logical. Show progress through each individual file, `default=FALSE`
+
+- verbose:
+
+  Logical. Be verbose (show individual steps), `default=FALSE`
+
+- very_verbose:
+
+  Logical. Be very verbose (show individual steps & show terminal output
+  from Plink etc), `default=FALSE`
+
+## Value
+
+A data frame
+
+## Author
+
+Luke Pilling
+
+## Examples
+
+``` r
+# example variant list and weights from GWAS of liver cirrhosis 
+#  - Innes 2020 Gastroenterology doi:10.1053/j.gastro.2020.06.014
+#  - Position in build 38
+varlist <- system.file("files", "pgs_liver_cirrhosis.txt", package="ukbrapR")
+
+# Create PGS from imputed data using RSID
+liver_pgs <- create_pgs(in_file=varlist, out_file="liver_cirrhosis.imputed.pgs", pgs_name="liver_cirrhosis_imputed_pgs")
+
+# Create PGS from DRAGEN WGS data using CHR and POS
+liver_pgs <- create_pgs(in_file=varlist, out_file="liver_cirrhosis.dragen.pgs", pgs_name="liver_cirrhosis_dragen_pgs", source="dragen")
+
+# For these allele weights, we has position in build 37 and will get imputed data using this not RSIDs
+#  - Bladder Cancer GWAS, Graff 2021 (https://doi.org/10.1038/s41467-021-21288-z)
+varlist2 <- readr::read_tsv("https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000071/ScoringFiles/Harmonized/PGS000071_hmPOS_GRCh37.txt.gz", comment="#")
+varlist2 <- varlist2 |> dplyr::rename(chr=chr_name, pos=chr_position)
+bladder_cancer_pgs  <- create_pgs(in_file=varlist2, out_file="bladder_cancer.imputed.pgs", pgs_name="bladder_cancer_imputed_pgs", use_imp_pos=TRUE)
+```

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Luke C Pilling">
+<meta name="dcterms.date" content="2026-01-30">
+
+<title>HPDM208Z Stratified Medicine Week 10 Workshop: Pharmacogenetics (PGx)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="workshop_10_solutions_files/libs/clipboard/clipboard.min.js"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/popper.min.js"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="workshop_10_solutions_files/libs/quarto-html/anchor.min.js"></script>
+<link href="workshop_10_solutions_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="workshop_10_solutions_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="workshop_10_solutions_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="workshop_10_solutions_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="workshop_10_solutions_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">HPDM208Z Stratified Medicine Week 10 Workshop: Pharmacogenetics (PGx)</h1>
+            <p class="subtitle lead">MSc Health Data Science, University of Exeter</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dr Luke C Pilling <a href="mailto:L.Pilling@exeter.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2026-01-30</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#pharmacogenetics-pgx-statins-and-slco1b1" id="toc-pharmacogenetics-pgx-statins-and-slco1b1" class="nav-link" data-scroll-target="#pharmacogenetics-pgx-statins-and-slco1b1"><span class="header-section-number">2</span> Pharmacogenetics (PGx), statins, and <em>SLCO1B1</em></a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">3</span> Setup</a>
+  <ul class="collapse">
+  <li><a href="#openstack" id="toc-openstack" class="nav-link" data-scroll-target="#openstack"><span class="header-section-number">3.1</span> OpenStack</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory"><span class="header-section-number">3.2</span> Working directory</a></li>
+  </ul></li>
+  <li><a href="#launch-r-and-tidyverse" id="toc-launch-r-and-tidyverse" class="nav-link" data-scroll-target="#launch-r-and-tidyverse"><span class="header-section-number">4</span> Launch R and tidyverse</a></li>
+  <li><a href="#load-required-uk-biobank-data" id="toc-load-required-uk-biobank-data" class="nav-link" data-scroll-target="#load-required-uk-biobank-data"><span class="header-section-number">5</span> Load required UK Biobank data</a>
+  <ul class="collapse">
+  <li><a href="#baseline-assessment-data" id="toc-baseline-assessment-data" class="nav-link" data-scroll-target="#baseline-assessment-data"><span class="header-section-number">5.1</span> Baseline assessment data</a></li>
+  <li><a href="#atorvastation-prescriptions" id="toc-atorvastation-prescriptions" class="nav-link" data-scroll-target="#atorvastation-prescriptions"><span class="header-section-number">5.2</span> Atorvastation prescriptions</a></li>
+  <li><a href="#slco1b15-genotype" id="toc-slco1b15-genotype" class="nav-link" data-scroll-target="#slco1b15-genotype"><span class="header-section-number">5.3</span> SLCO1B1*5 genotype</a></li>
+  </ul></li>
+  <li><a href="#does-slco1b15-genotype-affect-ldl-cholesterol" id="toc-does-slco1b15-genotype-affect-ldl-cholesterol" class="nav-link" data-scroll-target="#does-slco1b15-genotype-affect-ldl-cholesterol"><span class="header-section-number">6</span> Does SLCO1B1*5 genotype affect LDL cholesterol?</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-statistics-ldl-by-genotype-and-treatment-status" id="toc-descriptive-statistics-ldl-by-genotype-and-treatment-status" class="nav-link" data-scroll-target="#descriptive-statistics-ldl-by-genotype-and-treatment-status"><span class="header-section-number">6.1</span> Descriptive statistics: LDL by genotype and treatment status</a></li>
+  <li><a href="#visualisation-boxplots-by-genotype-and-treatment" id="toc-visualisation-boxplots-by-genotype-and-treatment" class="nav-link" data-scroll-target="#visualisation-boxplots-by-genotype-and-treatment"><span class="header-section-number">6.2</span> Visualisation: Boxplots by genotype and treatment</a></li>
+  <li><a href="#visualisation-density-plots" id="toc-visualisation-density-plots" class="nav-link" data-scroll-target="#visualisation-density-plots"><span class="header-section-number">6.3</span> Visualisation: Density plots</a></li>
+  <li><a href="#regression-analysis-untreated-individuals" id="toc-regression-analysis-untreated-individuals" class="nav-link" data-scroll-target="#regression-analysis-untreated-individuals"><span class="header-section-number">6.4</span> Regression analysis: Untreated individuals</a></li>
+  <li><a href="#regression-analysis-treated-individuals" id="toc-regression-analysis-treated-individuals" class="nav-link" data-scroll-target="#regression-analysis-treated-individuals"><span class="header-section-number">6.5</span> Regression analysis: Treated individuals</a></li>
+  <li><a href="#interaction-analysis-genotype-treatment" id="toc-interaction-analysis-genotype-treatment" class="nav-link" data-scroll-target="#interaction-analysis-genotype-treatment"><span class="header-section-number">6.6</span> Interaction analysis: Genotype × Treatment</a></li>
+  </ul></li>
+  <li><a href="#pharmacogenetic-implications" id="toc-pharmacogenetic-implications" class="nav-link" data-scroll-target="#pharmacogenetic-implications"><span class="header-section-number">7</span> Pharmacogenetic implications</a>
+  <ul class="collapse">
+  <li><a href="#biological-mechanism" id="toc-biological-mechanism" class="nav-link" data-scroll-target="#biological-mechanism"><span class="header-section-number">7.1</span> Biological mechanism</a></li>
+  <li><a href="#clinical-relevance" id="toc-clinical-relevance" class="nav-link" data-scroll-target="#clinical-relevance"><span class="header-section-number">7.2</span> Clinical relevance</a></li>
+  </ul></li>
+  <li><a href="#clinical-significance-and-predictive-utility" id="toc-clinical-significance-and-predictive-utility" class="nav-link" data-scroll-target="#clinical-significance-and-predictive-utility"><span class="header-section-number">8</span> Clinical significance and predictive utility</a>
+  <ul class="collapse">
+  <li><a href="#defining-high-ldl" id="toc-defining-high-ldl" class="nav-link" data-scroll-target="#defining-high-ldl"><span class="header-section-number">8.1</span> Defining “high” LDL</a></li>
+  <li><a href="#relative-risk-analysis" id="toc-relative-risk-analysis" class="nav-link" data-scroll-target="#relative-risk-analysis"><span class="header-section-number">8.2</span> Relative risk analysis</a></li>
+  <li><a href="#is-this-clinically-significant" id="toc-is-this-clinically-significant" class="nav-link" data-scroll-target="#is-this-clinically-significant"><span class="header-section-number">8.3</span> Is this clinically significant?</a></li>
+  <li><a href="#would-genotype-testing-be-useful-in-clinical-practice" id="toc-would-genotype-testing-be-useful-in-clinical-practice" class="nav-link" data-scroll-target="#would-genotype-testing-be-useful-in-clinical-practice"><span class="header-section-number">8.4</span> Would genotype testing be useful in clinical practice?</a>
+  <ul class="collapse">
+  <li><a href="#arguments-for-testing" id="toc-arguments-for-testing" class="nav-link" data-scroll-target="#arguments-for-testing"><span class="header-section-number">8.4.1</span> Arguments FOR testing:</a></li>
+  <li><a href="#arguments-against-routine-testing" id="toc-arguments-against-routine-testing" class="nav-link" data-scroll-target="#arguments-against-routine-testing"><span class="header-section-number">8.4.2</span> Arguments AGAINST routine testing:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#discussion-broader-context" id="toc-discussion-broader-context" class="nav-link" data-scroll-target="#discussion-broader-context"><span class="header-section-number">9</span> Discussion: Broader context</a>
+  <ul class="collapse">
+  <li><a href="#polygenic-risk-scores-vs.-single-variants" id="toc-polygenic-risk-scores-vs.-single-variants" class="nav-link" data-scroll-target="#polygenic-risk-scores-vs.-single-variants"><span class="header-section-number">9.1</span> Polygenic risk scores vs.&nbsp;single variants</a></li>
+  <li><a href="#stratified-medicine-in-practice" id="toc-stratified-medicine-in-practice" class="nav-link" data-scroll-target="#stratified-medicine-in-practice"><span class="header-section-number">9.2</span> Stratified medicine in practice</a></li>
+  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions"><span class="header-section-number">9.3</span> Future directions</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10</span> Summary</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In this workshop you will investigate whether a genetic variant in the <em>SLCO1B1</em> gene is associated with atorvastatin efficacy, using the simulated UK Biobank dataset we have used in previous weeks.</p>
+<p>This builds on content and skills from the previous modules and workshops in this course. Refer to these for code to complete this workshop. In particular:</p>
+<ul>
+<li>In week 1 you performed epidemiological analyses of biomarkers and diseases in UK Biobank</li>
+<li>In week 4 you ascertained atorvastatin prescriptions using codes from the British National Formulary (BNF, <a href="https://bnf.nice.org.uk/">bnf.nice.org.uk</a>)</li>
+<li>In weeks 7 &amp; 8 you learned how inherited genetic variants can affect disease susceptibility</li>
+</ul>
+</section>
+<section id="pharmacogenetics-pgx-statins-and-slco1b1" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Pharmacogenetics (PGx), statins, and <em>SLCO1B1</em></h1>
+<p>Drug efficacy and side effects varies in patients prescribed medications. Reasons can include co-morbidities and patient characteristics. Genetic variants are known to influence efficacy and safety of some medicines. <strong>PGx is the study of how genetic variation affects individual response to drugs.</strong></p>
+<p>Statins are prescribed to lower cholesterol levels for primary prevention of cardiovascular disease (CVD). Atorvastatin is the most common in the UK.</p>
+<p>Statins act by reducing cholesterol synthesis in the liver. Proteins that transport statins to their site of action include OATP1B1. This is encoded by the gene <em>SLCO1B1</em>.</p>
+<p>A common genetic variant <code>rs4149056 T&gt;C</code> in the <em>SLCO1B1</em> gene results in an amino acid substitution (p.Val174Ala) meaning the protein structure is altered. We will use the shorthand <strong>SLCO1B1*5</strong> to refer to this variant, which is reported to impair transport and reduce statin effectiveness.</p>
+<p>In this workshop you will determine whether <strong>SLCO1B1*5</strong> (encoded by rs4149056 genotype) impacts statin efficacy.</p>
+<p>The <strong>ClinPGx</strong> website contains lots of useful pharmacogenetics information. Have a look at rs4149056 (<a href="https://www.clinpgx.org/variant/PA166154579">www.clinpgx.org/variant/PA166154579</a>). This summarizes evidence for drugs affected, how common the variant is, and other information.</p>
+</section>
+<section id="setup" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Setup</h1>
+<section id="openstack" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="openstack"><span class="header-section-number">3.1</span> OpenStack</h2>
+<p>Log in to your OpenStack instance as usual. Activate the <code>conda</code> environment by typing the below into your Linux terminal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate hpdm208z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We will use R for statistical analysis.</p>
+<p>If {<a href="https://tidyverse.org/">tidyverse</a>} is not already installed type the below into your Linux terminal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> r r-tidyverse <span class="at">-y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can complete this workshop directly in the linux terminal, or create a JupyterLab notebook if you prefer. If the former make sure to save your commands in a text file.</p>
+</section>
+<section id="working-directory" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="working-directory"><span class="header-section-number">3.2</span> Working directory</h2>
+<p>All data for this workshop are on your OpenStack instance at the below location. Code examples assume this is your working directory:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/hpdm208z/workshops/pharmacogenetics/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="launch-r-and-tidyverse" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Launch R and tidyverse</h1>
+<p>To launch R on the Linux command line just type <code>R</code>. The following commands in this workshop are designed to be run in R itself.</p>
+<p>Load the {tidyverse} library.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="load-required-uk-biobank-data" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Load required UK Biobank data</h1>
+<section id="baseline-assessment-data" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="baseline-assessment-data"><span class="header-section-number">5.1</span> Baseline assessment data</h2>
+<p>We will use the same dataset as week 4 (medications data).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"~/hpdm208z/workshops/medications_data/ukb_baseline.tsv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Inspect the data by previewing the first few rows, check the variable types, etc. to make sure the data looks sensible.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+  eid     assessment_date   age   sex   bmi current_smoker   ldl hba1c systolic_bp chd_prevalent chd_incident
+  &lt;chr&gt;   &lt;date&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 x100001 2010-07-28         61     1  28.4              0  3.55  43.3        192.             0            1
+2 x100002 2010-09-07         51     0  28.0              0  3.05  33.4        143.             0            0
+3 x100003 2007-06-07         49     1  29.3              0  3.72  35.6        128.             0            0
+4 x100004 2010-02-24         51     1  24.8              0  2.72  34.8        152.             0            0
+5 x100005 2009-03-17         57     1  31.3              0  3.34  37.3        162.             0            0
+6 x100006 2008-08-05         42     0  33.9              0  3.85  30.1        156.             0            0
+  t2d_prevalent t2d_incident in_gp
+          &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1             0            0     1
+2             0            0     0
+3             0            0     1
+4             0            0     0
+5             0            1     0
+6             0            0     1</code></pre>
+</div>
+</div>
+</section>
+<section id="atorvastation-prescriptions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="atorvastation-prescriptions"><span class="header-section-number">5.2</span> Atorvastation prescriptions</h2>
+<p>In week 4 you identified the primary care (GP) prescriptions of atorvastatin. You created binary variables indicating whether the participant has a prevalent prescription (i.e., before baseline assessment). We will use this variable today to look at associations with LDL cholesterol measured at the UK Biobank assessment. For ease, I have provided it in the week 10 data file.</p>
+<p>Load and join file <code>ukb_atorvastatin_rs4149056.tsv.gz</code> with your main <code>ukb</code> data object.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ukb_w10 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"ukb_atorvastatin_rs4149056.tsv.gz"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ukb, ukb_w10, <span class="at">by=</span><span class="st">"eid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Sense check the data:</p>
+<ol type="1">
+<li>What % of the UK Biobank cohort have data on atorvastatin prescription?</li>
+<li>How many of this subset had a prescription prior to attending the assessment?</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ukb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 500000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>atorvastatin_prevalent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1 
+185373  23050 </code></pre>
+</div>
+</div>
+</section>
+<section id="slco1b15-genotype" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="slco1b15-genotype"><span class="header-section-number">5.3</span> SLCO1B1*5 genotype</h2>
+<p>Also included in the above data file for week 10 was <code>rs4149056_T_C</code>. This is the genetic variant that encodes the SLCO1B1*5 allele. For each participant in the data it indicates how many copies of the <code>C</code> allele they carry. Most participants carry no alleles (common homozygotes). Some have one copy of the C allele (and therefore one copy of the T allele: the heterozygotes). Some few have two copies of the C allele (i.e., are SLCO1B1*5 homozygotes).</p>
+<p>How many participants of the three possible genotype groups are in the data? What % of the cohort are rare homozygotes, and therefore carry two altered forms of the <em>SLCO1B1</em> gene (and consequently the OATP1B1 protein)?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ukb<span class="sc">$</span>rs4149056_T_C)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     0      1      2 
+353775 133250  12975 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(ukb<span class="sc">$</span>rs4149056_T_C))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+      0       1       2 
+0.70755 0.26650 0.02595 </code></pre>
+</div>
+</div>
+<p>Approximately 25% are heterozygotes and 2.5% are rare homozygotes for the SLCO1B1*5 variant. This corresponds to 15.9% minor allele frequency (this is the expected frequency for a predominantly European-ancestry cohort).</p>
+</section>
+</section>
+<section id="does-slco1b15-genotype-affect-ldl-cholesterol" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Does SLCO1B1*5 genotype affect LDL cholesterol?</h1>
+<p>We will now investigate whether the SLCO1B1*5 genotype affects LDL cholesterol levels. Importantly, we hypothesize that the genotype should <strong>only</strong> affect LDL in people taking atorvastatin (since the variant affects the transport protein that moves statins to their site of action in the liver), but should <strong>not</strong> affect LDL in untreated individuals.</p>
+<section id="descriptive-statistics-ldl-by-genotype-and-treatment-status" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="descriptive-statistics-ldl-by-genotype-and-treatment-status"><span class="header-section-number">6.1</span> Descriptive statistics: LDL by genotype and treatment status</h2>
+<p>First, calculate summary statistics (mean, median, etc) for LDL levels stratified by both genotype and atorvastatin treatment status.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels to numeric variables (convert them to factors)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">genotype =</span> <span class="fu">factor</span>(rs4149056_T_C, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"TT (Reference)"</span>, <span class="st">"TC (Heterozygote)"</span>, <span class="st">"CC (SLCO1B1*5 Homozygote)"</span>)),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">treatment =</span> <span class="fu">factor</span>(atorvastatin_prevalent,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Untreated"</span>, <span class="st">"Treated"</span>))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># subset dataset: exclude if participants are missing genotype, LDL, or atorvastatin status</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rs4149056_T_C) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ldl) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(atorvastatin_prevalent))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment, genotype) <span class="sc">|&gt;</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_ldl =</span> <span class="fu">mean</span>(ldl, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_ldl =</span> <span class="fu">median</span>(ldl, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_ldl =</span> <span class="fu">sd</span>(ldl, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  treatment genotype                       n mean_ldl median_ldl sd_ldl
+  &lt;fct&gt;     &lt;fct&gt;                      &lt;int&gt;    &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 Untreated TT (Reference)            132533     3.59       3.53  0.822
+2 Untreated TC (Heterozygote)          48256     3.59       3.53  0.818
+3 Untreated CC (SLCO1B1*5 Homozygote)   4584     3.60       3.55  0.821
+4 Treated   TT (Reference)             13451     3.06       3.02  0.693
+5 Treated   TC (Heterozygote)           8544     3.12       3.07  0.703
+6 Treated   CC (SLCO1B1*5 Homozygote)   1055     3.25       3.18  0.738</code></pre>
+</div>
+</details>
+</div>
+<p>What do you observe? In the untreated group, do the three genotype groups have similar LDL levels? What about in the treated group?</p>
+</section>
+<section id="visualisation-boxplots-by-genotype-and-treatment" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="visualisation-boxplots-by-genotype-and-treatment"><span class="header-section-number">6.2</span> Visualisation: Boxplots by genotype and treatment</h2>
+<p>Boxplots are an excellent way to visualize differences in distributions across groups.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> genotype, <span class="at">y =</span> ldl, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>treatment) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL cholesterol by SLCO1B1*5 genotype and atorvastatin treatment status"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"SLCO1B1*5 Genotype (rs4149056)"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"LDL cholesterol (mmol/L)"</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop_10_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</details>
+</div>
+<p>You should observe that in the <strong>Untreated</strong> group, LDL levels are similar across all three genotypes. However, in the <strong>Treated</strong> group, individuals with the CC genotype (SLCO1B1*5 homozygotes) have notably higher LDL levels than the TT reference group. However, still lower than the untreated group.</p>
+</section>
+<section id="visualisation-density-plots" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="visualisation-density-plots"><span class="header-section-number">6.3</span> Visualisation: Density plots</h2>
+<p>Density plots show the full distribution of LDL values, which can reveal differences in the shape of distributions.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ldl, <span class="at">fill =</span> genotype, <span class="at">colour =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>treatment) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"LDL distribution by SLCO1B1*5 genotype and treatment status"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"LDL cholesterol (mmol/L)"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Genotype"</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Genotype"</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="workshop_10_solutions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</details>
+</div>
+<p>Again, notice the shift in the distribution for CC homozygotes in the treated group.</p>
+</section>
+<section id="regression-analysis-untreated-individuals" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="regression-analysis-untreated-individuals"><span class="header-section-number">6.4</span> Regression analysis: Untreated individuals</h2>
+<p>Formally test whether genotype affects LDL in <strong>untreated</strong> individuals using linear regression, adjusting for age and sex.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression model in untreated individuals</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>model_untreated <span class="ot">&lt;-</span> <span class="fu">lm</span>(ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> <span class="fu">as.factor</span>(rs4149056_T_C), </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(atorvastatin_prevalent <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>result_untreated <span class="ot">&lt;-</span> model_untreated <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>result_untreated<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> result_untreated<span class="sc">$</span>Estimate <span class="sc">-</span> (result_untreated<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>result_untreated<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> result_untreated<span class="sc">$</span>Estimate <span class="sc">+</span> (result_untreated<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>result_untreated</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>                              Estimate   Std. Error     t value      Pr(&gt;|t|)     CI_lower    CI_upper
+(Intercept)                3.091106058 0.0130519410 236.8311399  0.000000e+00  3.065524254  3.11668786
+age                        0.010143655 0.0002336699  43.4101931  0.000000e+00  0.009685662  0.01060165
+sex                       -0.137344521 0.0038106014 -36.0427409 1.732675e-283 -0.144813299 -0.12987574
+as.factor(rs4149056_T_C)1  0.001609402 0.0043267748   0.3719634  7.099205e-01 -0.006871077  0.01008988
+as.factor(rs4149056_T_C)2  0.015058680 0.0122259696   1.2316962  2.180642e-01 -0.008904220  0.03902158</code></pre>
+</div>
+</details>
+</div>
+<p><strong>Interpretation:</strong> In untreated individuals, the SLCO1B1*5 genotype (rs4149056_T_C) shows no significant association with LDL cholesterol levels (p-value &gt;0.05). This is the expected result, as the variant affects statin transport, not baseline cholesterol synthesis.</p>
+</section>
+<section id="regression-analysis-treated-individuals" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="regression-analysis-treated-individuals"><span class="header-section-number">6.5</span> Regression analysis: Treated individuals</h2>
+<p>Now test whether genotype affects LDL in <strong>treated</strong> individuals (those prescribed atorvastatin prior to assessment).</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression model</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model_treated <span class="ot">&lt;-</span> <span class="fu">lm</span>(ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> <span class="fu">as.factor</span>(rs4149056_T_C), </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(atorvastatin_prevalent <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>result_treated <span class="ot">&lt;-</span> model_treated <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>result_treated<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> result_treated<span class="sc">$</span>Estimate <span class="sc">-</span> (result_treated<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>result_treated<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> result_treated<span class="sc">$</span>Estimate <span class="sc">+</span> (result_treated<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>result_treated</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Estimate   Std. Error    t value     Pr(&gt;|t|)    CI_lower    CI_upper
+(Intercept)                2.42224852 0.0430953817  56.206684 0.000000e+00  2.33778157  2.50671547
+age                        0.01180409 0.0006926349  17.042291 9.944586e-65  0.01044652  0.01316165
+sex                       -0.12900339 0.0094158218 -13.700705 1.476457e-42 -0.14745840 -0.11054838
+as.factor(rs4149056_T_C)1  0.04989629 0.0095772725   5.209865 1.906044e-07  0.03112484  0.06866775
+as.factor(rs4149056_T_C)2  0.17879888 0.0221230625   8.082013 6.681228e-16  0.13543768  0.22216008</code></pre>
+</div>
+</details>
+</div>
+<p><strong>Interpretation:</strong> In treated individuals, each additional copy of the SLCO1B1*5 allele (C allele) is associated with significantly higher LDL cholesterol (estimate per allele with 95% CI and p-value shown above). This indicates reduced atorvastatin efficacy in individuals carrying this variant.</p>
+</section>
+<section id="interaction-analysis-genotype-treatment" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="interaction-analysis-genotype-treatment"><span class="header-section-number">6.6</span> Interaction analysis: Genotype × Treatment</h2>
+<p>To formally test whether the effect of genotype <strong>differs</strong> between treated and untreated individuals, we can include an interaction term in our regression model.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full dataset with interaction term</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> <span class="fu">as.factor</span>(rs4149056_T_C) <span class="sc">*</span> atorvastatin_prevalent, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> ukb)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>result_interaction <span class="ot">&lt;-</span> model_interaction <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>result_interaction<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> result_interaction<span class="sc">$</span>Estimate <span class="sc">-</span> (result_interaction<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>result_interaction<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> result_interaction<span class="sc">$</span>Estimate <span class="sc">+</span> (result_interaction<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>result_interaction</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                     Estimate   Std. Error     t value      Pr(&gt;|t|)     CI_lower
+(Intercept)                                       3.083896811 0.0123676838 249.3512007  0.000000e+00  3.059656150
+age                                               0.010268644 0.0002211393  46.4351760  0.000000e+00  0.009835211
+sex                                              -0.136506486 0.0035475765 -38.4788003 8.893182e-323 -0.143459736
+as.factor(rs4149056_T_C)1                         0.001611552 0.0042599878   0.3782997  7.052083e-01 -0.006738024
+as.factor(rs4149056_T_C)2                         0.015021179 0.0120372386   1.2478924  2.120719e-01 -0.008571809
+atorvastatin_prevalent                           -0.563193164 0.0074124905 -75.9789391  0.000000e+00 -0.577721646
+as.factor(rs4149056_T_C)1:atorvastatin_prevalent  0.048400032 0.0118754588   4.0756347  4.590600e-05  0.025124132
+as.factor(rs4149056_T_C)2:atorvastatin_prevalent  0.164189869 0.0283043407   5.8008724  6.606571e-09  0.108713361
+                                                     CI_upper
+(Intercept)                                       3.108137471
+age                                               0.010702077
+sex                                              -0.129553237
+as.factor(rs4149056_T_C)1                         0.009961128
+as.factor(rs4149056_T_C)2                         0.038614166
+atorvastatin_prevalent                           -0.548664683
+as.factor(rs4149056_T_C)1:atorvastatin_prevalent  0.071675931
+as.factor(rs4149056_T_C)2:atorvastatin_prevalent  0.219666377</code></pre>
+</div>
+</details>
+</div>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>The main effect of <code>rs4149056_T_C</code> represents the effect in untreated individuals (when atorvastatin_prevalent = 0)</li>
+<li>The main effect of <code>atorvastatin_prevalent</code> represents the treatment effect in individuals with the reference genotype (rs4149056_T_C = 0)</li>
+<li>The <strong>interaction term</strong> <code>rs4149056_T_C:atorvastatin_prevalent</code> tests whether the genotype effect differs between treated and untreated groups</li>
+</ul>
+<p>A statistically significant interaction term (p &lt; 0.05) confirms that the SLCO1B1*5 variant has a differential effect on LDL depending on atorvastatin treatment status—specifically, it only affects LDL when individuals are taking the medication.</p>
+</section>
+</section>
+<section id="pharmacogenetic-implications" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Pharmacogenetic implications</h1>
+<section id="biological-mechanism" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="biological-mechanism"><span class="header-section-number">7.1</span> Biological mechanism</h2>
+<p>The SLCO1B1*5 variant (rs4149056 C allele) results in reduced function of the OATP1B1 transporter protein. This protein is responsible for transporting statins from the blood into liver cells, where statins inhibit cholesterol synthesis.</p>
+<p><strong>Key pharmacogenetic findings:</strong></p>
+<ol type="1">
+<li><p><strong>No effect in untreated individuals:</strong> The variant does not affect baseline LDL cholesterol in people not taking statins, as the transporter is not involved in endogenous cholesterol regulation.</p></li>
+<li><p><strong>Reduced efficacy in treated individuals:</strong> Carriers of the SLCO1B1*5 variant (especially CC homozygotes) have impaired statin transport into liver cells, resulting in:</p>
+<ul>
+<li>Reduced drug efficacy (higher LDL despite treatment)</li>
+<li>Potentially increased risk of statin-related side effects due to higher systemic drug concentrations</li>
+</ul></li>
+<li><p><strong>Gene-drug interaction:</strong> This is a classic example of <strong>pharmacogenetics</strong>—genetic variation affecting drug response. The variant only matters when the drug is present.</p></li>
+</ol>
+</section>
+<section id="clinical-relevance" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="clinical-relevance"><span class="header-section-number">7.2</span> Clinical relevance</h2>
+<p>Atorvastatin is one of the most commonly prescribed medications worldwide for cardiovascular disease prevention. Understanding who will respond well to the medication (and who may need alternative treatments or higher doses) is clinically important for:</p>
+<ul>
+<li><strong>Personalized treatment selection:</strong> Identify patients who may benefit from alternative statins or non-statin lipid-lowering therapies</li>
+<li><strong>Dose optimization:</strong> CC homozygotes may require higher doses to achieve target LDL levels</li>
+<li><strong>Side effect prediction:</strong> Reduced hepatic uptake may increase risk of muscle-related side effects</li>
+</ul>
+</section>
+</section>
+<section id="clinical-significance-and-predictive-utility" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Clinical significance and predictive utility</h1>
+<section id="defining-high-ldl" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="defining-high-ldl"><span class="header-section-number">8.1</span> Defining “high” LDL</h2>
+<p>Clinical guidelines define thresholds for LDL cholesterol to guide treatment decisions. A common threshold is <strong>LDL &gt; 3.0 mmol/L</strong> indicating elevated cardiovascular risk requiring treatment.</p>
+<p>Let’s investigate how many individuals in each genotype group have LDL above this threshold, focusing on the treated group.</p>
+<ul>
+<li>Create a new binary variable <code>high_ldl</code> indicating which participants are above the threshold with [1] or below the threshold with [0].</li>
+<li>Calculate the proportion of participants above the threshold, stratified by genotype.</li>
+</ul>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create binary variable for high LDL</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ukb <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_ldl =</span> <span class="fu">if_else</span>(ldl <span class="sc">&gt;</span> <span class="fl">3.0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate proportions by genotype</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>ukb <span class="sc">|&gt;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rs4149056_T_C) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(high_ldl) <span class="sc">&amp;</span> atorvastatin_prevalent <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">factor</span>(rs4149056_T_C, </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>), </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"TT"</span>, <span class="st">"TC"</span>, <span class="st">"CC"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genotype) <span class="sc">|&gt;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_total =</span> <span class="fu">n</span>(),</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_high_ldl =</span> <span class="fu">sum</span>(high_ldl),</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_high_ldl =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(high_ldl), <span class="dv">1</span>),</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  genotype n_total n_high_ldl percent_high_ldl
+  &lt;fct&gt;      &lt;int&gt;      &lt;dbl&gt;            &lt;dbl&gt;
+1 TT         13451       6832             50.8
+2 TC          8544       4596             53.8
+3 CC          1055        644             61  </code></pre>
+</div>
+</details>
+</div>
+<p>In the participants prescribed atorvastatin, the percentage with high LDL is higher in the CC homozygotes than the other (more common) groups. A key question is whether this is “higher enough” to justify genetic testing to identify the CC (*5) homozygotes to personalise their treatment.</p>
+</section>
+<section id="relative-risk-analysis" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="relative-risk-analysis"><span class="header-section-number">8.2</span> Relative risk analysis</h2>
+<p>Use a logistic regression model to estimate the relative risk (Odds Ratio) of having high LDL for SLCO1B1*5 homozygotes compared to the reference group (in treated individuals).</p>
+<p>Remember that in logistic regression models we specify a binomial link function (“family”) to use in the model. Therefore the coefficients are in terms of log-odds. To interpret them as Odds Ratios (OR), we must exponentiate them.</p>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generalised Linear Model (glm) with family="binomial"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>model_high_ldl <span class="ot">&lt;-</span> <span class="fu">glm</span>(high_ldl <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> <span class="fu">as.factor</span>(rs4149056_T_C),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ukb <span class="sc">|&gt;</span> <span class="fu">filter</span>(atorvastatin_prevalent<span class="sc">==</span><span class="dv">1</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>result_high_ldl <span class="ot">&lt;-</span> model_high_ldl <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>result_high_ldl<span class="sc">$</span>OR <span class="ot">&lt;-</span> <span class="fu">exp</span>(result_high_ldl[,<span class="st">"Estimate"</span>])</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>result_high_ldl<span class="sc">$</span>CI_lower <span class="ot">&lt;-</span> <span class="fu">exp</span>(result_high_ldl<span class="sc">$</span>Estimate <span class="sc">-</span> (result_high_ldl<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>result_high_ldl<span class="sc">$</span>CI_upper <span class="ot">&lt;-</span> <span class="fu">exp</span>(result_high_ldl<span class="sc">$</span>Estimate <span class="sc">+</span> (result_high_ldl<span class="sc">$</span><span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">1.96</span>))</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>result_high_ldl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Estimate  Std. Error    z value     Pr(&gt;|z|)        OR  CI_lower  CI_upper
+(Intercept)               -1.53271035 0.126245011 -12.140760 6.422686e-34 0.2159496 0.1686128 0.2765759
+age                        0.02865858 0.002031839  14.104751 3.550424e-45 1.0290732 1.0249832 1.0331795
+sex                       -0.28920332 0.027530907 -10.504678 8.220282e-26 0.7488599 0.7095219 0.7903790
+as.factor(rs4149056_T_C)1  0.10683102 0.027917255   3.826702 1.298715e-04 1.1127462 1.0534950 1.1753299
+as.factor(rs4149056_T_C)2  0.40910036 0.065878409   6.209931 5.300793e-10 1.5054628 1.3231016 1.7129586</code></pre>
+</div>
+</details>
+</div>
+<p>The participants with the SLCO1B1*5 genotype, especially the homozygotes, have significantly increased odds of high LDL at the assessment.</p>
+</section>
+<section id="is-this-clinically-significant" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="is-this-clinically-significant"><span class="header-section-number">8.3</span> Is this clinically significant?</h2>
+<p>While the relative risk may be elevated (OR &gt; 1), we must consider:</p>
+<ol type="1">
+<li><strong>Absolute numbers:</strong> How many SLCO1B1*5 homozygotes actually have high LDL?
+<ul>
+<li>Even if OR = 1.5-2.0, if only ~5-10% of CC individuals have high LDL, this means most still achieve good control on atorvastatin</li>
+</ul></li>
+<li><strong>Positive predictive value (PPV):</strong> What proportion of those carrying two risk alleles actually have the adverse outcome?
+<ul>
+<li>If PPV is low (e.g., 20%), then genotype testing would give many false positives</li>
+</ul></li>
+<li><strong>Allele frequency:</strong> The CC genotype is rare (~2.5% in this European population)
+<ul>
+<li>This limits the population-level impact and utility of routine screening</li>
+</ul></li>
+</ol>
+</section>
+<section id="would-genotype-testing-be-useful-in-clinical-practice" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="would-genotype-testing-be-useful-in-clinical-practice"><span class="header-section-number">8.4</span> Would genotype testing be useful in clinical practice?</h2>
+<p>Let’s consider the utility of SLCO1B1*5 genotyping for predicting atorvastatin response:</p>
+<section id="arguments-for-testing" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="arguments-for-testing"><span class="header-section-number">8.4.1</span> Arguments FOR testing:</h3>
+<ul>
+<li>Clear biological mechanism linking genotype to drug response</li>
+<li>Potential to personalize treatment selection or dosing</li>
+<li>One-time genetic test with lifelong relevance</li>
+<li>May prevent treatment failures and unnecessary dose escalations</li>
+</ul>
+</section>
+<section id="arguments-against-routine-testing" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="arguments-against-routine-testing"><span class="header-section-number">8.4.2</span> Arguments AGAINST routine testing:</h3>
+<div class="cell" data-output-fold="true" data-output-summary="View output">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sensitivity, specificity, PPV, NPV</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using CC genotype as "test positive" and high LDL as "disease"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ukb_treated_complete <span class="ot">&lt;-</span> ukb <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rs4149056_T_C) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(high_ldl) <span class="sc">&amp;</span> atorvastatin_prevalent<span class="sc">==</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">test_positive =</span> <span class="fu">if_else</span>(rs4149056_T_C <span class="sc">==</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create confusion matrix</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Test =</span> <span class="fu">factor</span>(ukb_treated_complete<span class="sc">$</span>test_positive, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"TT/TC"</span>, <span class="st">"CC"</span>)),</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">HighLDL =</span> <span class="fu">factor</span>(ukb_treated_complete<span class="sc">$</span>high_ldl, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Normal"</span>, <span class="st">"High"</span>))</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(confusion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>       HighLDL
+Test    Normal  High
+  TT/TC  10567 11428
+  CC       411   644</code></pre>
+</div>
+</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate diagnostic statistics</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tp <span class="ot">&lt;-</span> confusion[<span class="dv">2</span>,<span class="dv">2</span>]  <span class="co"># True Positive</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>tn <span class="ot">&lt;-</span> confusion[<span class="dv">1</span>,<span class="dv">1</span>]  <span class="co"># True Negative</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> confusion[<span class="dv">2</span>,<span class="dv">1</span>]  <span class="co"># False Positive</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> confusion[<span class="dv">1</span>,<span class="dv">2</span>]  <span class="co"># False Negative</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> tp <span class="sc">/</span> (tp <span class="sc">+</span> fn)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">&lt;-</span> tn <span class="sc">/</span> (tn <span class="sc">+</span> fp)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>ppv <span class="ot">&lt;-</span> tp <span class="sc">/</span> (tp <span class="sc">+</span> fp)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>npv <span class="ot">&lt;-</span> tn <span class="sc">/</span> (tn <span class="sc">+</span> fn)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Diagnostic performance of CC genotype for predicting high LDL:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Diagnostic performance of CC genotype for predicting high LDL:</code></pre>
+</div>
+</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat=</span><span class="fu">c</span>(<span class="st">"Sensitivity:"</span>,<span class="st">"Sensitivity:"</span>,<span class="st">"Positive Predictive Value:"</span>,<span class="st">"Negative Predictive Value:"</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent=</span><span class="fu">c</span>(<span class="fu">round</span>(sensitivity <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="fu">round</span>(specificity <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="fu">round</span>(ppv <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="fu">round</span>(npv <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details><summary>View output</summary>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        stat percent
+1               Sensitivity:     5.3
+2               Sensitivity:    96.3
+3 Positive Predictive Value:    61.0
+4 Negative Predictive Value:    48.0</code></pre>
+</div>
+</details>
+</div>
+<p><strong>Interpretation of predictive utility:</strong></p>
+<ul>
+<li><strong>Low sensitivity:</strong> The genotype test will miss most people who have high LDL. The test is missing nearly 95% of the people with high LDL. Majority of “high LDL” not due to *5 genotype.</li>
+<li><strong>High specificity:</strong> Most people without the risk genotype do have normal LDL</li>
+<li><strong>Low PPV:</strong> At 61.0%, if you receive a positive result, there is a 61% probability you have the condition and a 39% probability it is a “false positive.”</li>
+<li><strong>Low NPV:</strong> A 48.0% NPV is very low (worse than a coin flip). It means that if you get a negative result, there is only a 48% chance you are actually disease-free</li>
+</ul>
+<p><strong>Clinical conclusion:</strong> While SLCO1B1*5 genotyping identifies a subset at higher risk of poor response, its low PPV and rarity mean it has limited utility as a pre-treatment screening tool. Current clinical practice of:</p>
+<ol type="1">
+<li>Prescribing atorvastatin to all suitable patients</li>
+<li>Monitoring LDL levels post-treatment</li>
+<li>Adjusting therapy (dose increase or alternative agent) based on measured LDL response</li>
+</ol>
+<p>…remains more practical and cost-effective than pre-treatment genotyping for most patients.</p>
+<p><strong>However</strong>, genotyping may still be valuable for:</p>
+<ul>
+<li>Research to understand mechanisms of drug response variability</li>
+<li>Patients with unexplained poor response or side effects</li>
+<li>Future multi-gene pharmacogenetic panels that combine multiple variants</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="discussion-broader-context" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Discussion: Broader context</h1>
+<section id="polygenic-risk-scores-vs.-single-variants" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="polygenic-risk-scores-vs.-single-variants"><span class="header-section-number">9.1</span> Polygenic risk scores vs.&nbsp;single variants</h2>
+<p>In previous weeks you learned about polygenic risk scores (PRS) that combine information from hundreds or thousands of genetic variants to predict disease risk. In contrast, today you analyzed a single pharmacogenetic variant.</p>
+<p><strong>Key differences:</strong></p>
+<ul>
+<li><strong>Pharmacogenetics:</strong> Often involves variants in genes directly involved in drug metabolism or transport. Single variants can have large, clinically relevant effects.</li>
+<li><strong>Disease risk prediction:</strong> Usually involves many variants with small effects. PRS aggregate these to improve prediction.</li>
+</ul>
+<p>For drug response, both approaches may be relevant:</p>
+<ul>
+<li>Single high-impact variants (like SLCO1B1*5) for specific drug-gene pairs</li>
+<li>Polygenic scores for complex drug responses involving multiple pathways</li>
+</ul>
+</section>
+<section id="stratified-medicine-in-practice" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="stratified-medicine-in-practice"><span class="header-section-number">9.2</span> Stratified medicine in practice</h2>
+<p>This workshop demonstrates a core principle of <strong>stratified medicine</strong>: identifying patient subgroups who will respond differently to treatment. Genetic biomarkers like SLCO1B1*5 can:</p>
+<ol type="1">
+<li>Guide treatment selection</li>
+<li>Predict treatment response</li>
+<li>Identify patients at risk of adverse effects</li>
+<li>Enable more efficient clinical trials (enrichment strategies)</li>
+</ol>
+<p>However, implementation requires evidence that:</p>
+<ul>
+<li>Genetic testing improves clinical outcomes</li>
+<li>Benefits outweigh costs</li>
+<li>Results change clinical decision-making</li>
+</ul>
+</section>
+<section id="future-directions" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="future-directions"><span class="header-section-number">9.3</span> Future directions</h2>
+<p>Pharmacogenomics is an expanding field. Resources like:</p>
+<ul>
+<li><strong>CPIC Guidelines</strong> (Clinical Pharmacogenetics Implementation Consortium): Evidence-based gene-drug clinical practice guidelines</li>
+<li><strong>ClinPGx</strong> (<a href="https://www.clinpgx.org/">www.clinpgx.org</a>): Comprehensive pharmacogenomics knowledge base</li>
+</ul>
+<p>…provide up-to-date information on clinically actionable pharmacogenetic variants across many therapeutic areas.</p>
+</section>
+</section>
+<section id="summary" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Summary</h1>
+<p>In this workshop you have:</p>
+<ol type="1">
+<li>✅ Analyzed the effect of the SLCO1B1*5 pharmacogenetic variant on LDL cholesterol</li>
+<li>✅ Demonstrated that the variant only affects LDL in treated individuals (gene-drug interaction)</li>
+<li>✅ Used descriptive statistics, visualizations (boxplots, density plots), and regression models</li>
+<li>✅ Performed interaction analysis to formally test differential effects</li>
+<li>✅ Evaluated clinical significance using risk stratification</li>
+<li>✅ Assessed the predictive utility of genotyping using diagnostic test statistics</li>
+<li>✅ Discussed the broader context of pharmacogenetics in stratified medicine</li>
+</ol>
+<p><strong>Key take-home messages:</strong></p>
+<ul>
+<li>The SLCO1B1*5 variant impairs atorvastatin efficacy through reduced hepatic uptake</li>
+<li>This is a classic gene-drug interaction: the variant only matters when the drug is present</li>
+<li>While statistically significant and biologically meaningful, pre-treatment genotyping has limited clinical utility due to low PPV and allele rarity</li>
+<li>Pharmacogenetics is an important component of personalized/stratified medicine, but implementation requires careful evaluation of clinical utility and cost-effectiveness</li>
+</ul>
+<p>Congratulations! You have successfully performed a pharmacogenetic analysis using real-world genetic and clinical data, demonstrating key concepts in stratified medicine.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

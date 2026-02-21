@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.13</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
 
 <p>ukbrapR (phonetically: ‘U-K-B-wrapper’) is an R package for working in the UK Biobank Research Analysis Platform (RAP). The aim is to make it quicker, easier, and more reproducible.</p>
 <blockquote>
-<p>Since <code>v0.2.0</code> ukbrapR works best on a “normal” cluster using RStudio and raw data from the table-exporter. Old Spark functions are still available but are not updated.</p>
+<p>The package is free to use. If you found it useful consider getting in contact - I love to hear from users! Please consider starring the repo and citing it in your papers.</p>
 </blockquote>
 <p><sub>Wrapped server icon by DALL-E</sub></p>
 <div class="section level2">
@@ -136,7 +136,7 @@
 <div class="section level3">
 <h3 id="create-polygenic-score">Create polygenic score<a class="anchor" aria-label="anchor" href="#create-polygenic-score"></a>
 </h3>
-<p><code><a href="reference/create_pgs.html">create_pgs()</a></code> takes a data frame containing a list of variant associations with a trait and creates a weighted allele score using <a href="https://www.cog-genomics.org/plink/1.9/score" class="external-link">plink</a>. By default it uses the <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=22828" class="external-link">imputed</a> genotypes.</p>
+<p><code><a href="reference/create_pgs.html">create_pgs()</a></code> takes a data frame containing a list of variant associations with a trait and creates a weighted allele score using <a href="https://www.cog-genomics.org/plink/2.0/score" class="external-link">plink2</a>. By default it uses the <a href="https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=22828" class="external-link">imputed</a> genotypes.</p>
 <p>The only required input is a data frame (or path to file) containing rsid, chr, pos, effect_allele, other_allele, beta. For DRAGEN pos is build 38.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># weights from GWAS of liver cirrhosis (Innes 2020 Gastroenterology doi:10.1053/j.gastro.2020.06.014)</span></span>
@@ -327,7 +327,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.10-informational.svg"></a></li>
+<li><a href="https://github.com/lcpilling/ukbrapR" class="external-link"><img src="https://img.shields.io/badge/version-0.3.13-informational.svg"></a></li>
 <li><a href="https://github.com/lcpilling/ukbrapR/commits/main" class="external-link"><img src="https://img.shields.io/github/last-commit/lcpilling/ukbrapR.svg"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange"></a></li>
 <li><a href="https://zenodo.org/doi/10.5281/zenodo.11517716" class="external-link"><img src="https://zenodo.org/badge/709765135.svg" alt="DOI"></a></li>

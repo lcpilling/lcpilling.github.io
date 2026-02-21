@@ -4,9 +4,9 @@ ukbrapR (phonetically: ‘U-K-B-wrapper’) is an R package for working in
 the UK Biobank Research Analysis Platform (RAP). The aim is to make it
 quicker, easier, and more reproducible.
 
-> Since `v0.2.0` ukbrapR works best on a “normal” cluster using RStudio
-> and raw data from the table-exporter. Old Spark functions are still
-> available but are not updated.
+> The package is free to use. If you found it useful consider getting in
+> contact - I love to hear from users! Please consider starring the repo
+> and citing it in your papers.
 
 _(Wrapped server icon by DALL-E)
 
@@ -105,7 +105,7 @@ function
 [`create_pgs()`](https://lcpilling.github.io/ukbrapR/reference/create_pgs.md)
 takes a data frame containing a list of variant associations with a
 trait and creates a weighted allele score using
-[plink](https://www.cog-genomics.org/plink/1.9/score). By default it
+[plink2](https://www.cog-genomics.org/plink/2.0/score). By default it
 uses the
 [imputed](https://biobank.ctsu.ox.ac.uk/crystal/field.cgi?id=22828)
 genotypes.

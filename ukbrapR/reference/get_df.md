@@ -6,7 +6,8 @@ available electronic medical records & self-reported data.
 If \`use_baseline_dates=TRUE\` (the default) then will also produce a
 binary 0/1 variable, indicating the controls (people without a
 diagnosis) and setting the date first \`\_df\` field to the date of
-censoring (currently 30 October 2022).
+censoring (see options - default is HES England or date of death if
+died).
 
 ## Usage
 
@@ -22,8 +23,9 @@ get_df(
   include_hesin_oper = TRUE,
   include_cancer_registry = TRUE,
   use_baseline_dates = TRUE,
+  use_death_dates = TRUE,
   file_paths = NULL,
-  censoring_date = "30-10-2022",
+  censoring_date = "31-03-2023",
   verbose = FALSE
 )
 ```
@@ -94,6 +96,11 @@ get_df(
   diagnosis) and setting the date first \`\_df\` field to the date of
   censoring (currently see \`censoring_date\` option). `default=TRUE`
 
+- use_death_dates:
+
+  logical. If \`death\` data available then use date of death for the
+  date of censoring. `default=TRUE`
+
 - file_paths:
 
   A data frame. Columns must be \`object\` and \`path\` containing paths
@@ -104,7 +111,8 @@ get_df(
 
   A string. If using baseline data to infer control participants,
   include a censoring date (set to NA if not desired). Use dd-mm-yyyy
-  format. Default is the (current) HES date. `default="30-10-2022"`
+  format. Default is the (current) HES England date.
+  `default="31-03-2023"`
 
 - verbose:
 

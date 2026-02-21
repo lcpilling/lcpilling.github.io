@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ukbrapR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.13</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,39 @@
       <small>Source: <a href="https://github.com/lcpilling/ukbrapR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.13" id="ukbrapr-v0313-21st-feb-2026">ukbrapR v0.3.13 (21st Feb 2026)<a class="anchor" aria-label="anchor" href="#ukbrapr-v0313-21st-feb-2026"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-3-13">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-13"></a></h4>
+<ul><li>Fixed issue <a href="https://github.com/lcpilling/ukbrapR/issues/39" class="external-link">#39</a> for <code><a href="../reference/create_pgs.html">create_pgs()</a></code> to correctly load the new PGS from plink2 (thanks to <a href="https://github.com/aepacker" class="external-link">@aepacker</a> for highlighting)</li>
+</ul></div>
+<div class="section level4">
+<h4 id="changes-0-3-13">Changes<a class="anchor" aria-label="anchor" href="#changes-0-3-13"></a></h4>
+<ul><li>
+<code><a href="../reference/get_df.html">get_df()</a></code> default censoring date updated to 31-03-2023 (i.e., the current date for HES for England <a href="https://biobank.ndph.ox.ac.uk/ukb/exinfo.cgi?src=Data_providers_and_dates" class="external-link uri">https://biobank.ndph.ox.ac.uk/ukb/exinfo.cgi?src=Data_providers_and_dates</a>).</li>
+<li>
+<code><a href="../reference/get_df.html">get_df()</a></code> if a participant has died then use the date of death as the censoring date instead.</li>
+<li>Add message at first use of package in session to ask users for stars and feedback.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.12" id="ukbrapr-v0312-15th-feb-2026">ukbrapR v0.3.12 (15th Feb 2026)<a class="anchor" aria-label="anchor" href="#ukbrapr-v0312-15th-feb-2026"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-3-12">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-12"></a></h4>
+<ul><li>
+<code><a href="../reference/get_df.html">get_df()</a></code> fixed where no results are returned for a condition - previously returned an error, now just returns a binary variable with all 0’s for the condition</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.11" id="ukbrapr-v0311-10th-feb-2026">ukbrapR v0.3.11 (10th Feb 2026)<a class="anchor" aria-label="anchor" href="#ukbrapr-v0311-10th-feb-2026"></a></h2>
+<div class="section level4">
+<h4 id="changes-0-3-11">Changes<a class="anchor" aria-label="anchor" href="#changes-0-3-11"></a></h4>
+<ul><li>Use <code>plink2</code> when creating polygenic scores. This handles effect/other allele differences more robustly
+<ul><li>Returns the “scoreavgs” which is the total sum of the effect weights divided by the number of alleles</li>
+</ul></li>
+<li>Export “GP registrations” table when submitting table-exporter commands</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.10" id="ukbrapr-v0310-27th-jan-2026">ukbrapR v0.3.10 (27th Jan 2026)<a class="anchor" aria-label="anchor" href="#ukbrapr-v0310-27th-jan-2026"></a></h2>
 <div class="section level4">

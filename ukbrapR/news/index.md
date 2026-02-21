@@ -1,5 +1,46 @@
 # Changelog
 
+## ukbrapR v0.3.13 (21st Feb 2026)
+
+#### Bug fixes
+
+- Fixed issue [\#39](https://github.com/lcpilling/ukbrapR/issues/39) for
+  [`create_pgs()`](https://lcpilling.github.io/ukbrapR/reference/create_pgs.md)
+  to correctly load the new PGS from plink2 (thanks to
+  [@aepacker](https://github.com/aepacker) for highlighting)
+
+#### Changes
+
+- [`get_df()`](https://lcpilling.github.io/ukbrapR/reference/get_df.md)
+  default censoring date updated to 31-03-2023 (i.e., the current date
+  for HES for England
+  <https://biobank.ndph.ox.ac.uk/ukb/exinfo.cgi?src=Data_providers_and_dates>).
+- [`get_df()`](https://lcpilling.github.io/ukbrapR/reference/get_df.md)
+  if a participant has died then use the date of death as the censoring
+  date instead.
+- Add message at first use of package in session to ask users for stars
+  and feedback.
+
+## ukbrapR v0.3.12 (15th Feb 2026)
+
+#### Bug fixes
+
+- [`get_df()`](https://lcpilling.github.io/ukbrapR/reference/get_df.md)
+  fixed where no results are returned for a condition - previously
+  returned an error, now just returns a binary variable with all 0’s for
+  the condition
+
+## ukbrapR v0.3.11 (10th Feb 2026)
+
+#### Changes
+
+- Use `plink2` when creating polygenic scores. This handles effect/other
+  allele differences more robustly
+  - Returns the “scoreavgs” which is the total sum of the effect weights
+    divided by the number of alleles
+- Export “GP registrations” table when submitting table-exporter
+  commands
+
 ## ukbrapR v0.3.10 (27th Jan 2026)
 
 #### New features

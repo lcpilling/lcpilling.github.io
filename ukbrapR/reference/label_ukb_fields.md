@@ -43,10 +43,10 @@ Luke Pilling
 ## Examples
 
 ``` r
-# say the below data frame contains 4 variables: `eid`, `p54_i0`, `p50_i0` and `age_at_assessment` 
+# say the below data frame contains 4 variables: `eid`, `p54_i0`, `p50_i0` and `age_at_assessment`
 names(ukb)
 
-# update the variables that looks like UK Biobank fields with titles and, where cateogrical, labels 
+# update the variables that looks like UK Biobank fields with titles and, where cateogrical, labels
 # i.e., `p54_i0` and `p50_i0` only -- `eid` and `age_at_assessment` are ignored
 ukb <- ukbrapR::label_ukb_fields(ukb)
 

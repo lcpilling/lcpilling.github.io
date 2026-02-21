@@ -69,7 +69,7 @@ codes_df_ckd <- ukbrapR:::codes_df_ckd
 head(codes_df_ckd)
 
 # Get diagnosis data - returns list of data frames (one per source)
-# -- Requires exported tables - see `export_tables()` 
+# -- Requires exported tables - see `export_tables()`
 diagnosis_list <- get_diagnoses(codes_df_ckd)
 
 # don't forget to save and upload data to RAP persistent storage!

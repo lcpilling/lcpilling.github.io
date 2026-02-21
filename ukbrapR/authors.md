@@ -11,7 +11,7 @@ Source:
 [`DESCRIPTION`](https://github.com/lcpilling/ukbrapR/blob/HEAD/DESCRIPTION)
 
 Pilling L (2026). *ukbrapR: R functions to use in the UK Biobank
-Research Analysis Platform (RAP)*. R package version 0.3.10,
+Research Analysis Platform (RAP)*. R package version 0.3.13,
 https://github.com/lcpilling/ukbrapR,
 <https://lcpilling.github.io/ukbrapR>.
 
@@ -19,6 +19,6 @@ https://github.com/lcpilling/ukbrapR,
       title = {ukbrapR: R functions to use in the UK Biobank Research Analysis Platform (RAP)},
       author = {Luke Pilling},
       year = {2026},
-      note = {R package version 0.3.10, https://github.com/lcpilling/ukbrapR},
+      note = {R package version 0.3.13, https://github.com/lcpilling/ukbrapR},
       url = {https://lcpilling.github.io/ukbrapR},
     }

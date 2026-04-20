@@ -1,0 +1,58 @@
+# Estimate haplotype frequencies and LD statistics from two biallelic variants
+
+Genotype data in R is usually loaded as genotype counts of biallelic
+variants. Accurately estimating haplotype frequencies without phase
+information is challenging. The key ambiguity is for double
+heterozygotes (1/1): you can't tell if the haplotypes are A1-B1/A2-B2 or
+A1-B2/A2-B1.
+
+To estimate haplotype frequency without the underlying haplotype phase
+we can use the Expectation-Maximisation (EM) algorithm by Excoffier &
+Slatkin (1995) (https://doi.org/10.1093/oxfordjournals.molbev.a040269).
+This function estimates the haplotype frequencies and returns the R^2
+and D' statistics.
+
+Estimates highly similar to `plink2 --r2-phased cols=+dprimeabs` for
+several examples. This function is the combination of some of my older
+scripts plus input from Copilot.
+
+## Usage
+
+``` r
+estimate_ld(df, tol = 1e-08, max_iter = 1000)
+```
+
+## Arguments
+
+- df:
+
+  A data frame of exactly two cols - both must be integer vector (0,
+  1, 2) — minor allele counts for variant A and B
+
+- tol:
+
+  Convergence tolerance for EM
+
+- max_iter:
+
+  Maximum EM iterations
+
+## Value
+
+A data.frame with haplotype freqs, allele freqs, D, D', and R²
+
+## Author
+
+Luke Pilling
+
+## Examples
+
+``` r
+# Estimate LD between HFE p.C282Y and HFE p.S65C
+ukb |> 
+  dplyr::select(rs1800562_g_a, rs1800730_a_t) |> 
+  estimate_ld()
+#> Error: object 'ukb' not found
+#>         P_A1B1     P_A1B2     P_A2B1    P_A2B2       p_A1      p_A2       p_B1     p_B2            D       D_max    D_prime unsigned_D_prime   R_squared em_iterations
+#> 1 3.203526e-05 0.07335235 0.01563897 0.9109766 0.07338439 0.9266156 0.01567101 0.984329 -0.001117972 0.001150007 -0.9721434        0.9721434 0.001191575           110
+```

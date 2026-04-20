@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="en-US">
+  <info>
+    <title>DOI only</title>
+    <id>http://www.zotero.org/styles/digital-object-identifier-only</id>
+    <link href="http://www.zotero.org/styles/digital-object-identifier-only" rel="self"/>
+    <link href="https://forums.zotero.org/discussion/23511" rel="documentation"/>
+    <author>
+      <name>Raphael Grolimund</name>
+      <email>raphael.grolimund@epfl.ch</email>
+    </author>
+    <category field="generic-base"/>
+    <summary>Style for creating Digital Object Identifier (DOI) lists.</summary>
+    <updated>2014-06-18T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <locale>
+    <terms>
+      <term name="online">&#160;</term>
+    </terms>
+  </locale>
+  <macro name="doi">
+    <text variable="DOI"/>
+  </macro>
+  <citation disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" collapse="year" year-suffix-delimiter=", " after-collapse-delimiter="; ">
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <text macro="doi"/>
+    </layout>
+  </citation>
+  <bibliography>
+    <layout>
+      <choose>
+        <if variable="DOI">
+          <text macro="doi"/>
+        </if>
+		<else>
+		  <text term="online"/>
+		</else>
+	  </choose>
+    </layout>
+  </bibliography>
+</style>
